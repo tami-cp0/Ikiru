@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""This module defines a class to manage storage for Ikiru"""
 
 from os import getenv
 from sqlalchemy import create_engine
@@ -7,14 +7,14 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 
 
-class FileStorage():
+class DBStorage():
     """This class manages storage of Ikiru using MySQL"""
     __engine = None
     __session = None
     all_tables = []
 
     def __init__(self):
-        """Initializes a FileStorage instance"""
+        """Initializes a DBStorage instance"""
         username = getenv("USERNAME")
         password = getenv("PASSWORD")
         hostname = getenv("HOSTNAME")
