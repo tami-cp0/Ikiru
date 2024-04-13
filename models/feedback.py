@@ -2,13 +2,13 @@
 """ holds class comment"""
 
 import models
-from models.base_model import BaseModel, Base
+from models.base_model2 import BaseModel2, Base2
 import sqlalchemy
 from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Post(BaseModel, Base):
+class Post(BaseModel2, Base2):
     """Representation of a comment """
     __tablename__ = 'comments'
     text = Column(String(255), nullable=False)
