@@ -2,8 +2,7 @@
 """Base model for reported classes"""
 
 from datetime import datetime
-from uuid import uuid4
-from sqlalchemy import String, DateTime, Column
+from sqlalchemy import DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
 import models
 
@@ -29,11 +28,10 @@ class BaseModel2():
 
     def __str__(self):
         """String representation of a Base Model instance"""
-        return f"<{self.__class__.__name__}> <{self.user_id}> {self.__dict__}"
+        return f"<{self.__class__.__name__}> {self.__dict__}"
 
     def save(self):
-        """Updates and saves a Base Model instance"""
-        self.updated_at = datetime.now()
+        """Saves a Base Model instance"""
         models.storage.new(self)
         models.storage.save()
 
