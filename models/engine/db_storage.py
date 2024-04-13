@@ -5,6 +5,7 @@ from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
+from models.base_model2 import Base2
 
 
 class DBStorage():
@@ -80,6 +81,7 @@ class DBStorage():
         the engine
         """
         Base.metadata.create_all(self.__engine)
+        Base2.metadata.create_all(self.__engine)
         self.__session = scoped_session(
             sessionmaker(bind=self.__engine, expire_on_commit=False)
         )
