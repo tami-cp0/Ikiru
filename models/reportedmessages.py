@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Reportedmessages model for Ikiru web app"""
-from sqlalchemy import Boolean, Column,ForeignKey, String, Text
+from sqlalchemy import Boolean, Column, ForeignKey, String, Text
 from models.base_model2 import Base2, BaseModel2
 
 

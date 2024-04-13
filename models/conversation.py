@@ -9,4 +9,6 @@ class Conversation(BaseModel, Base):
     """Conversation Class"""
     user_id = Column(String(33), ForeignKey("user.id"), nullable=False)
     user = relationship("User")
-    message = relationship("Messages", back_popluates="conversation", cascade="all, delete")
+    message = relationship("Messages",
+                           back_popluates="conversation",
+                           cascade="all, delete")
