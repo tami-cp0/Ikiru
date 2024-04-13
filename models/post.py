@@ -23,7 +23,3 @@ class Post(BaseModel, Base):
                             delete, delete-orphan")
     reported_posts = relationship("ReportedPost", backref="post",
                                   cascade="all, delete, delete-orphan")
-
-    def __init__(self, *args, **kwargs):
-        """initializes post"""
-        super().__init__(*args, **kwargs)
