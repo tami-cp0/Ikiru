@@ -2,8 +2,7 @@
 """Base model for all main ikiru models"""
 
 from datetime import datetime
-from uuid import uuid4
-from sqlalchemy import String, DateTime, Column
+from sqlalchemy import DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
 import models
 
