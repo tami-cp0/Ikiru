@@ -16,11 +16,11 @@ class DBStorage():
 
     def __init__(self):
         """Initializes a DBStorage instance"""
-        username = getenv("USERNAME")
-        password = getenv("PASSWORD")
-        hostname = getenv("HOSTNAME")
-        database = getenv("DATABASE")
-        running_environment = getenv("ENV")
+        username = "ikiru_user"
+        password = "password"
+        hostname = "localhost"
+        database = "ikiru_dev_db"
+        running_environment = "dev"
         self.__engine = create_engine(
             f"mysql+mysqldb://{username}:{password}@{hostname}/{database}",
             pool_pre_ping=True
