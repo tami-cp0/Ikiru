@@ -19,9 +19,10 @@ class Post(BaseModel, Base):
     user_id = Column(String(33), ForeignKey('users.id'), nullable=False)
 
     # relationships
-    comments = relationship("Comment", backref="post")
-    reported_posts = relationship("ReportedPost", backref="post")
-
+    comments = relationship("Comment", backref="post", cascade="all, \
+                            delete, delete-orphan")
+    reported_posts = relationship("ReportedPost", backref="post",
+                                  cascade="all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """initializes post"""

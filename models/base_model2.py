@@ -29,7 +29,7 @@ class BaseModel2():
 
     def __str__(self):
         """String representation of a Base Model instance"""
-        return f"<{self.__class__.__name__}> {self.__dict__}"
+        return f"<{self.__class__.__name__}> <{self.user_id}> {self.__dict__}"
 
     def save(self):
         """Updates and saves a Base Model instance"""
