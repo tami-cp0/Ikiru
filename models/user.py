@@ -22,14 +22,17 @@ class User(BaseModel, Base):
     # things not added to data model
     name = Column(String(16), nullable=False)
     bio = Column(String(128), nullable=True)
-    
+
     # relationships
-    posts = relationship("Post", backref="user")
-    comments = relationship("Comment", backref="user")
-    conversations = relationship("Conversation", backref="user")
+    posts = relationship("Post", backref="user",
+                         cascade="all, delete, delete-orphan")
+    comments = relationship("Comment", backref="user",
+                            cascade="all, delete, delete-orphan")
+    conversations = relationship("Conversation", backref="user",
+                                 cascade="all, delete, delete-orphan")
     feedbacks = relationship("Feedback", backref="user")
-    reported_user = relationship("ReportedUser", backref="user")
-    
+    reported_user = relationship("ReportedUser", backref="user",
+                                 cascade="all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
