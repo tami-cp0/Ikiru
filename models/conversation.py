@@ -7,4 +7,5 @@ from model.base_model import Base, BaseModel
 
 class Conversation(BaseModel, Base):
     """Conversation Class"""
-user_id = Column(String(), secondary)
+    user_id = Column(String(60), ForiegnKey(user.id), nullable=False)
+    user = relationship("User")
