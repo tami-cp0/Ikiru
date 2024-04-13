@@ -15,6 +15,7 @@ class Post(BaseModel2, Base2):
     
     # Foreign keys
     user_id = Column(String(33), ForeignKey('users.id'), nullable=False)
+    post_id = Column(String(33), ForeignKey('posts.id'), nullable=False)
 
 
     def __init__(self, *args, **kwargs):
