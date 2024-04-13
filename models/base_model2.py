@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-"""Base model for all ikiru models"""
+"""Base model for reported classes"""
 
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy import String, DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
+import models
 
 
 Base2 = declarative_base()
 
 
-class BaseModel2:
+class BaseModel2():
     """Base model for reported classes"""
     created_at = Column(DateTime, nullable=False)
 
@@ -30,6 +31,12 @@ class BaseModel2:
         """String representation of a Base Model instance"""
         return f"<{self.__class__.__name__}> {self.__dict__}"
 
+    def save(self):
+        """Updates and saves a Base Model instance"""
+        self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
+
     def to_dict(self):
         """Custom dictionary representation of a Base Model instance"""
         new_dict = self.__dict__.copy()
@@ -39,3 +46,4 @@ class BaseModel2:
 
     def delete(self):
         """Deletes the current instance from the database"""
+        models.storage.delete(self)
