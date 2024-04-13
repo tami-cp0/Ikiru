@@ -8,7 +8,7 @@ from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Post(BaseModel, Base):
+class Comment(BaseModel, Base):
     """Representation of a comment """
     __tablename__ = 'comments'
     text = Column(String(255), nullable=False)
