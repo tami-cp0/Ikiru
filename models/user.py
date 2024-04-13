@@ -34,8 +34,4 @@ class User(BaseModel, Base):
     reported_user = relationship("ReportedUser", backref="user",
                                  cascade="all, delete, delete-orphan")
 
-    def __init__(self, *args, **kwargs):
-        """initializes user"""
-        super().__init__(*args, **kwargs)
-
     # password hash will be thought about later.

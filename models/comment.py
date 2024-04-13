@@ -22,7 +22,3 @@ class Comment(BaseModel, Base):
     # relationships
     reported_comments = relationship("ReportedComment", backref="comment",
                                      cascade="all, delete, delete-orphan")
-
-    def __init__(self, *args, **kwargs):
-        """initializes comment"""
-        super().__init__(*args, **kwargs)

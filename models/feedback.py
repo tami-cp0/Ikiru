@@ -8,14 +8,10 @@ from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Post(BaseModel2, Base2):
-    """Representation of a comment """
-    __tablename__ = 'comments'
+class Feedback(BaseModel2, Base2):
+    """Representation of a feedback"""
+    __tablename__ = 'feedbacks'
     text = Column(String(255), nullable=False)
 
     # Foreign keys
     user_id = Column(String(33), ForeignKey('users.id'), nullable=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes comment"""
-        super().__init__(*args, **kwargs)
