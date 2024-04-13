@@ -5,6 +5,7 @@ from datetime import datetime
 from uuid import uuid4
 from sqlalchemy import String, DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
+import models
 
 
 Base = declarative_base()
@@ -37,6 +38,8 @@ class BaseModel():
     def save(self):
         """Updates and saves a Base Model instance"""
         self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Custom dictionary representation of a Base Model instance"""
