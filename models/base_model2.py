@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Base model for reported classes"""
+"""Base model for all main ikiru models"""
 
 from datetime import datetime
 from uuid import uuid4
@@ -12,7 +12,8 @@ Base2 = declarative_base()
 
 
 class BaseModel2():
-    """Base model for reported classes"""
+    """Base model from which future main classes will be derived"""
+    id = Column(String(33), primary_key=True)
     created_at = Column(DateTime, nullable=False)
 
     def __init__(self, *args, **kwargs):
@@ -21,19 +22,19 @@ class BaseModel2():
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                if key in ["created_at", "updated_at"]:
+                if key in ["created_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
         else:
+            self.id = str(uuid4())
             self.created_at = datetime.now()
 
     def __str__(self):
         """String representation of a Base Model instance"""
-        return f"<{self.__class__.__name__}> <{self.user_id}> {self.__dict__}"
+        return f"<{self.__class__.__name__}> <{self.id}> {self.__dict__}"
 
     def save(self):
         """Updates and saves a Base Model instance"""
-        self.updated_at = datetime.now()
         models.storage.new(self)
         models.storage.save()
 

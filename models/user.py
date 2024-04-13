@@ -33,5 +33,3 @@ class User(BaseModel, Base):
     feedbacks = relationship("Feedback", backref="user")
     reported_user = relationship("ReportedUser", backref="user",
                                  cascade="all, delete, delete-orphan")
-
-    # password hash will be thought about later.
