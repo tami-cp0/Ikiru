@@ -1,5 +1,6 @@
 -- prepares a MySQL server for the project
-
+-- this is just a temporary setup
+-- i also hard coded the details when creating the engine
 DROP DATABASE IF EXISTS ikiru_dev_db;
 
 CREATE DATABASE IF NOT EXISTS ikiru_dev_db;

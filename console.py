@@ -3,6 +3,7 @@
 
 import cmd
 import re
+import json
 from datetime import datetime, date
 import models
 from models import storage
@@ -35,6 +36,7 @@ class HBNBCommand(cmd.Cmd):
     # ANSI escape code for resetting text color to default
     RESET = "\033[0m"
     prompt = 'Ikiru' + BLUE + '$ ' + RESET
+    print(BLUE + "\t\ttype 'display' to see commands or display <command>" + RESET)
 
     def do_EOF(self, arg):
         """Exits console"""
@@ -47,8 +49,32 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
+    
+    def do_display(self, arg):
+        """lists all commands and their syntax"""
+        mydict = {
+        "quit": ["quit - exit console"],
+        "create": ["create <class> - creates a class"],
+        "show": ["show <class> <id> - displays the specific class"],
+        "destroy": ["destroy <class> <id> - destroys the specific class"],
+        "all": ["all - lists all classes", "all <class> - lists all specific classes"],
+        "update": ["update <class> <id> '<dict>' - updates the class with the kvp of the dict"],
+        }
+        # ANSI escape code for resetting text color to default
+        RESET = "\033[0m"
+        # ANSI escape code for green text
+        GREEN = "\033[32m"
+        
+        if len(arg) == 0:
+            for value in mydict.values():
+                print(GREEN + "\t\t" + "\n\t\t".join(value) + RESET)
+        else:
+            if arg not in mydict:
+                print("Not a valid command")
+                return
+            print(GREEN + "\t\t" + "\n\t\t".join(mydict[arg]) + RESET)
 
-    def _key_value_parser(self, args):
+    def parser(self, args):
         """creates a dictionary from a list of strings"""
         new_dict = {}
         for arg in args:
@@ -86,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         if args[0] in classes:
-            new_dict = self._key_value_parser(args[1:])
+            new_dict = self.parser(args[1:])
             instance = classes[args[0]](**new_dict)
         else:
             print("** class doesn't exist **")
@@ -150,7 +176,47 @@ class HBNBCommand(cmd.Cmd):
         print(", ".join(obj_list), end="")
         print("]")
 
-    # do_update
+    def do_update(self, arg):
+        """Update an instance based on the class name, id, attribute & value"""
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class missing **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        if len(args) < 3:
+            print("** dict parameter missing, type 'display <update>' to see usage **")
+            return
+            
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        cls = classes[args[0]]
+        id = args[1]
+        dict = args[2]
+        print(cls, id)
+        instance = storage.get(cls, id)
+
+        if instance is None:
+            print("** no instance found **")
+            return
+        
+        if not dict:
+            print("** attribute name(s) missing **")
+            return
+        try:
+            dict = json.loads(dict)
+        except Exception:
+            print("Not a valid JSON")
+            return
+
+        for key, value in dict.items():
+            if not value:
+                print("** value missing **\n[try again]")
+                return
+            setattr(instance, key, value)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
