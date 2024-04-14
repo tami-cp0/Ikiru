@@ -30,14 +30,15 @@ class User(BaseModel, Base):
     bio = Column(String(128), nullable=True)
 
     # relationships
-    posts = relationship("Post", backref="user",
+    posts = relationship("Post", back_populates="user",
                          cascade="all, delete, delete-orphan")
-    comments = relationship("Comment", backref="user",
+    comments = relationship("Comment", back_populates="user",
                             cascade="all, delete, delete-orphan")
-    conversations = relationship("Conversation", backref="user",
+    conversations = relationship("Conversation", back_populates="user",
                                  cascade="all, delete, delete-orphan")
-    messages = relationship("Message", backref="user",
+    messages = relationship("Message", back_populates="user",
                             cascade="all, delete, delete-orphan")
-    feedbacks = relationship("Feedback", backref="user")
-    reported_users = relationship("ReportedUser", backref="user",
-                                 cascade="all, delete, delete-orphan")
+    # no deleting of child because we may still need feedback
+    feedbacks = relationship("Feedback", back_populates="user")
+    reported_u = relationship("ReportedUser", back_populates="reported_user")
+    # reporting_u = relationship("ReportedUser", back_populates="user")

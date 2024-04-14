@@ -21,6 +21,7 @@ class Post(BaseModel, Base):
     user_id = Column(String(36), ForeignKey('users.id'), nullable=False)
 
     # relationships
+    user = relationship("User", back_populates="posts")
     comments = relationship("Comment", backref="post", cascade="all, \
                             delete, delete-orphan")
     reported_posts = relationship("ReportedPost", backref="post",

@@ -7,10 +7,15 @@ from models.base_model import Base, BaseModel
 
 class Message(BaseModel, Base):
     """Message Class"""
-    __table__name = "messages"
+    __tablename__ = "messages"
     content = Column(Text(2048), nullable=False)
-    conversation_id = Column(
-            String(33), ForeignKey("conversations.id") nullable=False)
-    conversation = relationship("Conversation")
+
+    # Foreign keys
     user_id = Column(String(33), ForeignKey("users.id"), nullable=False)
-    user = relationship("User")
+    conversation_id = Column(
+        String(33), ForeignKey("conversations.id"), nullable=False
+    )
+    
+    # Relationships
+    conversation = relationship("Conversation")
+    user = relationship("User", back_populates="messages")
