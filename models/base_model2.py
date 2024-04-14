@@ -2,18 +2,17 @@
 """Base model for all main ikiru models"""
 
 from datetime import datetime
-from sqlalchemy import DateTime, Column
+from uuid import uuid4
+from sqlalchemy import DateTime, Column, String
 from sqlalchemy.ext.declarative import declarative_base
+from models.base_model import Base
 import models
-
-
-Base2 = declarative_base()
 
 
 class BaseModel2():
     """Base model from which future main classes will be derived"""
-    id = Column(String(33), primary_key=True)
-    created_at = Column(DateTime, nullable=False)
+    id = Column(String(36), primary_key=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
         """Initializes a base model instance"""
@@ -24,6 +23,8 @@ class BaseModel2():
                 if key in ["created_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
+                if kwargs.get("id", None) is None:
+                    self.id = str(uuid4())
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()

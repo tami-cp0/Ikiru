@@ -5,14 +5,26 @@ from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models.base_model2 import Base2
+from models.user import User
+from models.post import Post
+from models.comment import Comment
+from models.feedback import Feedback
+from models.reported_post import ReportedPost
+from models.conversation import Conversation
+from models.message import Message
+from models.reported_user import ReportedUser
+from models.reported_message import ReportedMessage
+from models.reported_comment import ReportedComment
 
 
 class DBStorage():
     """This class manages storage of Ikiru using MySQL"""
     __engine = None
     __session = None
-    all_tables = []
+    tables = {"User": User, "Post": Post, "Comment": Comment,
+           "ReportedPost": ReportedPost, "feedback": Feedback,
+           "Conversation": Conversation, "Message": Message, "ReportedUser": ReportedUser,
+           "ReportedComment": ReportedComment, "ReportedMessage": ReportedMessage}
 
     def __init__(self):
         """Initializes a DBStorage instance"""
@@ -46,7 +58,7 @@ class DBStorage():
                 key = f"{obj.__class__.__name__}.{obj.id}"
                 all_objects[key] = obj
         else:
-            for table in self.all_tables:
+            for table in self.tables.values():
                 objs = self.__session.query(table).all()
                 for obj in objs:
                     key = f"{obj.__class__.__name__}.{obj.id}"
@@ -81,7 +93,6 @@ class DBStorage():
         the engine
         """
         Base.metadata.create_all(self.__engine)
-        Base2.metadata.create_all(self.__engine)
         self.__session = scoped_session(
             sessionmaker(bind=self.__engine, expire_on_commit=False)
         )
