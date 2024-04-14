@@ -6,12 +6,12 @@ from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 
 
-class Conversations(BaseModel, Base):
+class Conversation(BaseModel, Base):
     """Conversation Class"""
     __tablename__ = "conversations"
     user_id = Column(String(33), ForeignKey("users.id"), nullable=False)
     user = relationship("Users")
-    message = relationship("Messages",
+    message = relationship("Message",
                            back_popluates="conversation",
                            cascade="all, delete")
     __tablename__ = 'conversations'

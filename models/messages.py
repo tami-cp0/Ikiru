@@ -5,12 +5,12 @@ from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 
 
-class Messages(BaseModel, Base):
+class Message(BaseModel, Base):
     """Message Class"""
     __table__name = "messages"
     content = Column(Text(2048), nullable=False)
     conversation_id = Column(
             String(33), ForeignKey("conversations.id") nullable=False)
-    conversation = relationship("Conversations")
+    conversation = relationship("Conversation")
     user_id = Column(String(33), ForeignKey("users.id"), nullable=False)
-    user = relationship("Users")
+    user = relationship("User")

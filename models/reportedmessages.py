@@ -4,7 +4,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, String, Text
 from models.base_model2 import Base2, BaseModel2
 
 
-class Reportedmessages(BaseModel2, Base2):
+class Reportedmessage(BaseModel2, Base2):
     """Reportedmessage Class"""
     __tablename__ = "reportedmessages"
     message_id = Column(String(33), ForeignKey("messages.id"), nullable=False)
