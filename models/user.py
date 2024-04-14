@@ -3,8 +3,14 @@
 
 import models
 from models.base_model import BaseModel, Base
+from models.post import Post
+from models.comment import Comment
+from models.conversation import Conversation
+from models.message import Message
+from models.feedback import Feedback
+from models.reported_user import ReportedUser
 import sqlalchemy
-from sqlalchemy import Column, String, DateTime, Boolean
+from sqlalchemy import Column, String, Date, Boolean
 from sqlalchemy.orm import relationship
 
 
@@ -18,7 +24,7 @@ class User(BaseModel, Base):
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
     # enter base model to change
-    dob = Column(DateTime, nullable=False)
+    dob = Column(Date, nullable=False)
     # things not added to data model
     name = Column(String(16), nullable=False)
     bio = Column(String(128), nullable=True)
@@ -30,8 +36,8 @@ class User(BaseModel, Base):
                             cascade="all, delete, delete-orphan")
     conversations = relationship("Conversation", backref="user",
                                  cascade="all, delete, delete-orphan")
+    messages = relationship("Message", backref="user",
+                            cascade="all, delete, delete-orphan")
     feedbacks = relationship("Feedback", backref="user")
-    reported_user = relationship("ReportedUser", backref="user",
+    reported_users = relationship("ReportedUser", backref="user",
                                  cascade="all, delete, delete-orphan")
-
-    # password hash will be thought about later.

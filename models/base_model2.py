@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-"""Base model for reported classes"""
+"""Base model for all main ikiru models"""
 
 from datetime import datetime
-from sqlalchemy import DateTime, Column
+from uuid import uuid4
+from sqlalchemy import DateTime, Column, String
 from sqlalchemy.ext.declarative import declarative_base
+from models.base_model import Base
 import models
 
 
-Base2 = declarative_base()
-
-
 class BaseModel2():
-    """Base model for reported classes"""
-    created_at = Column(DateTime, nullable=False)
+    """Base model from which future main classes will be derived"""
+    id = Column(String(36), primary_key=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
         """Initializes a base model instance"""
@@ -20,18 +20,21 @@ class BaseModel2():
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                if key in ["created_at", "updated_at"]:
+                if key in ["created_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
+                if kwargs.get("id", None) is None:
+                    self.id = str(uuid4())
         else:
+            self.id = str(uuid4())
             self.created_at = datetime.now()
 
     def __str__(self):
         """String representation of a Base Model instance"""
-        return f"<{self.__class__.__name__}> {self.__dict__}"
+        return f"<{self.__class__.__name__}> <{self.id}> {self.__dict__}"
 
     def save(self):
-        """Saves a Base Model instance"""
+        """Updates and saves a Base Model instance"""
         models.storage.new(self)
         models.storage.save()
 
