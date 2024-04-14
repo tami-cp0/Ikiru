@@ -6,8 +6,9 @@ from models.base_model2 import Base2, BaseModel2
 
 class Reportedmessages(BaseModel2, Base2):
     """Reportedmessage Class"""
-    message_id = Column(String(33), ForeignKey("message.id"), nullable=False)
+    __tablename__ = "reportedmessages"
+    message_id = Column(String(33), ForeignKey("messages.id"), nullable=False)
     reporting_user = Column(
-            String(33), ForeignKey("user.id"), nullable=False)
+            String(33), ForeignKey("users.id"), nullable=False)
     isresolved = Column(Boolean(), default=False)
     report = Column(Text(2048), nullable=False)

@@ -5,10 +5,11 @@ from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 
 
-class Conversation(BaseModel, Base):
+class Conversations(BaseModel, Base):
     """Conversation Class"""
-    user_id = Column(String(33), ForeignKey("user.id"), nullable=False)
-    user = relationship("User")
+    __tablename__ = "conversations"
+    user_id = Column(String(33), ForeignKey("users.id"), nullable=False)
+    user = relationship("Users")
     message = relationship("Messages",
                            back_popluates="conversation",
                            cascade="all, delete")

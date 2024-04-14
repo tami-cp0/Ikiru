@@ -6,8 +6,9 @@ from models.base_model2 import Base2, BaseModel2
 
 class Reportedcomments(BaseModel2, Base2):
     """Reportecomments Class"""
-    comment_id = Column(String(33), ForeignKey("comment.id"), nullable=False)
+    __tablename__ = "reportedcomments"
+    comment_id = Column(String(33), ForeignKey("comments.id"), nullable=False)
     reporting_user = Column(
-            String(33), ForeignKey("user.id"), nullable=False)
+            String(33), ForeignKey("users.id"), nullable=False)
     isresolved = Column(Boolean(), default=False)
     report = Column(Text(2048), nullable=False)
