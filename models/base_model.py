@@ -13,9 +13,9 @@ Base = declarative_base()
 
 class BaseModel():
     """Base model from which future main classes will be derived"""
-    id = Column(String(33), primary_key=True)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    id = Column(String(36), primary_key=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
         """Initializes a base model instance"""
@@ -26,6 +26,8 @@ class BaseModel():
                 if key in ["created_at", "updated_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
+                if kwargs.get("id", None) is None:
+                    self.id = str(uuid4())
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -44,6 +46,10 @@ class BaseModel():
     def to_dict(self):
         """Custom dictionary representation of a Base Model instance"""
         new_dict = self.__dict__.copy()
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        if "dob" in new_dict:
+            new_dict['dob'] = new_dict['dob'].strftime("%Y-%m-%d")
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()
         new_dict["updated_at"] = self.updated_at.isoformat()

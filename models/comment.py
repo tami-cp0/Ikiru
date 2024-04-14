@@ -6,6 +6,7 @@ from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
+from models.reported_comment import ReportedComment
 
 
 class Comment(BaseModel, Base):
@@ -16,8 +17,8 @@ class Comment(BaseModel, Base):
     is_anonymous = Column(Boolean, default=False)
 
     # Foreign keys
-    user_id = Column(String(33), ForeignKey('users.id'), nullable=False)
-    post_id = Column(String(33), ForeignKey('posts.id'), nullable=False)
+    user_id = Column(String(36), ForeignKey('users.id'), nullable=False)
+    post_id = Column(String(36), ForeignKey('posts.id'), nullable=False)
 
     # relationships
     reported_comments = relationship("ReportedComment", backref="comment",
