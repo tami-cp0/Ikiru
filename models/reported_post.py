@@ -20,3 +20,7 @@ class ReportedPost(BaseModel2, Base):
     # Foreign keys
     user_id = Column(String(36), ForeignKey('users.id'), nullable=False)
     post_id = Column(String(36), ForeignKey('posts.id'), nullable=False)
+
+    # Relationships
+    user = relationship("User", back_populates="reported_posts")
+    post = relationship("Post", back_populates="reports")

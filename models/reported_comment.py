@@ -20,4 +20,5 @@ class ReportedComment(BaseModel2, Base):
         String(36), ForeignKey("users.id"), nullable=False)
 
     # Relationship
+    comment = relationship("Comment", back_populates="reported_comments")
     user = relationship("User", back_populates="reported_comments")
