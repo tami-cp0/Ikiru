@@ -1,6 +1,5 @@
 -- prepares a MySQL server for the project
 -- this is just a temporary setup
--- i also hard coded the details when creating the engine
 
 -- if they say the password does not meet password requirement, use this command to check your policy
 -- SHOW VARIABLES LIKE 'validate_password.policy';
