@@ -12,7 +12,7 @@ from models.reported_comment import ReportedComment
 class Comment(BaseModel, Base):
     """Representation of a comment """
     __tablename__ = 'comments'
-    text = Column(String(255), nullable=False)
+    content = Column(String(255), nullable=False)
     is_reported = Column(Boolean, default=False)
     is_anonymous = Column(Boolean, default=False)
 

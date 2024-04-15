@@ -12,7 +12,7 @@ class ReportedComment(BaseModel2, Base):
     __tablename__ = 'reported_comments'
 
     is_resolved = Column(Boolean, default=False)
-    report = Column(String(2048), nullable=False)
+    content = Column(String(255), nullable=False)
 
     # Foreign keys
     comment_id = Column(String(36), ForeignKey("comments.id"), nullable=False)

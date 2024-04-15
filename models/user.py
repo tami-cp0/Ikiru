@@ -23,8 +23,10 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
+
     # enter base model to change
     dob = Column(Date, nullable=False)
+
     # things not added to data model
     name = Column(String(16), nullable=False)
     bio = Column(String(128), nullable=True)

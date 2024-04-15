@@ -15,7 +15,7 @@ class ReportedPost(BaseModel2, Base):
     __tablename__ = 'reported_posts'
 
     is_resolved = Column(Boolean, default=False)
-    text = Column(String(255), nullable=False)
+    content = Column(String(255), nullable=False)
 
     # Foreign keys
     user_id = Column(String(36), ForeignKey('users.id'), nullable=False)

@@ -13,7 +13,7 @@ from models.comment import Comment
 class Post(BaseModel, Base):
     """Representation of a post"""
     __tablename__ = 'posts'
-    text = Column(String(255), nullable=False)
+    content = Column(String(255), nullable=False)
     is_reported = Column(Boolean, default=False)
     is_anonymous = Column(Boolean, default=False)
 

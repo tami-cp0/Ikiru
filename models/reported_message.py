@@ -12,7 +12,7 @@ class ReportedMessage(BaseModel2, Base):
     __tablename__ = 'reported_messages'
         
     is_resolved = Column(Boolean, default=False)
-    report = Column(String(2048), nullable=False)
+    content = Column(String(255), nullable=False)
 
     # Foreign keys
     message_id = Column(String(36), ForeignKey("messages.id"), nullable=False)
