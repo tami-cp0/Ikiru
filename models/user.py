@@ -1,17 +1,9 @@
 #!/usr/bin/python3
 """ holds class User"""
 
-import models
-from models.base_model import BaseModel, Base
-from models.post import Post
-from models.comment import Comment
-from models.conversation import Conversation
-from models.message import Message
-from models.feedback import Feedback
-from models.reported_user import ReportedUser
-import sqlalchemy
 from sqlalchemy import Column, String, Date, Boolean
 from sqlalchemy.orm import relationship
+from models.base_model import BaseModel, Base
 
 
 class User(BaseModel, Base):
@@ -23,6 +15,7 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
+    is_reported = Column(Boolean, default=False)
 
     # enter base model to change
     dob = Column(Date, nullable=False)
@@ -42,5 +35,13 @@ class User(BaseModel, Base):
                             cascade="all, delete, delete-orphan")
     # no deleting of child because we may still need feedback
     feedbacks = relationship("Feedback", back_populates="user")
-    reported_u = relationship("ReportedUser", back_populates="reported_user")
+    report = relationship(
+        "ReportedUser", back_populates="reported_user", cascade="all, delete, delete-orphan")
+    reported_comments = relationship(
+        "ReportedComment", back_populates="user", cascade="all, delete, delete-orphan")
+    reported_posts = relationship(
+        "ReportedPost", back_populates="user", cascade="all, delete, delete-orphan")
+    reported_messages = relationship(
+        "ReportedMessage", back_populates="user", cascade="all, delete, delete-orphan"
+    )
     # reporting_u = relationship("ReportedUser", back_populates="user")

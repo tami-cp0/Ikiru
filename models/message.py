@@ -15,7 +15,9 @@ class Message(BaseModel, Base):
     conversation_id = Column(
         String(36), ForeignKey("conversations.id"), nullable=False
     )
-    
+
     # Relationships
-    conversation = relationship("Conversation")
+    conversation = relationship("Conversation", back_populates="messages")
     user = relationship("User", back_populates="messages")
+    reports = relationship(
+        "ReportedMessage", back_populates="message", cascade="all, delete, delete-orphan")

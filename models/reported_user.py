@@ -15,11 +15,6 @@ class ReportedUser(BaseModel2, Base):
 
     # Foreign Keys
     user_id = Column(String(36), ForeignKey('users.id'), nullable=False)
-
-    # you cant use two foreign keys referring to the same column
-    # so we'll get the id of the user reporting, later during backend parsing.
-    # reporting_user = Column(
-    #         String(33), ForeignKey('users.id'), nullable=False)
-
+    
     # Relationships
-    reported_user = relationship("User", back_populates="reported_u")
+    reported_user = relationship("User", back_populates="report")

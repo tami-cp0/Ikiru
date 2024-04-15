@@ -22,7 +22,7 @@ class Post(BaseModel, Base):
 
     # relationships
     user = relationship("User", back_populates="posts")
-    comments = relationship("Comment", backref="post", cascade="all, \
-                            delete, delete-orphan")
-    reported_posts = relationship("ReportedPost", backref="post",
+    comments = relationship("Comment", back_populates="post",
+                            cascade="all, delete, delete-orphan")
+    reports = relationship("ReportedPost", back_populates="post",
                                   cascade="all, delete, delete-orphan")

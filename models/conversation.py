@@ -14,5 +14,5 @@ class Conversation(BaseModel, Base):
     # Relationships
     user = relationship("User", back_populates="conversations")
     messages = relationship("Message",
-                           back_populates="conversations",
+                           back_populates="conversation",
                            cascade="all, delete, delete-orphan")
