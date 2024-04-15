@@ -24,7 +24,7 @@ import shlex  # for splitting the line along spaces except in double quotes
 
 
 classes = {"User": User, "Post": Post, "Comment": Comment,
-           "ReportedPost": ReportedPost, "feedback": Feedback,
+           "ReportedPost": ReportedPost, "Feedback": Feedback,
            "Conversation": Conversation, "Message": Message, "ReportedUser": ReportedUser,
            "ReportedComment": ReportedComment, "ReportedMessage": ReportedMessage}
 
