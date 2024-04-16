@@ -3,11 +3,11 @@
 from datetime import datetime
 import inspect
 import pep8
-import unitest
+import unittest
 from models.user import User
 
 
-class testMessageDoc(unitest.TestCase):
+class testMessageDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
     def setUp(self):
         """set up class instance for test"""
@@ -63,16 +63,16 @@ class testUser(unitest.TestCase):
     def test_user_class_attr(self):
         """test the super class attributes"""
         # test the if the class instance has the class attribute
-        self.assertTrue(hasattr(user, "username"))
-        self.assertTrue(hasattr(user, "email"))
-        self.assertTrue(hasattr(user, "sex"))
-        self.assertTrue(hasattr(user, "password"))
-        self.assertTrue(hasattr(user, "dob"))
-        self.assertTrue(hasattr(user, "is_active"))
-        self.assertTrue(hasattr(user, "is_admin"))
-        self.assertTrue(hasattr(user, "name"))
-        self.assertTrue(hasattr(user, "is_reported"))
-        self.assertTrue(hasattr(user, "bio"))
+        self.assertTrue(hasattr(self.user, "username"))
+        self.assertTrue(hasattr(self.user, "email"))
+        self.assertTrue(hasattr(self.user, "sex"))
+        self.assertTrue(hasattr(self.user, "password"))
+        self.assertTrue(hasattr(self.user, "dob"))
+        self.assertTrue(hasattr(self.user, "is_active"))
+        self.assertTrue(hasattr(self.user, "is_admin"))
+        self.assertTrue(hasattr(self.user, "name"))
+        self.assertTrue(hasattr(self.user, "is_reported"))
+        self.assertTrue(hasattr(self.user, "bio"))
 
         #Test the attribute values
         self.assertTrue(self.user.id != None)
@@ -85,9 +85,9 @@ class testUser(unitest.TestCase):
         self.assertTrue(self.user.password != None)
         self.assertTrue(self.user.dob != None)
         self.assertTrue(self.user.username != None)
-        self.assertTrue(self.user.is_admin == False)
-        self.assertTrue(self.user.is_active == False)
-        self.assertTrue(self.user.is_reportted == False)
+        self.assertTrue(User.is_active.expression.default.arg == False)
+        self.assertTrue(User.is_admin.expression.default.arg == False)
+        self.assertTrue(User.is_reported.expression.default.arg == False)
 
 
     def test_user_methods(self):
@@ -97,7 +97,7 @@ class testUser(unitest.TestCase):
         self.assertFalse("_sa_instance_state" in u_dict)
         self.assertTrue("__class__" in u_dict)
         for attr in u_dict.__dict__:
-            if attr not "_sa_instance_state":
+            if attr is not "_sa_instance_state":
                 self.assertTrue(attr in u_dict)
         self.assertEqual(self.user.__class__, "User")
         self.assertEqul(type(self.user.id), str)
@@ -107,9 +107,10 @@ class testUser(unitest.TestCase):
         self.assertEqul(type(self.user.email), str)
         self.assertEqul(type(self.user.sex), str)
         self.assertEqul(type(self.user.password), str)
-        self.assertEqul(type(self.user.is_active), bool)
-        self.assertEqul(type(self.user.is_admin), bool)
-        self.assertEqul(type(self.user.is_reported), bool)
-        self.assertEqul(type(self.user.dob), bool)
+        # User.is_active.expression.type.python_type
+        self.assertEqul(User.is_active.expression.type.python_type, bool)
+        self.assertEqul(User.is_admin.expression.type.python_type, bool)
+        self.assertEqul(User.is_reported.expression.type.python_type, bool)
+        self.assertEqul(User.is_active.expression.type.python_type, datetime.date) #what type is date?
         self.assertEqul(type(self.user.name), str))
         self.assertEqul(type(self.user.bio), str)
