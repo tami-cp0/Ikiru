@@ -9,8 +9,8 @@ from models.base_model import BaseModel, Base
 class User(BaseModel, Base):
     """Representation of a user """
     __tablename__ = 'users'
-    username = Column(String(32), nullable=False)
-    email = Column(String(32), nullable=False)
+    username = Column(String(32),unique=True, nullable=False)
+    email = Column(String(32), unique=True, nullable=False)
     sex = Column(String(16), nullable=False)
     password = Column(String(128), nullable=False)
     is_active = Column(Boolean, default=False)
