@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import datetime, date
+from datetime import date
 import inspect
 import pep8
 import unittest
@@ -42,7 +42,7 @@ class testMessageDoc(unittest.TestCase):
 
     def test_user_method_docstring(self):
         """check docstring for user class methods"""
-        for method in self.usermethod:
+        for method in self.usermethods:
             self.assertIsNot(method[1].__doc__, None, f"{method[0]} in
                              {inspect.getfiles(User)} needs a docstring")
             self.assertTrue(len(method[1].__doc__) >= 1, f"{method[0]} in
@@ -126,7 +126,7 @@ class testUser(unitest.TestCase):
                 name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
         user.save()
         #Testt save method
-        user_copy = storage.get(User, self.user.id)
+        user_copy = storage.get(User, user.id)
         self.assertEqual(user_copy, user)
         self.assertEqual(user_copy.id, user.id)
         self.assertEqual(user_copy.name, user.name)
