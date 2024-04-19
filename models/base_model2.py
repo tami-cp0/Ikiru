@@ -23,8 +23,11 @@ class BaseModel2():
                 if key in ["created_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
-                if kwargs.get("id", None) is None:
-                    self.id = str(uuid4())
+            if kwargs.get("id", None) is None:
+                self.id = str(uuid4())
+            if kwargs.get("created_at", None) is None:
+                self.created_at = datetime.now()
+
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()

@@ -26,8 +26,12 @@ class BaseModel():
                 if key in ["created_at", "updated_at"]:
                     value = datetime.fromisoformat(value)
                 setattr(self, key, value)
-                if kwargs.get("id", None) is None:
-                    self.id = str(uuid4())
+            if kwargs.get("id", None) is None:
+                self.id = str(uuid4())
+            if kwargs.get("created_at", None) is None:
+                self.created_at = datetime.now()
+            if kwargs.get("updated_at", None) is None:
+                self.updated_at = datetime.now()
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
