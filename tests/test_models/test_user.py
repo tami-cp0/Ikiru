@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import datetime
+from datetime import datetime, date
 import inspect
 import pep8
 import unittest
+from models import storage
 from models.user import User
 
 
@@ -11,7 +12,7 @@ class testMessageDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
     def setUp(self):
         """set up class instance for test"""
-        self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob="", password="ikiru")
+        self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
 
 
     def tearDown(self):
@@ -28,7 +29,7 @@ class testMessageDoc(unittest.TestCase):
     def test_user_pep8_style(self):
         """test pycodestyle of user and test_user models"""
         pep8style = pep8.StyleGuide(quite=True)
-        test = pep8style.check_files(["models/user"])
+        test = pep8style.check_files(["models/user.py"])
         self.assertEqual(test.total_errors, 0,
                          f"pycodestyle error in {test.filename}")
     def test_module_docstring(self):
@@ -107,10 +108,30 @@ class testUser(unitest.TestCase):
         self.assertEqul(type(self.user.email), str)
         self.assertEqul(type(self.user.sex), str)
         self.assertEqul(type(self.user.password), str)
-        # User.is_active.expression.type.python_type
+        self.assertEquall(type(self.user.dob), date)
+        # Test the class defaut type
         self.assertEqul(User.is_active.expression.type.python_type, bool)
         self.assertEqul(User.is_admin.expression.type.python_type, bool)
         self.assertEqul(User.is_reported.expression.type.python_type, bool)
-        self.assertEqul(User.is_active.expression.type.python_type, datetime.date) #what type is date?
+        self.assertEqul(
+                User.is_active.expression.type.python_type, datetime.date)
         self.assertEqul(type(self.user.name), str))
         self.assertEqul(type(self.user.bio), str)
+
+
+    def test_user_save_and_delete_methods(self):
+        """Test user save and delete methods"""
+        user = self.user = User(
+                username ="ikirujunior", sex="M", email="ikiru@ikiru.com",
+                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
+        user.save()
+        #Testt save method
+        user_copy = storage.get(User, self.user.id)
+        self.assertEqual(user_copy, user)
+        self.assertEqual(user_copy.id, user.id)
+        self.assertEqual(user_copy.name, user.name)
+        self.assertEqual(user_copy.username, user.username)
+        # test the delete method
+        user_copy.delete()
+        storage.save()
+        self.assertEqual(storage.get(User, user.id), None)
