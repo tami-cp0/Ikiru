@@ -13,7 +13,7 @@ class testMessageDoc(unittest.TestCase):
     def setUp(self):
         """set up class instance for test"""
         self.user = User(
-            username="ikiru1", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
+            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
         self.user.save()
 
 
