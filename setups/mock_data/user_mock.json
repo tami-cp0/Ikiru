@@ -1,0 +1,47 @@
+[
+    {
+        "password": "lQ4_<*Ao",
+        "name": "Faulkner",
+        "username": "fforrest0",
+        "email": "flabro0@cbc.ca",
+        "sex": "Male",
+        "dob": "8/5/1998",
+        "bio": null
+    },
+    {
+        "password": "jD1&QQht~Xjr",
+        "name": "Weidar",
+        "username": "worhrt1",
+        "email": "wruthven1@spiegel.de",
+        "sex": "Male",
+        "dob": "11/19/2005",
+        "bio": "In hac habitasse platea dictumst."
+    },
+    {
+        "password": "lX7$,}/EfoLr",
+        "name": "Tillie",
+        "username": "ttresler2",
+        "email": "theinl2@tripod.com",
+        "sex": "Female",
+        "dob": "9/21/1996",
+        "bio": null
+    },
+    {
+        "password": "bE4~PUQ|@_nuQp",
+        "name": "Issi",
+        "username": "iminghetti3",
+        "email": "irodda3@pen.io",
+        "sex": "Female",
+        "dob": "10/15/1998",
+        "bio": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante."
+    },
+    {
+        "password": "eT6<=/H*Ol)!|N9",
+        "name": "Charisse",
+        "username": "ccumpsty4",
+        "email": "cevitt4@phpbb.com",
+        "sex": "Female",
+        "dob": "12/30/2002",
+        "bio": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices."
+    }
+]
