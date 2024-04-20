@@ -43,8 +43,7 @@ class testPostDoc(unittest.TestCase):
         """test pycodestyle of reported_comment and test_user models"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/reported_comment.py"])
-        self.assertEqual(test.total_errors, 0,
-                         f"pycodestyle error in {test.filename}")
+        self.assertEqual(test.total_errors, 0)
     def test_module_docstring(self):
          """Test the user model docstring"""
          self.assertIsNot(ReportedComment.__doc__, None,
@@ -56,10 +55,8 @@ class testPostDoc(unittest.TestCase):
     def test_reported_comment_method_docstring(self):
         """check docstring for comment class methods"""
         for method in self.rcommentmethods:
-            self.assertIsNot(method[1].__doc__, None, f"{method[0]} in
-                             {inspect.getfiles(ReportedComment)} needs a docstring")
-            self.assertTrue(len(method[1].__doc__) >= 1, f"{method[0]} in
-            {inspect.getfiles(ReportedComment)} needs a docstring")
+            self.assertIsNot(method[1].__doc__, None)
+            self.assertTrue(len(method[1].__doc__) >= 1)
     
     
     def test_reported_post_super_class_attr(self):

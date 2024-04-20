@@ -43,8 +43,7 @@ class testMessageDoc(unittest.TestCase):
         """test pycodestyle of message and test_message models"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/message.py"])
-        self.assertEqual(test.total_errors, 0,
-                         f"pycodestyle error in {test.filename}")
+        self.assertEqual(test.total_errors, 0)
     def test_module_docstring(self):
          """Test the message model docstring"""
          self.assertIsNot(Message.__doc__, None,
@@ -56,10 +55,8 @@ class testMessageDoc(unittest.TestCase):
     def test_message_method_docstring(self):
         """check docstring for message class methods"""
         for method in self.messagemethod:
-            self.assertIsNot(method[1].__doc__, None, f"{method[0]} in
-                             {inspect.getfiles(Message)} needs a docstring")
-            self.assertTrue(len(method[1].__doc__) >= 1, f"{method[0]} in
-            {inspect.getfiles(Message)} needs a docstring")
+            self.assertIsNot(method[1].__doc__, None)
+            self.assertTrue(len(method[1].__doc__) >= 1)
 
 
     def test_message_super_class_attr(self):

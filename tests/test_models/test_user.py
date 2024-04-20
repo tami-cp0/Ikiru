@@ -30,8 +30,7 @@ class testMessageDoc(unittest.TestCase):
         """test pycodestyle of user and test_user models"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/user.py"])
-        self.assertEqual(test.total_errors, 0,
-                         f"pycodestyle error in {test.filename}")
+        self.assertEqual(test.total_errors, 0)
     def test_module_docstring(self):
          """Test the user model docstring"""
          self.assertIsNot(User.__doc__, None,
@@ -43,10 +42,8 @@ class testMessageDoc(unittest.TestCase):
     def test_user_method_docstring(self):
         """check docstring for user class methods"""
         for method in self.usermethods:
-            self.assertIsNot(method[1].__doc__, None, f"{method[0]} in
-                             {inspect.getfiles(User)} needs a docstring")
-            self.assertTrue(len(method[1].__doc__) >= 1, f"{method[0]} in
-            {inspect.getfiles(User)} needs a docstring")
+            self.assertIsNot(method[1].__doc__, None)
+            self.assertTrue(len(method[1].__doc__) >= 1)
 
 
 class testUser(unittest.TestCase):
