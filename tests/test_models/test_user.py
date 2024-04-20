@@ -13,11 +13,13 @@ class testMessageDoc(unittest.TestCase):
     def setUp(self):
         """set up class instance for test"""
         self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user.save()
 
 
     def tearDown(self):
         """delete class instance use for the test"""
-        del self.user
+        self.user.delete()
+        storage.save()
 
 
     @classmethod

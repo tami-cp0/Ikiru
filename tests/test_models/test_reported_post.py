@@ -16,15 +16,16 @@ class testPostDoc(unittest.TestCase):
         """set up class instance for test"""
         self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         self.user.save()
-        self.reportedpost = Post(content="He abuse me", user_id=self.user.id)
-        self.reportedpost.save()
+        self.post = Post(content="He abuse me", user_id=self.user.id)
+        self.post.save()
         self.reportedpost = ReportedPost(content="racism", user_id=self.user.id, post_id=self.reportedpost.id)
+        self.reportedpost.save()
 
 
     def tearDown(self):
         """delete class instance use for the test"""
         self.user.delete()
-        self.reportedpost.delete()
+        self.post.delete()
         self.reportedpost.delete()
         storage.save()
 

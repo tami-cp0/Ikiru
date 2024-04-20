@@ -17,20 +17,24 @@ class testMessageDoc(unittest.TestCase):
         """set up class instance for test"""
         # Creating a user
         self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user.save()
         # Creating a conversation with the user id
         self.conversation = Conversation(user_id=self.user.id)
+        self.conversation.save()
         # Create a message with the conversation id and user id
         self.message = Message(content="What a lovely day with you Huclark", user_id=self.user.id, conversation_id = self.conversation.id)
+        self.message.save()
 
 
     def tearDown(self):
         """delete class instance use for the test"""
         # Delete created user
-        del self.user
+        self.user.delete()
         # Delete created conversation
-        del self.conversation
+        self.conversation.delete()
         # Delete created message
-        del self.message
+        self.message.delete()
+        storage.save()
    
 
     @classmethod
@@ -54,7 +58,7 @@ class testMessageDoc(unittest.TestCase):
 
     def test_message_method_docstring(self):
         """check docstring for message class methods"""
-        for method in self.messagemethod:
+        for method in self.messagemethods:
             self.assertIsNot(method[1].__doc__, None)
             self.assertTrue(len(method[1].__doc__) >= 1)
 

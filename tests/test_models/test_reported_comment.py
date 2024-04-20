@@ -22,6 +22,7 @@ class testPostDoc(unittest.TestCase):
         self.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
         self.comment.save()
         self.reportedcomment = ReportedComment(content="racism", reporting_user=self.user.id, comment_id=self.comment.id)
+        self.reportedcomment.save()
 
 
     def tearDown(self):
