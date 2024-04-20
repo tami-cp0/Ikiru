@@ -95,7 +95,7 @@ class testConversationDoc(unittest.TestCase):
     def test_conversation_save_and_delete_methods(self):
         """Test conversation save and delete methods"""
         user = self.user = User(
-                username ="ikirujunior", sex="M", email="ikiru@ikiru.com",
+                username ="ikiruj889unior", sex="M", email="ikiru76@ikiru.com",
                 name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
         conversation = Conversation(user_id=user.id)
         conversation.save()

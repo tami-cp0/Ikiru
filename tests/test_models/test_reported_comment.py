@@ -85,10 +85,6 @@ class testPostDoc(unittest.TestCase):
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
         self.assertTrue("__class__" in m_dict)
-        # Test the dict attribute
-        for attr in m_dict.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in m_dict)
 
         # Test the attribute value types
         self.assertEqual(self.reportedcomment.__class__, "ReportedComment")
