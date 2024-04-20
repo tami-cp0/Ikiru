@@ -14,7 +14,7 @@ class testConversationDoc(unittest.TestCase):
     def setUp(self):
         """set up class instance for test"""
         # Creating a user
-        self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user = User(username="ikiru9", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         self.user.save()
         # Creating a conversation with the user id
         self.conversation = Conversation(user_id=self.user.id)
@@ -24,9 +24,10 @@ class testConversationDoc(unittest.TestCase):
     def tearDown(self):
         """delete class instance use for the test"""
         # Delete created user
-        del self.user
+        self.user.delete()
         # Delete created conversation
-        del self.conversation
+        self.conversation.delete()
+        storage.save()
 
 
     @classmethod

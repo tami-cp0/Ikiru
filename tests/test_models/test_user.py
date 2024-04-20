@@ -12,7 +12,8 @@ class testMessageDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
     def setUp(self):
         """set up class instance for test"""
-        self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user = User(
+            username="ikiru1", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
         self.user.save()
 
 

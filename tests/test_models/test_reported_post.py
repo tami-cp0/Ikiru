@@ -14,7 +14,7 @@ class testPostDoc(unittest.TestCase):
     """Test the doc and style of reported_post class"""
     def setUp(self):
         """set up class instance for test"""
-        self.user = User(username="ikiru", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user = User(username="ikiru23", sex="M", email="ikiru@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         self.user.save()
         self.post = Post(content="He abuse me", user_id=self.user.id)
         self.post.save()
