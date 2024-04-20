@@ -48,8 +48,6 @@ class testMessageDoc(unittest.TestCase):
             self.assertTrue(len(method[1].__doc__) >= 1)
 
 
-class testUser(unittest.TestCase):
-    """Test the attributes and methods of the user class"""
     def test_user_super_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.user, "id"))
