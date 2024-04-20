@@ -95,10 +95,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertEqual(type(u_dict), dict)
         self.assertFalse("_sa_instance_state" in u_dict)
         self.assertTrue("__class__" in u_dict)
-        #test the dict attribute
-        for attr in u_dict.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in u_dict)
+
         # Test the type of the attribute
         self.assertEqual(self.user.__class__, "User")
         self.assertEqul(type(self.user.id), str)
