@@ -57,8 +57,6 @@ class testConversationDoc(unittest.TestCase):
             {inspect.getfiles(Conversation)} needs a docstring")
 
 
-class testConversation(unitest.TestCase):
-    """Test the attributes and methods of the conversation class"""
     def test_conversation_super_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.conversation, "id"))

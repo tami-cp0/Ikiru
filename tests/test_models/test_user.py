@@ -49,7 +49,7 @@ class testMessageDoc(unittest.TestCase):
             {inspect.getfiles(User)} needs a docstring")
 
 
-class testUser(unitest.TestCase):
+class testUser(unittest.TestCase):
     """Test the attributes and methods of the user class"""
     def test_user_super_class_attr(self):
         """test the super class attributes"""
@@ -97,9 +97,11 @@ class testUser(unitest.TestCase):
         self.assertEqual(type(u_dict), dict)
         self.assertFalse("_sa_instance_state" in u_dict)
         self.assertTrue("__class__" in u_dict)
+        #test the dict attribute
         for attr in u_dict.__dict__:
             if attr is not "_sa_instance_state":
                 self.assertTrue(attr in u_dict)
+        # Test the type of the attribute
         self.assertEqual(self.user.__class__, "User")
         self.assertEqul(type(self.user.id), str)
         self.assertEqul(type(self.user.created_at), str)
@@ -114,8 +116,8 @@ class testUser(unitest.TestCase):
         self.assertEqul(User.is_admin.expression.type.python_type, bool)
         self.assertEqul(User.is_reported.expression.type.python_type, bool)
         self.assertEqul(
-                User.is_active.expression.type.python_type, datetime.date)
-        self.assertEqul(type(self.user.name), str))
+                User.is_active.expression.type.python_type, bool)
+        self.assertEqul(type(self.user.name), str)
         self.assertEqul(type(self.user.bio), str)
 
 
