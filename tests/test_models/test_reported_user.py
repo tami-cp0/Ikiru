@@ -94,7 +94,7 @@ class testReportedUserDoc(unittest.TestCase):
         self.assertEqual(ReportedUser.is_resolved.expression.type.python_type, bool)
 
 
-    def message_save_and_delete_methods(self):
+    def test_save_and_delete_methods(self):
         """Test message save and delete methods"""
         user = self.user = User(
                 username ="ikirujunior", sex="M", email="ikiru@ikiru.com",

@@ -92,23 +92,4 @@ class testPostDoc(unittest.TestCase):
         self.assertEqul(type(self.post.is_resolved), str)
         self.assertEqul(type(self.post.user_id), str)
         self.assertEqual(Post.is_anonymous.expression.type.python_type, bool)
-
-
-    def message_save_and_delete_methods(self):
-        """Test message save and delete methods"""
-        user = self.user = User(
-                username ="ikirujunior", sex="M", email="ikiru@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
-        user.save()
-        Post= Post(content="Good", user_id=self.user.id)
-
-        Post.save()
-        #Testt save method
-        Post_copy = storage.get(Post, Post.id)
-        self.assertEqual(Post_copy, Post)
-        self.assertEqual(Post_copy.id, Post.id)
-        self.assertEqual(Post_copy.user_d, Post.user_id)
-        # test the delete method
-        Post_copy.delete()
-        storage.save()
-        self.assertEqual(storage.get(Post, Post.id), None)
+        self.assertEqual(Post.is_reported.expression.type.python_type, bool)
