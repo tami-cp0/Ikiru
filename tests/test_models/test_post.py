@@ -17,7 +17,7 @@ class testPostDoc(unittest.TestCase):
         cls.postmethods = inspect.getmembers(Post, inspect.isfunction)
         cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user.save()
-        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
         
     

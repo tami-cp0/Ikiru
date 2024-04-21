@@ -18,9 +18,9 @@ class testCommentDoc(unittest.TestCase):
         cls.commentmethods = inspect.getmembers(Comment, inspect.isfunction)
         cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user.save()
-        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
-        cls.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
+        cls.comment = Comment(content="He abuse me", user_id=cls.user.id, post_id=cls.post.id)
         cls.comment.save()
         
         

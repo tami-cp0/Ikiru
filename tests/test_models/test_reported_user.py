@@ -18,7 +18,7 @@ class testReportedUserDoc(unittest.TestCase):
         cls.user = User(username="ikiru2", sex="M", email="ikiru2@ikiru.com", name="Ikiru",
                          dob=date(2000, 4, 10), password="ikiru", bio="god is good")
         cls.user.save()
-        cls.reporteduser = ReportedUser(content="He abuse me", user_id=self.user.id)
+        cls.reporteduser = ReportedUser(content="He abuse me", user_id=cls.user.id)
         cls.reporteduser.save()
 
 

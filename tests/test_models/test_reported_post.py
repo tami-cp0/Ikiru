@@ -18,9 +18,9 @@ class testPostDoc(unittest.TestCase):
         cls.rpostmethods = inspect.getmembers(ReportedPost, inspect.isfunction)
         cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user.save()
-        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
-        cls.reportedpost = ReportedPost(content="racism", user_id=self.user.id, post_id=self.reportedpost.id)
+        cls.reportedpost = ReportedPost(content="racism", user_id=cls.user.id, post_id=cls.post.id)
         cls.reportedpost.save()
 
 

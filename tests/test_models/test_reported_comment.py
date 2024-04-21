@@ -25,11 +25,11 @@ class testPostDoc(unittest.TestCase):
         cls.rcommentmethods = inspect.getmembers(ReportedComment, inspect.isfunction)
         cls.user = User(username="ikiru6", sex="M", email="ikiru6@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user.save()
-        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
-        cls.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
+        cls.comment = Comment(content="He abuse me", user_id=cls.user.id, post_id=cls.post.id)
         cls.comment.save()
-        cls.reportedcomment = ReportedComment(content="racism", reporting_user=self.user.id, comment_id=self.comment.id)
+        cls.reportedcomment = ReportedComment(content="racism", reporting_user=cls.user.id, comment_id=cls.comment.id)
         cls.reportedcomment.save()
 
     
