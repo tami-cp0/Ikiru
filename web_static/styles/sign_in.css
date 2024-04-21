@@ -1,3 +1,18 @@
+@font-face {
+    font-family: Inter-Regular;
+    src: url(../fonts/Inter-Regular.ttf) format('woff2');
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(../fonts/Inter-Bold.ttf);
+}
+
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src: url(../fonts/PlayfairDisplay-Bold.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +27,7 @@ body {
     align-items: center;
     height: 100vh;
     background: rgba(249, 255, 254, 0.9);
-    font-family: Inter;
+    font-family: Inter-Bold;
 }
 
 /* main */
@@ -39,7 +54,6 @@ body {
     margin-left: 70px;
     margin-right: 70px;;
     height: 70%; /*might remove*/
-    border: 1px black solid;
 }
 
 header nav {
@@ -49,7 +63,7 @@ header nav {
 }
 
 header h1 {
-    font-family: Playfair Display;
+    font-family: PlayfairDisplay-Bold;
     font-size: 36px;
     color: #84BDA9;
 }
@@ -61,27 +75,119 @@ header nav ul {
     align-items: center;
     width: 22%;
 }
+
 header nav ul li a {
     text-decoration: none;
     color: #5C5C5C;
     font-size: 14;
 }
 
+header nav ul li a:hover {
+    color: #84BDA9;
+}
+
 .body_div1 {
     display: flex;
-    margin-top: 60px; /*remember to adjust*/
+    margin-top: 35px; /*remember to adjust*/
     justify-content: space-between;
-    /* width: 100%; */
+}
+
+.slogan {
+    margin-top: 20px;
+}
+
+.slogan h2 {
+    font-size: 24px;
+    background: linear-gradient(90deg, #84BDA9 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+}
+
+.slogan p {
+    margin-top: 10px;
 }
 
 .signin_section {
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border: red 1px solid;
+    width: 370px;
+}
+
+.signin_section h1 {
+    text-align: center;
+    font-family: PlayfairDisplay-Bold;
+    font-size: 36px;
+    /* line-height: 48px; */
+    background: linear-gradient(90deg, #000000 0%, #84BDA9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; use to be supported by modern browsers */
+}
+
+.form_div {
+    display: flex;
+    justify-content: center;
+    border: 2px #84BDA9 solid;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    width: 82%;
+    /* margin-top: 12px; */
+    border: blue 1px solid;
+}
+
+form label {
+    font-family: Inter-Regular;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+.form-inputs {
+    border-radius: 10px;
+    height: 40px;
+    mix-blend-mode: normal;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.form-inputs::placeholder {
+    color: #C7C7C7;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.sign-in_options {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+#keep_me {
+    display: flex;
+    font-size: 12px;
+    margin-top: 0px;
+    color: #818181;
+}
+
+#keep_me_logged_in {
+    margin-right: 10px;
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.forgot-password a {
+    font-size: 12px;
 }
 
 footer {
