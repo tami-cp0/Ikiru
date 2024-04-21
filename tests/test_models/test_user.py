@@ -10,23 +10,19 @@ from models.user import User
 
 class testMessageDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(
-            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
-        self.user.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.usermethods = inspect.getmembers(User, inspect.isfunction)
+        cls.user = User(
+            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
+        cls.user.save()
+  
+    @classmethod   
+    def tearDownClasss(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        storage.save()
 
 
     def test_user_pep8_style(self):
