@@ -13,34 +13,32 @@ from models.user import User
 
 class testMessageDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        # Creating a user
-        self.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        # Creating a conversation with the user id
-        self.conversation = Conversation(user_id=self.user.id)
-        self.conversation.save()
-        # Create a message with the conversation id and user id
-        self.message = Message(content="What a lovely day with you Huclark", user_id=self.user.id, conversation_id = self.conversation.id)
-        self.message.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        # Delete created user
-        self.user.delete()
-        # Delete created conversation
-        self.conversation.delete()
-        # Delete created message
-        self.message.delete()
-        storage.save()
-   
-
     @classmethod
     def setUpClass(cls):
-        """Set up for doc test"""
+        """Set up for doc test""" # Creating a user
+        cls.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.user1 = User(username="ikiru9i9", sex="M", email="ikiru9009@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user1.save()
+        # Creating a conversation with the user id
+        cls.conversation = Conversation(sender_id=self.user.id, receiver_id=user1.id)
+        # Create a message with the conversation id and user id
+        cls.message = Message(content="What a lovely day with you Huclark", user_id=self.user.id, conversation_id = self.conversation.id)
+        cls.message.save()
         cls.messagemethods = inspect.getmembers(Message, inspect.isfunction)
+    
+    
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        # Delete created user
+        cls.user.delete()
+        cls.user1.delete()
+        # Delete created conversation
+        cls.conversation.delete()
+        # Delete created message
+        cls.message.delete()
+        storage.save()  
 
 
     def test_message_pep8_style(self):
@@ -91,7 +89,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.message.__class__, "Message")
+        self.assertEqual(self.message.__class__.__name__, "Message")
         self.assertEqul(type(self.message.id), str)
         self.assertEqul(type(self.message.created_at), str)
         self.assertEqul(type(self.message.updated_at), str)

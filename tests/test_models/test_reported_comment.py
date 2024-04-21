@@ -15,29 +15,32 @@ class testPostDoc(unittest.TestCase):
     """Test the doc and style of reported_comment class"""
     def setUp(self):
         """set up class instance for test"""
-        self.user = User(username="ikiru6", sex="M", email="ikiru6@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.post = Post(content="He abuse me", user_id=self.user.id)
-        self.post.save()
-        self.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
-        self.comment.save()
-        self.reportedcomment = ReportedComment(content="racism", reporting_user=self.user.id, comment_id=self.comment.id)
-        self.reportedcomment.save()
+        
 
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.post.delete()
-        self.comment.delete()
-        self.reportedcomment.delete()
-        storage.save()
-
+    
 
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rcommentmethods = inspect.getmembers(ReportedComment, inspect.isfunction)
+        cls.user = User(username="ikiru6", sex="M", email="ikiru6@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post.save()
+        cls.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
+        cls.comment.save()
+        cls.reportedcomment = ReportedComment(content="racism", reporting_user=self.user.id, comment_id=self.comment.id)
+        cls.reportedcomment.save()
+
+    
+    @classmethod    
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.post.delete()
+        cls.comment.delete()
+        cls.reportedcomment.delete()
+        storage.save()
 
 
     def test_reported_comment_pep8_style(self):
@@ -87,7 +90,7 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.reportedcomment.__class__, "ReportedComment")
+        self.assertEqual(self.reportedcomment.__class__.__name__, "ReportedComment")
         self.assertEqul(type(self.reportedcomment.id), str)
         self.assertEqul(type(self.reportedcomment.created_at), str)
         self.assertEqul(type(self.reportedcomment.reporting_user), str)

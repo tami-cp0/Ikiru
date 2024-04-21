@@ -12,28 +12,25 @@ from models.user import User
 
 class testPostDoc(unittest.TestCase):
     """Test the doc and style of reported_post class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.post = Post(content="He abuse me", user_id=self.user.id)
-        self.post.save()
-        self.reportedpost = ReportedPost(content="racism", user_id=self.user.id, post_id=self.reportedpost.id)
-        self.reportedpost.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.post.delete()
-        self.reportedpost.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rpostmethods = inspect.getmembers(ReportedPost, inspect.isfunction)
+        cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post.save()
+        cls.reportedpost = ReportedPost(content="racism", user_id=self.user.id, post_id=self.reportedpost.id)
+        cls.reportedpost.save()
+
+
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.post.delete()
+        cls.reportedpost.delete()
+        storage.save()
 
 
     def test_reported_post_pep8_style(self):
@@ -82,7 +79,7 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.reportedpost.__class__, "ReportedPost")
+        self.assertEqual(self.reportedpost.__class__.__name__, "ReportedPost")
         self.assertEqul(type(self.reportedpost.id), str)
         self.assertEqul(type(self.reportedpost.created_at), str)
         self.assertEqul(type(self.reportedpost.post_id), str)

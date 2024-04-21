@@ -23,7 +23,7 @@ class testReportedUserDoc(unittest.TestCase):
 
 
     @classmethod
-    def tearDown(cls):
+    def tearDownClass(cls):
         """delete class instance use for the test"""
         cls.user.delete()
         cls.reporteduser.delete()
@@ -77,7 +77,7 @@ class testReportedUserDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.reporteduser.__class__, "ReportedUser")
+        self.assertEqual(self.reporteduser.__class__.__name__, "ReportedUser")
         self.assertEqul(type(self.reporteduser.id), str)
         self.assertEqul(type(self.reporteduser.created_at), str)
         self.assertEqul(type(self.reporteduser.is_resolved), str)

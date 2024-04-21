@@ -19,7 +19,7 @@ class testMessageDoc(unittest.TestCase):
         cls.user.save()
   
     @classmethod   
-    def tearDownClasss(cls):
+    def tearDownClass(cls):
         """delete class instance use for the test"""
         cls.user.delete()
         storage.save()
@@ -93,7 +93,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue("__class__" in u_dict)
 
         # Test the type of the attribute
-        self.assertEqual(self.user.__class__, "User")
+        self.assertEqual(self.user.__class__.__name__, "User")
         self.assertEqul(type(self.user.id), str)
         self.assertEqul(type(self.user.created_at), str)
         self.assertEqul(type(self.user.updated_at), str)

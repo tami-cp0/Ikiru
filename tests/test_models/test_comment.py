@@ -12,28 +12,25 @@ from models.user import User
 
 class testCommentDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.post = Post(content="He abuse me", user_id=self.user.id)
-        self.post.save()
-        self.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
-        self.comment.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.post.delete()
-        self.comment.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.commentmethods = inspect.getmembers(Comment, inspect.isfunction)
+        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.post = Post(content="He abuse me", user_id=self.user.id)
+        cls.post.save()
+        cls.comment = Comment(content="He abuse me", user_id=self.user.id, post_id=self.post.id)
+        cls.comment.save()
+        
+        
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.post.delete()
+        cls.comment.delete()
+        storage.save()
 
 
     def test_user_pep8_style(self):
@@ -83,7 +80,7 @@ class testCommentDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
  
         # Test the attribute value types
-        self.assertEqual(self.comment.__class__, "Comment")
+        self.assertEqual(self.comment.__class__.__name__, "Comment")
         self.assertEqul(type(self.comment.id), str)
         self.assertEqul(type(self.comment.created_at), str)
         self.assertEqul(type(self.comment.user_id), str)

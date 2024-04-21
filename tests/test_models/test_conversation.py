@@ -11,30 +11,30 @@ from models.user import User
 
 class testConversationDoc(unittest.TestCase):
     """Test the doc and style of Conversation class"""
-    def setUp(self):
-        """set up class instance for test"""
-        # Creating a user
-        self.user = User(username="ikiru9", sex="M", email="ikiru9@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        # Creating a conversation with the user id
-        self.conversation = Conversation(user_id=self.user.id)
-        self.conversation.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        # Delete created user
-        self.user.delete()
-        # Delete created conversation
-        self.conversation.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.conversmethods = inspect.getmembers(
                 Conversation, inspect.isfunction)
+        # Creating a user
+        cls.user = User(username="ikiru9", sex="M", email="ikiru9@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.user1 = User(username="ikiru909", sex="M", email="ikiru909@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user1.save()
+        # Creating a conversation with the user id
+        cls.conversation = Conversation(sender_id=self.user.id, receiver_id=user1.id)
+        cls.conversation.save()
+        
+   
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        # Delete created user
+        cls.user.delete()
+        cls.user.delete()
+        # Delete created conversation
+        cls.conversation.delete()
+        storage.save()
 
 
     def test_conversation_pep8_style(self):
@@ -70,10 +70,12 @@ class testConversationDoc(unittest.TestCase):
     def test_conversation_class_attr(self):
         """test the super class attributes"""
         # test the if the class instance has the class attribute
-        self.assertTrue(hasattr(self.conversation, "user_id"))
+        self.assertTrue(hasattr(self.conversation, "sender_id"))
+        self.assertTrue(hasattr(self.conversation, "receiver_id"))
 
         #Test the attribute values
-        self.assertTrue(self.conversation.user_id != None)
+        self.assertTrue(self.conversation.sender_id != None)
+        self.assertTrue(self.conversation.receiver_id != None)
 
 
     def test_conversation_methods(self):
@@ -85,11 +87,12 @@ class testConversationDoc(unittest.TestCase):
         for attr in c_dict.__dict__:
             if attr is not "_sa_instance_state":
                 self.assertTrue(attr in c_dict)
-        self.assertEqual(self.conversation.__class__, "Conversation")
+        self.assertEqual(self.conversation.__class__.__name__, "Conversation")
         self.assertEqul(type(self.conversation.id), str)
         self.assertEqul(type(self.conversation.created_at), str)
         self.assertEqul(type(self.conversation.updated_at), str)
-        self.assertEqul(type(self.conversation.user_id), str)
+        self.assertEqul(type(self.conversation.sender_id), str)
+        self.assertEqul(type(self.conversation.receiver_id), str)
 
 
     def test_conversation_save_and_delete_methods(self):
