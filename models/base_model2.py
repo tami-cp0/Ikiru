@@ -18,13 +18,12 @@ class BaseModel2():
         """Initializes a base model instance"""
         if kwargs:
             for key, value in kwargs.items():
-                if key in ["__class__", "id", "created_at", "updated_at"]:
+                if key in ["__class__", "id", "created_at"]:
                     continue
                 setattr(self, key, value)
         # sets this attribute regardless of kwargs or not
         self.id = str(uuid4())
         self.created_at = datetime.now()
-        self.updated_at = self.created_at
 
     def __str__(self):
         """String representation of a Base Model instance"""
