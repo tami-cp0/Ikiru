@@ -11,7 +11,6 @@ class Message(BaseModel, Base):
     content = Column(String(255), nullable=False)
     is_reported = Column(Boolean, default=False)
 
-
     # Foreign keys
     user_id = Column(String(36), ForeignKey("users.id"), nullable=False)
     conversation_id = Column(

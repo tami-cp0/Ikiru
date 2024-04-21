@@ -1,0 +1,372 @@
+#!/usr/bin/python3
+"""
+Generate mock data for database.
+
+users - 5
+post per user - 5
+comment per user - 2
+message per user - 5
+10 unique conversations
+"""
+import json
+import random
+from datetime import date
+from models import storage
+from models.user import User
+from models.post import Post
+from models.comment import Comment
+from models.message import Message
+from models.conversation import Conversation
+
+
+# ANSI escape code for blue text
+BLUE = "\033[34m"
+# ANSI escape code for resetting text color to default
+RESET = "\033[0m"
+# ANSI escape code for green text
+GREEN = "\033[32m"
+
+users = [
+    {
+        "name": "Roseline",
+        "username": "r0seline",
+        "sex": "Female",
+        "password": "nS5OAw7Ec",
+        "email": "rbail0@themeforest.net",
+        "dob": date.fromisoformat("2005-01-04")
+    },
+    {
+        "name": "Vikky",
+        "username": "vikky",
+        "sex": "Female",
+        "password": "jP5S$BJPju",
+        "email": "vwatson1@noaa.gov",
+        "dob": date.fromisoformat("2001-09-17")
+    },
+    {
+        "name": "Gwynne",
+        "username": "spider_w",
+        "sex": "Female",
+        "bio": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
+        "password": "lL8BB3S6s",
+        "email": "gwaddilove2@spiegel.de",
+        "dob": date.fromisoformat("2003-07-22")
+    },
+    {
+        "name": "John",
+        "username": "john12",
+        "sex": "Female",
+        "password": "oK01hCaOt!D5xHO",
+        "email": "drundle3@abc.net.au",
+        "dob": date.fromisoformat("2007-05-06")
+    },
+    {
+        "name": "Sandor",
+        "username": "sand0r",
+        "sex": "Male",
+        "password": "eM1P<l?55MAL",
+        "email": "spolhill4@fastcompany.com",
+        "dob": date.fromisoformat("1997-11-18")
+    }
+]
+
+posts = [
+    {
+        "content": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue."
+    },
+    {
+        "content": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
+    },
+    {
+        "content": "Suspendisse potenti.",
+        "is_reported": False
+    },
+    {
+        "content": "Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Nulla justo.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue."
+    },
+    {
+        "content": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla."
+    },
+    {
+        "content": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl."
+    },
+    {
+        "content": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+        "is_anonymous": False
+    },
+    {
+        "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+        "is_reported": True
+    },
+    {
+        "content": "In congue.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
+    },
+    {
+        "content": "In sagittis dui vel nisl. Duis ac nibh."
+    },
+    {
+        "content": "Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+        "is_reported": True
+    },
+    {
+        "content": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
+        "is_reported": True
+    },
+    {
+        "content": "Aliquam sit amet diam in magna bibendum imperdiet.",
+        "is_anonymous": True
+    },
+    {
+        "content": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "is_anonymous": False
+    }
+]
+
+comments = [
+    {
+        "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus.",
+        "is_reported": False
+    },
+    {
+        "content": "Curabitur gravida nisi at nibh."
+    },
+    {
+        "content": "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim."
+    },
+    {
+        "content": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh."
+    },
+    {
+        "content": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
+    },
+    {
+        "content": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.",
+        "is_reported": True
+    },
+    {
+        "content": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
+    },
+    {
+        "content": "Sed ante.",
+        "is_reported": True,
+        "is_anonymous": False
+    },
+    {
+        "content": "Proin interdum mauris non ligula pellentesque ultrices."
+    },
+    {
+        "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+    },
+]
+
+messages = [
+    {
+        "content": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
+        "is_reported": False
+    },
+    {
+        "content": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat."
+    },
+    {
+        "content": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum."
+    },
+    {
+        "content": "Quisque ut erat."
+    },
+    {
+        "content": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+        "is_reported": False
+    },
+    {
+        "content": "Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+        "is_reported": False
+    },
+    {
+        "content": "Suspendisse potenti. Nullam porttitor lacus at turpis."
+    },
+    {
+        "content": "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem."
+    },
+    {
+        "content": "Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus."
+    },
+    {
+        "content": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc."
+    },
+    {
+        "content": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum."
+    },
+    {
+        "content": "Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo."
+    },
+    {
+        "content": "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna."
+    },
+    {
+        "content": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa."
+    },
+    {
+        "content": "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi."
+    },
+    {
+        "content": "Etiam pretium iaculis justo."
+    },
+    {
+        "content": "Suspendisse ornare consequat lectus."
+    },
+    {
+        "content": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla."
+    },
+    {
+        "content": "Vivamus tortor. Duis mattis egestas metus."
+    },
+    {
+        "content": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis."
+    },
+    {
+        "content": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus."
+    },
+    {
+        "content": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante."
+    },
+    {
+        "content": "Vivamus vestibulum sagittis sapien.",
+        "is_reported": False
+    },
+    {
+        "content": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc."
+    },
+    {
+        "content": "Nulla mollis molestie lorem. Quisque ut erat."
+    }
+]
+
+i = 0
+for data in users:
+    user = User(**data)
+    user.save()
+    for i in range(i, i + 4):
+        posts[i]["user_id"] = user.id
+        Post(**posts[i]).save()
+    i += 1
+    print(f"user {user.name} posted 5 times")
+i = 0
+
+user_instances = storage.all(User).values()
+post_instances = storage.all(Post)
+print(GREEN + "--all users have posted--" + RESET)
+print("==========================================================")
+     
+j = 0
+for user in user_instances:
+    print(BLUE + f"Loop {j}" + RESET)
+    post_ids = [post.id for post in post_instances.values() if post.user_id != user.id]
+    
+    k = 0
+    for k in range(k, k + 2):
+        rand_id = random.choice(post_ids)
+        i = 0
+
+        comments[k]["post_id"] = rand_id
+        comments[k]["user_id"] = user.id
+        Comment(**comments[k]).save()
+        post = storage.get(Post, rand_id)
+        user_post = storage.get(User, post.user_id)
+        print(f"    user {user.name} commented on {user_post.name}'s Post {post.id}")
+    k += 1
+    j += 1
+    print("==========================================================")
+print(GREEN + "--all users have commented--" + RESET)
+
+        
+
+
+class Conversation(BaseModel, Base):
+    """Conversation Class"""
+    __tablename__ = "conversations"
+    
+    # Relationships
+    members = relationship("ConversationMember", 
+                           back_populates="conversation",
+                           cascade="all, delete, delete-orphan")
+    messages = relationship("Message",
+                            back_populates="conversation",
+                            cascade="all, delete, delete-orphan")
+
+class ConversationMember(BaseModel, Base):
+    """Conversation Member Class"""
+    __tablename__ = "conversation_members"
+    # Foreign keys
+    conversation_id = Column(Integer, ForeignKey("conversations.id"))
+    user_id = Column(String(36), ForeignKey("users.id"), nullable=False)
+    
+    # Relationships
+    conversation = relationship("Conversation", back_populates="members")
+    user = relationship("User", back_populates="conversations")
+    
+
+so if you want to access members in a conversation, you would just use:
+    conversation = storage.get(Conversation, id)
+    members = conversation.members
+    # so members contain the ids of users in the convo.
+    # and this can be used for group chats sef. we're not doing group chat oo
+    
+if the ConversationMember table does not exist, we'll have to get the users by using the messages
+in the conversation i.e:
+    conversation = storage.get(Conversation, id)
+    users = []
+    for message in conversation.messages:
+        if message.user_id not in users:
+            users.append(message.user_id)
+    
+    so users now contains ids of users in the conversation
+    but you know USER A can enter a initiate a convo with USER B
+    
+    in scenarios of new convos
+    but if USER B does not sent any message at all, we wouldlnt know
+    that user b is supposed to be there
+    
+    so the ConversationMember class keeps track of the user,
+    even if the other user hasnt replied yet.
+    like message requests
+
+
+
+
+class Conversation(BaseModel, Base):
+    """Conversation Class"""
+    __tablename__ = "conversations"
+    
+    sender_id = Column(String(36), ForeignKey("users.id"), nullable=False)
+    receiver_id = Column(String(36), ForeignKey("users.id"), nullable=False)
+
+    # Relationships
+    senders = relationship("User", back_populates="sender", foreign_keys=[sender_id])
+    receivers = relationship("User", back_populates="receiver", foreign_keys=[receiver_id])
+    messages = relationship("Message",
+                            back_populates="conversation",
+                            cascade="all, delete, delete-orphan")
