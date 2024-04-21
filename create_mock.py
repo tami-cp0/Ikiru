@@ -9,6 +9,7 @@ message per user - 5
 10 unique conversations
 """
 import json
+import os
 import random
 from datetime import date
 from models import storage
@@ -17,7 +18,10 @@ from models.post import Post
 from models.comment import Comment
 from models.message import Message
 from models.conversation import Conversation
+from fabric.api import local
 
+
+dir = os.getcwd()
 
 # ANSI escape code for blue text
 BLUE = "\033[34m"
@@ -25,7 +29,12 @@ BLUE = "\033[34m"
 RESET = "\033[0m"
 # ANSI escape code for green text
 GREEN = "\033[32m"
-
+if not dir.endswith("Ikiru"):
+    print(BLUE + "This script can only be run in the Ikiru directory" + RESET)
+    exit(1)
+local('cat setups/reset_db.sql | mysql -u ikiru_user --password="password"')
+local('echo "quit" | ./console.py')
+print(GREEN + "--DB reset complete--" + RESET)
 users = [
     {
         "name": "Roseline",
@@ -301,72 +310,3 @@ for user in user_instances:
     j += 1
     print("==========================================================")
 print(GREEN + "--all users have commented--" + RESET)
-
-        
-
-
-class Conversation(BaseModel, Base):
-    """Conversation Class"""
-    __tablename__ = "conversations"
-    
-    # Relationships
-    members = relationship("ConversationMember", 
-                           back_populates="conversation",
-                           cascade="all, delete, delete-orphan")
-    messages = relationship("Message",
-                            back_populates="conversation",
-                            cascade="all, delete, delete-orphan")
-
-class ConversationMember(BaseModel, Base):
-    """Conversation Member Class"""
-    __tablename__ = "conversation_members"
-    # Foreign keys
-    conversation_id = Column(Integer, ForeignKey("conversations.id"))
-    user_id = Column(String(36), ForeignKey("users.id"), nullable=False)
-    
-    # Relationships
-    conversation = relationship("Conversation", back_populates="members")
-    user = relationship("User", back_populates="conversations")
-    
-
-so if you want to access members in a conversation, you would just use:
-    conversation = storage.get(Conversation, id)
-    members = conversation.members
-    # so members contain the ids of users in the convo.
-    # and this can be used for group chats sef. we're not doing group chat oo
-    
-if the ConversationMember table does not exist, we'll have to get the users by using the messages
-in the conversation i.e:
-    conversation = storage.get(Conversation, id)
-    users = []
-    for message in conversation.messages:
-        if message.user_id not in users:
-            users.append(message.user_id)
-    
-    so users now contains ids of users in the conversation
-    but you know USER A can enter a initiate a convo with USER B
-    
-    in scenarios of new convos
-    but if USER B does not sent any message at all, we wouldlnt know
-    that user b is supposed to be there
-    
-    so the ConversationMember class keeps track of the user,
-    even if the other user hasnt replied yet.
-    like message requests
-
-
-
-
-class Conversation(BaseModel, Base):
-    """Conversation Class"""
-    __tablename__ = "conversations"
-    
-    sender_id = Column(String(36), ForeignKey("users.id"), nullable=False)
-    receiver_id = Column(String(36), ForeignKey("users.id"), nullable=False)
-
-    # Relationships
-    senders = relationship("User", back_populates="sender", foreign_keys=[sender_id])
-    receivers = relationship("User", back_populates="receiver", foreign_keys=[receiver_id])
-    messages = relationship("Message",
-                            back_populates="conversation",
-                            cascade="all, delete, delete-orphan")
