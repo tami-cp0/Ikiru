@@ -11,25 +11,22 @@ from models.user import User
 
 class testFeedbackDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.feedback = Feedback(content="He abuse me", user_id=self.user.id)
-        self.feedback.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.feedback.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.feedbackmethods = inspect.getmembers(Feedback, inspect.isfunction)
+        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user.save()
+        cls.feedback = Feedback(content="He abuse me", user_id=self.user.id)
+        cls.feedback.save()
+
+
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.feedback.delete()
+        storage.save()
 
 
     def test_user_pep8_style(self):

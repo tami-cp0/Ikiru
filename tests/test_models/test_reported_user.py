@@ -23,7 +23,7 @@ class testReportedUserDoc(unittest.TestCase):
 
 
     @classmethod
-    def tearDown(cls):
+    def tearDownClass(cls):
         """delete class instance use for the test"""
         cls.user.delete()
         cls.reporteduser.delete()

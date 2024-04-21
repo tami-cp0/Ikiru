@@ -19,7 +19,7 @@ class testMessageDoc(unittest.TestCase):
         cls.user.save()
   
     @classmethod   
-    def tearDownClasss(cls):
+    def tearDownClass(cls):
         """delete class instance use for the test"""
         cls.user.delete()
         storage.save()
