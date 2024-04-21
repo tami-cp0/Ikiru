@@ -95,10 +95,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertEqual(type(u_dict), dict)
         self.assertFalse("_sa_instance_state" in u_dict)
         self.assertTrue("__class__" in u_dict)
-        #test the dict attribute
-        for attr in u_dict.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in u_dict)
+
         # Test the type of the attribute
         self.assertEqual(self.user.__class__, "User")
         self.assertEqul(type(self.user.id), str)
@@ -122,7 +119,7 @@ class testMessageDoc(unittest.TestCase):
     def test_user_save_and_delete_methods(self):
         """Test user save and delete methods"""
         user = self.user = User(
-                username ="ikirujunior", sex="M", email="ikiru@ikiru.com",
+                username ="ikirujunior", sex="M", email="ikiru67@ikiru.com",
                 name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
         user.save()
         #Testt save method

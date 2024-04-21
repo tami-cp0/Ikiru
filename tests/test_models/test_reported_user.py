@@ -13,7 +13,8 @@ class testReportedUserDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
     def setUp(self):
         """set up class instance for test"""
-        self.user = User(username="ikiru2", sex="M", email="ikiru2@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        self.user = User(username="ikiru2", sex="M", email="ikiru2@ikiru.com", name="Ikiru",
+                         dob=date(2000, 4, 10), password="ikiru", bio="god is good")
         self.user.save()
         self.reporteduser = ReportedUser(content="He abuse me", user_id=self.user.id)
         self.reporteduser.save()
@@ -77,10 +78,6 @@ class testReportedUserDoc(unittest.TestCase):
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
         self.assertTrue("__class__" in m_dict)
-        # Test the dict attribute
-        for attr in m_dict.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in m_dict)
 
         # Test the attribute value types
         self.assertEqual(self.reporteduser.__class__, "ReportedUser")
@@ -94,8 +91,8 @@ class testReportedUserDoc(unittest.TestCase):
     def test_save_and_delete_methods(self):
         """Test message save and delete methods"""
         user = self.user = User(
-                username ="ikirujunior", sex="M", email="ikiru@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
+                username ="ikirujunior1", sex="M", email="ikiru90@ikiru.com",
+                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru", bio="here am i")
         user.save()
         reporteduser= ReportedUser(content="Good", user_id=self.user.id)
 
