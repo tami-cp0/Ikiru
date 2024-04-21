@@ -32,11 +32,13 @@ class User(BaseModel, Base):
     sent_conversation = relationship(
         "Conversation",
         back_populates="sender",
+        foreign_keys="[Conversation.sender_id]",
         cascade="all, delete, delete-orphan",
     )
     received_conversation = relationship(
         "Conversation",
         back_populates="receiver",
+        foreign_keys="[Conversation.receiver_id]",
         cascade="all, delete, delete-orphan",
     )
     messages = relationship("Message", back_populates="user",
