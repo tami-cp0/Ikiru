@@ -29,8 +29,16 @@ class User(BaseModel, Base):
                          cascade="all, delete, delete-orphan")
     comments = relationship("Comment", back_populates="user",
                             cascade="all, delete, delete-orphan")
-    conversations = relationship("Conversation", back_populates="user",
-                                 cascade="all, delete, delete-orphan")
+    sent_conversation = relationship(
+        "Conversation",
+        back_populates="sender",
+        cascade="all, delete, delete-orphan",
+    )
+    received_conversation = relationship(
+        "Conversation",
+        back_populates="receiver",
+        cascade="all, delete, delete-orphan",
+    )
     messages = relationship("Message", back_populates="user",
                             cascade="all, delete, delete-orphan")
     # no deleting of child because we may still need feedback
