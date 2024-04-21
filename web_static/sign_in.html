@@ -8,82 +8,84 @@
     >
     <meta name="description" content="Ikiru. Emote freely, Live fully.">
     <link rel="stylesheet" href="styles/sign_in.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@600;800&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@600;800&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Iriku - Sign in</title>
   </head>
   <body>
-    <main>
-      <header>
-        <nav>
-          <h1 class="logo">Ikiru</h1>
-          <ul>
-            <li><a href="">About</a></li>
-            <li><a href="">FAQs</a></li>
-            <li><a href="">Help</a></li>
-          </ul>
-        </nav>
-      </header>
-      <figure>
-        <img
-          src="images/background_image.png"
-          alt="Background Icon"
-          class="background_icon"
-        >
-      </figure>
-      <section>
-        <h2>Emote Freely,</h2>
-        <h2>Live Fully.</h2>
+    <div class="body_card">
+      <div class="body_card_content">
+        <header>
+          <nav>
+            <h1 class="logo">Ikiru</h1>
+              <ul>
+                <li><a href="">About</a></li>
+                <li><a href="">FAQs</a></li>
+                <li><a href="">Help</a></li>
+              </ul>
+          </nav>
+        </header>
+        <div class="body_div1">
+          <section>
+            <h2>Emote Freely,</h2>
+            <h2>Live Fully.</h2>
 
-        <p>Connect with friends from anywhere in the world</p>
-      </section>
-      <section>
-        <h1>Sign in to Ikiri</h1>
-        <form method="post">
-          <label for="email" id="email-label">E-mail</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            class="form-inputs"
-            placeholder="johndoe@gmail.com"
-            required=""
-          >
-          <label for="password" id="password-label">Password</label>
-          <input
-            type="text"
-            name="password"
-            id="password"
-            class="form-inputs"
-            placeholder="1234we#%"
-            required=""
-          >
-          <label for="keep_me_logged_in" id="keep_me"
-            ><input
-              type="checkbox"
-              name="keep_me"
-              value="keep_me"
-              class="input_checkbox"
-              id="keep_me_logged_in"
-            >Keep me logged in</label
-          >
-          <button type="submit" id="submit" class="signin_button">
-            Sign in
-          </button>
-        </form>
-        <div>
-          <div>
-            <div class="left_line"></div>
-          </div>
-          <div><span>or</span></div>
-          <div>
-            <div class="right_line"></div>
-          </div>
+            <p>Connect with friends from anywhere in the world</p>
+          </section>
+          <section class="sigin_section">
+            <h1>Sign in to Ikiru</h1>
+            <form method="post">
+              <label for="email" id="email-label">E-mail</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="form-inputs"
+                placeholder="johndoe@gmail.com"
+                required=""
+              >
+              <label for="password" id="password-label">Password</label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                class="form-inputs"
+                placeholder="1234we#%"
+                required=""
+              >
+              <label for="keep_me_logged_in" id="keep_me"
+                ><input
+                  type="checkbox"
+                  name="keep_me"
+                  value="keep_me"
+                  class="input_checkbox"
+                  id="keep_me_logged_in"
+                >Keep me logged in</label
+              >
+              <button type="submit" id="submit" class="signin_button">
+                Sign in
+              </button>
+            </form>
+            <div>
+              <div>
+                <div class="left_line"></div>
+              </div>
+              <div><span>or</span></div>
+              <div>
+                <div class="right_line"></div>
+              </div>
+            </div>
+            <button type="button" class="google_button">
+              <img src="images/google_icon.png" alt="Google icon"><span>Sign in with Google</span>
+            </button>
+            <p>Don't have an account? <a href="">Sign up</a></p>
+          </section>
         </div>
-        <button type="button" class="google_button">
-          <img src="images/google_icon.png" alt="Google icon"><span>Sign in with Google</span>
-        </button>
-        <p>Don't have an account? <a href="">Sign up</a></p>
-      </section>
-      <footer><a href="">Support this website</a></footer>
-    </main>
+      </div>
+        
+        <footer><a href="">Support this website</a></footer>
+    </div>
   </body>
 </html>
