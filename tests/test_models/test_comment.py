@@ -80,7 +80,7 @@ class testCommentDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
  
         # Test the attribute value types
-        self.assertEqual(self.comment.__class__, "Comment")
+        self.assertEqual(self.comment.__class__.__name__, "Comment")
         self.assertEqul(type(self.comment.id), str)
         self.assertEqul(type(self.comment.created_at), str)
         self.assertEqul(type(self.comment.user_id), str)

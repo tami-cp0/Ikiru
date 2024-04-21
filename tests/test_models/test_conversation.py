@@ -87,7 +87,7 @@ class testConversationDoc(unittest.TestCase):
         for attr in c_dict.__dict__:
             if attr is not "_sa_instance_state":
                 self.assertTrue(attr in c_dict)
-        self.assertEqual(self.conversation.__class__, "Conversation")
+        self.assertEqual(self.conversation.__class__.__name__, "Conversation")
         self.assertEqul(type(self.conversation.id), str)
         self.assertEqul(type(self.conversation.created_at), str)
         self.assertEqul(type(self.conversation.updated_at), str)

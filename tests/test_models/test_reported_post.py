@@ -79,7 +79,7 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.reportedpost.__class__, "ReportedPost")
+        self.assertEqual(self.reportedpost.__class__.__name__, "ReportedPost")
         self.assertEqul(type(self.reportedpost.id), str)
         self.assertEqul(type(self.reportedpost.created_at), str)
         self.assertEqul(type(self.reportedpost.post_id), str)

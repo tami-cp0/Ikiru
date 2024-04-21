@@ -85,7 +85,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
  
         # Test the attribute value types
-        self.assertEqual(self.reportedmessage.__class__, "ReportedMessage")
+        self.assertEqual(self.reportedmessage.__class__.__name__, "ReportedMessage")
         self.assertEqul(type(self.reportedmessage.id), str)
         self.assertEqul(type(self.reportedmessage.created_at), str)
         self.assertEqul(type(self.reportedmessage.reporting_user), str)
