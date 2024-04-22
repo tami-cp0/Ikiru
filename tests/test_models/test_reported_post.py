@@ -73,7 +73,8 @@ class testPostDoc(unittest.TestCase):
         """test reported_post inherited method"""
         m_dict = self.reportedpost.to_dict()
         self.assertEqual(type(m_dict), dict)
-        self.assertFalse("_sa_instance_state" in m_dict)
+        print(m_dict)
+        self.assertFalse("_sa_instance_state" in m_dict.keys())
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
