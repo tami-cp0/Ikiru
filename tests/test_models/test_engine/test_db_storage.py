@@ -10,6 +10,7 @@ from models.engine.db_storage import DBStorage
 from models.user import User
 from models.post import Post
 from models.comment import Comment
+from fabric.api import local
 
 
 class testDBStorageDoc(unittest.TestCase):
@@ -30,6 +31,8 @@ class testDBStorageDoc(unittest.TestCase):
         cls.pen = cls.conn.cursor()
         cls.pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
         cls.pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
+        local('echo "quit" | ./console.py')
+        
 
 
     @classmethod   
