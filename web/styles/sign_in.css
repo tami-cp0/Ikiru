@@ -162,9 +162,10 @@ form label {
     padding-left: 10px;
 }
 
+
 .form-inputs::placeholder {
     color: #C7C7C7;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     font-size: 12px;
 }
 
