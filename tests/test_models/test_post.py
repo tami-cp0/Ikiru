@@ -11,25 +11,22 @@ from models.user import User
 
 class testPostDoc(unittest.TestCase):
     """Test the doc and style of Message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.post = Post(content="He abuse me", user_id=self.user.id)
-        self.post.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.post.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.postmethods = inspect.getmembers(Post, inspect.isfunction)
+        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user.save()
+        cls.post = Post(content="He abuse me", user_id=cls.user.id)
+        cls.post.save()
+        
+    
+    @classmethod
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.post.delete()
+        storage.save()
 
 
     def test_user_pep8_style(self):
@@ -79,9 +76,10 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
 
         # Test the attribute value types
-        self.assertEqual(self.post.__class__, "Post")
-        self.assertEqul(type(self.post.id), str)
-        self.assertEqul(type(self.post.created_at), str) 
-        self.assertEqul(type(self.post.user_id), str)
+        self.assertEqual(self.post.__class__.__name__, "Post")
+        self.assertEqual(type(self.post.id), str)
+        self.assertEqual(type(self.post.created_at), datetime)
+        self.assertEqual(type(self.post.updated_at), datetime)
+        self.assertEqual(type(self.post.user_id), str)
         self.assertEqual(Post.is_anonymous.expression.type.python_type, bool)
         self.assertEqual(Post.is_reported.expression.type.python_type, bool)

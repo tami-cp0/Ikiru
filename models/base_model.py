@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Base model for all main ikiru models"""
 
-from datetime import datetime
+from datetime import datetime, date
 from uuid import uuid4
 from sqlalchemy import String, DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
@@ -21,21 +21,15 @@ class BaseModel():
         """Initializes a base model instance"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == "__class__":
+                if key in ["__class__", "id", "created_at", "updated_at"]:
                     continue
-                if key in ["created_at", "updated_at"]:
-                    value = datetime.fromisoformat(value)
+                if key == "dob":
+                    value = date.fromisoformat(value)
                 setattr(self, key, value)
-            if kwargs.get("id", None) is None:
-                self.id = str(uuid4())
-            if kwargs.get("created_at", None) is None:
-                self.created_at = datetime.now()
-            if kwargs.get("updated_at", None) is None:
-                self.updated_at = datetime.now()
-        else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = self.created_at
+        # sets this attribute regardless of kwargs or not
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
 
     def __str__(self):
         """String representation of a Base Model instance"""

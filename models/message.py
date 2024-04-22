@@ -21,4 +21,5 @@ class Message(BaseModel, Base):
     conversation = relationship("Conversation", back_populates="messages")
     user = relationship("User", back_populates="messages")
     reports = relationship(
-        "ReportedMessage", back_populates="message", cascade="all, delete, delete-orphan")
+        "ReportedMessage", back_populates="message",
+        cascade="all, delete, delete-orphan")

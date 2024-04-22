@@ -25,4 +25,4 @@ class Post(BaseModel, Base):
     comments = relationship("Comment", back_populates="post",
                             cascade="all, delete, delete-orphan")
     reports = relationship("ReportedPost", back_populates="post",
-                                  cascade="all, delete, delete-orphan")
+                           cascade="all, delete, delete-orphan")

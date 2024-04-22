@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import date
+from datetime import date, datetime
 import inspect
 import pep8
 import unittest
 from models import storage
+from models.conversation import Conversation
 from models.message import Message
 from models.reported_message import ReportedMessage
 from models.user import User
@@ -12,28 +13,31 @@ from models.user import User
 
 class testMessageDoc(unittest.TestCase):
     """Test the doc and style of reported_message class"""
-    def setUp(self):
-        """set up class instance for test"""
-        self.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
-        self.user.save()
-        self.message = Message(content="He abuse me", user_id=self.user.id)
-        self.message.save()
-        self.reportedmessage = ReportedMessage(content="racism", reporting_user=self.user.id, message_id=self.message.id)
-        self.reportedmessage.save()
-
-
-    def tearDown(self):
-        """delete class instance use for the test"""
-        self.user.delete()
-        self.message.delete()
-        self.reportedmessage.delete()
-        storage.save()
-
-
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rmessagemethods = inspect.getmembers(ReportedMessage, inspect.isfunction)
+        cls.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user.save()
+        cls.user1 = User(username="ikiru993", sex="M", email="ikiru9099@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user1.save()
+        # Creating a conversation with the user id
+        cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.conversation.save()
+        cls.message = Message(content="He abuse me", user_id=cls.user.id, conversation_id=cls.conversation.id)
+        cls.message.save()
+        cls.reportedmessage = ReportedMessage(content="racism", reporting_user=cls.user.id, message_id=cls.message.id)
+        cls.reportedmessage.save()
+        
+    
+    @classmethod    
+    def tearDownClass(cls):
+        """delete class instance use for the test"""
+        cls.user.delete()
+        cls.user1.delete()
+        cls.message.delete()
+        cls.reportedmessage.delete()
+        storage.save()
 
 
     def test_reported_message_pep8_style(self):
@@ -83,10 +87,10 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue("__class__" in m_dict)
  
         # Test the attribute value types
-        self.assertEqual(self.reportedmessage.__class__, "ReportedMessage")
-        self.assertEqul(type(self.reportedmessage.id), str)
-        self.assertEqul(type(self.reportedmessage.created_at), str)
-        self.assertEqul(type(self.reportedmessage.reporting_user), str)
-        self.assertEqul(type(self.reportedmessage.content), str)
-        self.assertEqul(type(self.reportedmessage.message_id), str)
+        self.assertEqual(self.reportedmessage.__class__.__name__, "ReportedMessage")
+        self.assertEqual(type(self.reportedmessage.id), str)
+        self.assertEqual(type(self.reportedmessage.created_at), datetime)
+        self.assertEqual(type(self.reportedmessage.reporting_user), str)
+        self.assertEqual(type(self.reportedmessage.content), str)
+        self.assertEqual(type(self.reportedmessage.message_id), str)
         self.assertEqual(ReportedMessage.is_resolved.expression.type.python_type, bool)

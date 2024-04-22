@@ -18,19 +18,12 @@ class BaseModel2():
         """Initializes a base model instance"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == "__class__":
+                if key in ["__class__", "id", "created_at"]:
                     continue
-                if key in ["created_at"]:
-                    value = datetime.fromisoformat(value)
                 setattr(self, key, value)
-            if kwargs.get("id", None) is None:
-                self.id = str(uuid4())
-            if kwargs.get("created_at", None) is None:
-                self.created_at = datetime.now()
-
-        else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
+        # sets this attribute regardless of kwargs or not
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
 
     def __str__(self):
         """String representation of a Base Model instance"""
@@ -44,6 +37,8 @@ class BaseModel2():
     def to_dict(self):
         """Custom dictionary representation of a Base Model instance"""
         new_dict = self.__dict__.copy()
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()
         return new_dict

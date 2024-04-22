@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import date
+from datetime import date, datetime
 import inspect
 import pep8
 import unittest
@@ -15,11 +15,11 @@ class testMessageDoc(unittest.TestCase):
         """Set up for doc test"""
         cls.usermethods = inspect.getmembers(User, inspect.isfunction)
         cls.user = User(
-            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
+            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="i live here")
         cls.user.save()
   
     @classmethod   
-    def tearDownClasss(cls):
+    def tearDownClass(cls):
         """delete class instance use for the test"""
         cls.user.delete()
         storage.save()
@@ -93,30 +93,29 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue("__class__" in u_dict)
 
         # Test the type of the attribute
-        self.assertEqual(self.user.__class__, "User")
-        self.assertEqul(type(self.user.id), str)
-        self.assertEqul(type(self.user.created_at), str)
-        self.assertEqul(type(self.user.updated_at), str)
-        self.assertEqul(type(self.user.username), str)
-        self.assertEqul(type(self.user.email), str)
-        self.assertEqul(type(self.user.sex), str)
-        self.assertEqul(type(self.user.password), str)
-        self.assertEquall(type(self.user.dob), date)
+        self.assertEqual(self.user.__class__.__name__, "User")
+        self.assertEqual(type(self.user.id), str)
+        self.assertEqual(type(self.user.created_at), datetime)
+        self.assertEqual(type(self.user.updated_at), datetime)
+        self.assertEqual(type(self.user.username), str)
+        self.assertEqual(type(self.user.email),  str)
+        self.assertEqual(type(self.user.password), str)
+        self.assertEqual(type(self.user.dob), date)
         # Test the class defaut type
-        self.assertEqul(User.is_active.expression.type.python_type, bool)
-        self.assertEqul(User.is_admin.expression.type.python_type, bool)
-        self.assertEqul(User.is_reported.expression.type.python_type, bool)
-        self.assertEqul(
+        self.assertEqual(User.is_active.expression.type.python_type, bool)
+        self.assertEqual(User.is_admin.expression.type.python_type, bool)
+        self.assertEqual(User.is_reported.expression.type.python_type, bool)
+        self.assertEqual(
                 User.is_active.expression.type.python_type, bool)
-        self.assertEqul(type(self.user.name), str)
-        self.assertEqul(type(self.user.bio), str)
+        self.assertEqual(type(self.user.name), str)
+        self.assertEqual(type(self.user.bio), str)
 
 
     def test_user_save_and_delete_methods(self):
         """Test user save and delete methods"""
         user = self.user = User(
                 username ="ikirujunior", sex="M", email="ikiru67@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
+                name="Ikiru junior", dob='2000-04-10', password="ikiru")
         user.save()
         #Testt save method
         user_copy = storage.get(User, user.id)
