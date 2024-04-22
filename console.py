@@ -208,6 +208,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **\n[try again]")
                 return
             setattr(instance, key, value)
+        instance.save()
 
 
 if __name__ == '__main__':
