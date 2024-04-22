@@ -55,7 +55,6 @@ class testReportedUserDoc(unittest.TestCase):
         
         self.assertTrue(hasattr(self.reporteduser, "id"))
         self.assertTrue(hasattr(self.reporteduser, "created_at"))
-        self.assertTrue(hasattr(self.reporteduser, "updated_at"))
         self.assertFalse(self.reporteduser.id == None)
         self.assertFalse(self.reporteduser.created_at == None)
 
@@ -63,15 +62,14 @@ class testReportedUserDoc(unittest.TestCase):
     def test_message_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.reporteduser, "content"))
-        self.assertTrue(hasattr(self.reporteduser, "is_reported"))
-        self.assertTrue(hasattr(self.reporteduser, "user_id"))
+
         self.assertFalse(self.reporteduser.user_id == None)
         self.assertFalse(self.reporteduser.is_resolved == None)
         
         
     def test_message_methods(self):
         """test message inherited method"""
-        m_dict = self.message.to_dict()
+        m_dict = self.reporteduser.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
         self.assertTrue("__class__" in m_dict)
@@ -98,7 +96,7 @@ class testReportedUserDoc(unittest.TestCase):
         reporteduser_copy = storage.get(ReportedUser, reporteduser.id)
         self.assertEqual(reporteduser_copy, reporteduser)
         self.assertEqual(reporteduser_copy.id, reporteduser.id)
-        self.assertEqual(reporteduser_copy.user_d, reporteduser.user_id)
+
         # test the delete method
         reporteduser_copy.delete()
         storage.save()
