@@ -37,6 +37,8 @@ class BaseModel2():
     def to_dict(self):
         """Custom dictionary representation of a Base Model instance"""
         new_dict = self.__dict__.copy()
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()
         return new_dict
