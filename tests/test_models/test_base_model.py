@@ -65,9 +65,9 @@ class testBaseModelDoc(unittest.TestCase):
 
         # Test the type of the attribute
         self.assertEqual(self.basemodel.__class__.__name__, "BaseModel")
-        self.assertEqul(type(self.basemodel.id), str)
-        self.assertEqul(type(self.basemodel.created_at), str)
-        self.assertEqul(type(self.basemodel.updated_at), str)
+        self.assertEqual(type(self.basemodel.id), str)
+        self.assertEqual(type(self.basemodel.created_at), date)
+        self.assertEqual(type(self.basemodel.updated_at), date)
 
 
     def test_basemodel_save_and_delete_methods(self):
@@ -97,8 +97,8 @@ class testBaseModelDoc(unittest.TestCase):
         except ValueError:
             self.fail("Either created_at and/or \
                 updated_at is not datetime object format")
-        self.assertIsInstance(created_type, datetime.date)
-        self.assertIsInstance(updated_type, datetime.date)
+        self.assertIsInstance(created_type, date)
+        self.assertIsInstance(updated_type, date)
         
         
     def test_to_dict_method(self):
@@ -120,5 +120,5 @@ class testBaseModelDoc(unittest.TestCase):
         except ValueError:
             self.fail("Either created_at and/or updated_at \
                       is not datetime object format in to dict method")
-        self.assertIsInstance(created_type, datetime.date)
-        self.assertIsInstance(updated_type, datetime.date)
+        self.assertIsInstance(created_type, date)
+        self.assertIsInstance(updated_type, date)

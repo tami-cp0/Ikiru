@@ -90,10 +90,10 @@ class testMessageDoc(unittest.TestCase):
 
         # Test the attribute value types
         self.assertEqual(self.message.__class__.__name__, "Message")
-        self.assertEqul(type(self.message.id), str)
-        self.assertEqul(type(self.message.created_at), str)
-        self.assertEqul(type(self.message.updated_at), str)
-        self.assertEqul(type(self.message.user_id), str)
+        self.assertEqual(type(self.message.id), str)
+        self.assertEqual(type(self.message.created_at), date)
+        self.assertEqual(type(self.message.updated_at), date)
+        self.assertEqual(type(self.message.user_id), str)
 
 
     def message_save_and_delete_methods(self):

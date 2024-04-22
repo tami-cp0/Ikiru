@@ -91,9 +91,9 @@ class testPostDoc(unittest.TestCase):
 
         # Test the attribute value types
         self.assertEqual(self.reportedcomment.__class__.__name__, "ReportedComment")
-        self.assertEqul(type(self.reportedcomment.id), str)
-        self.assertEqul(type(self.reportedcomment.created_at), str)
-        self.assertEqul(type(self.reportedcomment.reporting_user), str)
-        self.assertEqul(type(self.reportedcomment.content), str)
-        self.assertEqul(type(self.reportedcomment.comment_id), str)
+        self.assertEqual(type(self.reportedcomment.id), str)
+        self.assertEqual(type(self.reportedcomment.created_at), date)
+        self.assertEqual(type(self.reportedcomment.reporting_user), str)
+        self.assertEqual(type(self.reportedcomment.content), str)
+        self.assertEqual(type(self.reportedcomment.comment_id), str)
         self.assertEqual(ReportedComment.is_resolved.expression.type.python_type, bool)

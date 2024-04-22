@@ -94,22 +94,21 @@ class testMessageDoc(unittest.TestCase):
 
         # Test the type of the attribute
         self.assertEqual(self.user.__class__.__name__, "User")
-        self.assertEqul(type(self.user.id), str)
-        self.assertEqul(type(self.user.created_at), str)
-        self.assertEqul(type(self.user.updated_at), str)
-        self.assertEqul(type(self.user.username), str)
-        self.assertEqul(type(self.user.email), str)
-        self.assertEqul(type(self.user.sex), str)
-        self.assertEqul(type(self.user.password), str)
+        self.assertEqual(type(self.user.id), str)
+        self.assertEqual(type(self.user.created_at), date)
+        self.assertEqual(type(self.user.updated_at), date)
+        self.assertEqual(type(self.user.username), str)
+        self.assertEqual(type(self.user.email)iitr)
+        self.assertEqual(type(self.user.password), str)
         self.assertEquall(type(self.user.dob), date)
         # Test the class defaut type
-        self.assertEqul(User.is_active.expression.type.python_type, bool)
-        self.assertEqul(User.is_admin.expression.type.python_type, bool)
-        self.assertEqul(User.is_reported.expression.type.python_type, bool)
-        self.assertEqul(
+        self.assertEqual(User.is_active.expression.type.python_type, bool)
+        self.assertEqual(User.is_admin.expression.type.python_type, bool)
+        self.assertEqual(User.is_reported.expression.type.python_type, bool)
+        self.assertEqual(
                 User.is_active.expression.type.python_type, bool)
-        self.assertEqul(type(self.user.name), str)
-        self.assertEqul(type(self.user.bio), str)
+        self.assertEqual(type(self.user.name), str)
+        self.assertEqual(type(self.user.bio), str)
 
 
     def test_user_save_and_delete_methods(self):

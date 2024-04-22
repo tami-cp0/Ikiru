@@ -80,8 +80,8 @@ class testPostDoc(unittest.TestCase):
 
         # Test the attribute value types
         self.assertEqual(self.reportedpost.__class__.__name__, "ReportedPost")
-        self.assertEqul(type(self.reportedpost.id), str)
-        self.assertEqul(type(self.reportedpost.created_at), str)
-        self.assertEqul(type(self.reportedpost.post_id), str)
-        self.assertEqul(type(self.reportedpost.user_id), str)
+        self.assertEqual(type(self.reportedpost.id), str)
+        self.assertEqual(type(self.reportedpost.created_at), date)
+        self.assertEqual(type(self.reportedpost.post_id), str)
+        self.assertEqual(type(self.reportedpost.user_id), str)
         self.assertEqual(ReportedPost.is_resolved.expression.type.python_type, bool)

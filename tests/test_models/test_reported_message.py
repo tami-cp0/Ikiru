@@ -87,9 +87,9 @@ class testMessageDoc(unittest.TestCase):
  
         # Test the attribute value types
         self.assertEqual(self.reportedmessage.__class__.__name__, "ReportedMessage")
-        self.assertEqul(type(self.reportedmessage.id), str)
-        self.assertEqul(type(self.reportedmessage.created_at), str)
-        self.assertEqul(type(self.reportedmessage.reporting_user), str)
-        self.assertEqul(type(self.reportedmessage.content), str)
-        self.assertEqul(type(self.reportedmessage.message_id), str)
+        self.assertEqual(type(self.reportedmessage.id), str)
+        self.assertEqual(type(self.reportedmessage.created_at), date)
+        self.assertEqual(type(self.reportedmessage.reporting_user), str)
+        self.assertEqual(type(self.reportedmessage.content), str)
+        self.assertEqual(type(self.reportedmessage.message_id), str)
         self.assertEqual(ReportedMessage.is_resolved.expression.type.python_type, bool)

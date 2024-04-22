@@ -88,11 +88,11 @@ class testConversationDoc(unittest.TestCase):
             if attr is not "_sa_instance_state":
                 self.assertTrue(attr in c_dict)
         self.assertEqual(self.conversation.__class__.__name__, "Conversation")
-        self.assertEqul(type(self.conversation.id), str)
-        self.assertEqul(type(self.conversation.created_at), str)
-        self.assertEqul(type(self.conversation.updated_at), str)
-        self.assertEqul(type(self.conversation.sender_id), str)
-        self.assertEqul(type(self.conversation.receiver_id), str)
+        self.assertEqual(type(self.conversation.id), str)
+        self.assertEqual(type(self.conversation.created_at), date)
+        self.assertEqual(type(self.conversation.updated_at), date)
+        self.assertEqual(type(self.conversation.sender_id), str)
+        self.assertEqual(type(self.conversation.receiver_id), str)
 
 
     def test_conversation_save_and_delete_methods(self):

@@ -78,10 +78,10 @@ class testReportedUserDoc(unittest.TestCase):
 
         # Test the attribute value types
         self.assertEqual(self.reporteduser.__class__.__name__, "ReportedUser")
-        self.assertEqul(type(self.reporteduser.id), str)
-        self.assertEqul(type(self.reporteduser.created_at), str)
-        self.assertEqul(type(self.reporteduser.is_resolved), str)
-        self.assertEqul(type(self.reporteduser.user_id), str)
+        self.assertEqual(type(self.reporteduser.id), str)
+        self.assertEqual(type(self.reporteduser.created_at), date)
+        self.assertEqual(type(self.reporteduser.is_resolved), date)
+        self.assertEqual(type(self.reporteduser.user_id), str)
         self.assertEqual(ReportedUser.is_resolved.expression.type.python_type, bool)
 
 

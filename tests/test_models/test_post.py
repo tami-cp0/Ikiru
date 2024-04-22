@@ -77,8 +77,9 @@ class testPostDoc(unittest.TestCase):
 
         # Test the attribute value types
         self.assertEqual(self.post.__class__.__name__, "Post")
-        self.assertEqul(type(self.post.id), str)
-        self.assertEqul(type(self.post.created_at), str) 
-        self.assertEqul(type(self.post.user_id), str)
+        self.assertEqual(type(self.post.id), str)
+        self.assertEqual(type(self.post.created_at), date)
+        self.assertEqual(type(self.post.updated_at), date)
+        self.assertEqual(type(self.post.user_id), str)
         self.assertEqual(Post.is_anonymous.expression.type.python_type, bool)
         self.assertEqual(Post.is_reported.expression.type.python_type, bool)
