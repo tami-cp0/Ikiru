@@ -23,6 +23,7 @@ class testMessageDoc(unittest.TestCase):
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.conversation.save()
         cls.message = Message(content="He abuse me", user_id=cls.user.id, conversation_id=cls.conversation.id)
         cls.message.save()
         cls.reportedmessage = ReportedMessage(content="racism", reporting_user=cls.user.id, message_id=cls.message.id)

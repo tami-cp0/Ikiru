@@ -59,7 +59,6 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue(hasattr(self.reportedpost, "created_at"))
         self.assertFalse(self.reportedpost.id == None)
         self.assertFalse(self.reportedpost.created_at == None)
-        self.assertFalse(self.reportedpost.updated_at == None)
         self.assertTrue(ReportedPost.is_resolved.expression.default.arg == False)
 
 

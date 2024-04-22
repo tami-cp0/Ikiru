@@ -22,6 +22,7 @@ class testMessageDoc(unittest.TestCase):
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.conversation.save()
         # Create a message with the conversation id and user id
         cls.message = Message(content="What a lovely day with you Huclark", user_id=cls.user.id, conversation_id = cls.conversation.id)
         cls.message.save()
@@ -65,7 +66,6 @@ class testMessageDoc(unittest.TestCase):
         """test the super class attributes"""   
         self.assertTrue(hasattr(self.message, "id"))
         self.assertTrue(hasattr(self.message, "created_at"))
-        self.assertTrue(hasattr(self, "updated_at"))
         self.assertFalse(self.message.id == None)
         self.assertFalse(self.message.created_at == None)
         self.assertFalse(self.message.updated_at == None)
