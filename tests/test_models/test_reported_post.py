@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import date
+from datetime import date, datetime
 import inspect
 import pep8
 import unittest
@@ -57,7 +57,6 @@ class testPostDoc(unittest.TestCase):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.reportedpost, "id"))
         self.assertTrue(hasattr(self.reportedpost, "created_at"))
-        self.assertTrue(hasattr(self.reportedpost, "updated_at"))
         self.assertFalse(self.reportedpost.id == None)
         self.assertFalse(self.reportedpost.created_at == None)
         self.assertFalse(self.reportedpost.updated_at == None)
@@ -81,7 +80,7 @@ class testPostDoc(unittest.TestCase):
         # Test the attribute value types
         self.assertEqual(self.reportedpost.__class__.__name__, "ReportedPost")
         self.assertEqual(type(self.reportedpost.id), str)
-        self.assertEqual(type(self.reportedpost.created_at), date)
+        self.assertEqual(type(self.reportedpost.created_at), datetime)
         self.assertEqual(type(self.reportedpost.post_id), str)
         self.assertEqual(type(self.reportedpost.user_id), str)
         self.assertEqual(ReportedPost.is_resolved.expression.type.python_type, bool)

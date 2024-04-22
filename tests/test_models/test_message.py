@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import date
+from datetime import date, datetime
 import inspect
 import pep8
 import unittest
@@ -91,8 +91,8 @@ class testMessageDoc(unittest.TestCase):
         # Test the attribute value types
         self.assertEqual(self.message.__class__.__name__, "Message")
         self.assertEqual(type(self.message.id), str)
-        self.assertEqual(type(self.message.created_at), date)
-        self.assertEqual(type(self.message.updated_at), date)
+        self.assertEqual(type(self.message.created_at), datetime)
+        self.assertEqual(type(self.message.updated_at), datetime)
         self.assertEqual(type(self.message.user_id), str)
 
 

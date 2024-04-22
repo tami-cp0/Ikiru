@@ -74,5 +74,5 @@ class testFeedbackDoc(unittest.TestCase):
         # Test the attribute value types
         self.assertEqual(self.feedback.__class__.__name__, "Feedback")
         self.assertEqual(type(self.feedback.id), str)
-        self.assertEqual(type(self.feedback.created_at), date) 
+        self.assertEqual(type(self.feedback.created_at), datetime)
         self.assertEqual(type(self.feedback.user_id), str)

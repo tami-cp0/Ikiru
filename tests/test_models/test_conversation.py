@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import  date
+from datetime import  date, datetime
 import inspect
 import pep8
 import unittest
@@ -84,13 +84,10 @@ class testConversationDoc(unittest.TestCase):
         self.assertEqual(type(c_dict), dict)
         self.assertFalse("_sa_instance_state" in c_dict)
         self.assertTrue("__class__" in c_dict)
-        for attr in c_dict.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in c_dict)
         self.assertEqual(self.conversation.__class__.__name__, "Conversation")
         self.assertEqual(type(self.conversation.id), str)
-        self.assertEqual(type(self.conversation.created_at), date)
-        self.assertEqual(type(self.conversation.updated_at), date)
+        self.assertEqual(type(self.conversation.created_at), datetime)
+        self.assertEqual(type(self.conversation.updated_at), datetime)
         self.assertEqual(type(self.conversation.sender_id), str)
         self.assertEqual(type(self.conversation.receiver_id), str)
 

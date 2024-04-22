@@ -82,8 +82,8 @@ class testCommentDoc(unittest.TestCase):
         # Test the attribute value types
         self.assertEqual(self.comment.__class__.__name__, "Comment")
         self.assertEqual(type(self.comment.id), str)
-        self.assertEqual(type(self.comment.created_at), date)
-         self.assertEqual(type(self.comment.updated_at), date)
+        self.assertEqual(type(self.comment.created_at), datetime)
+         self.assertEqual(type(self.comment.updated_at), datetime)
         self.assertEqual(type(self.comment.user_id), str)
         self.assertEqual(Comment.is_anonymous.expression.type.python_type, bool)
         self.assertEqual(Comment.is_reported.expression.type.python_type, bool)

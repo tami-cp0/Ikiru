@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """test message model"""
-from datetime import date
+from datetime import date, datetime
 import inspect
 import pep8
 import unittest
@@ -92,7 +92,7 @@ class testPostDoc(unittest.TestCase):
         # Test the attribute value types
         self.assertEqual(self.reportedcomment.__class__.__name__, "ReportedComment")
         self.assertEqual(type(self.reportedcomment.id), str)
-        self.assertEqual(type(self.reportedcomment.created_at), date)
+        self.assertEqual(type(self.reportedcomment.created_at), datetime)
         self.assertEqual(type(self.reportedcomment.reporting_user), str)
         self.assertEqual(type(self.reportedcomment.content), str)
         self.assertEqual(type(self.reportedcomment.comment_id), str)
