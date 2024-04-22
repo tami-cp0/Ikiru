@@ -17,9 +17,9 @@ class testMessageDoc(unittest.TestCase):
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rmessagemethods = inspect.getmembers(ReportedMessage, inspect.isfunction)
-        cls.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
-        cls.user1 = User(username="ikiru993", sex="M", email="ikiru9099@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user1 = User(username="ikiru993", sex="M", email="ikiru9099@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
