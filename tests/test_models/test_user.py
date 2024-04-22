@@ -95,18 +95,10 @@ class testMessageDoc(unittest.TestCase):
         # Test the type of the attribute
         self.assertEqual(self.user.__class__.__name__, "User")
         self.assertEqual(type(self.user.id), str)
-<<<<<<< HEAD
         self.assertEqual(type(self.user.created_at), date)
         self.assertEqual(type(self.user.updated_at), date)
         self.assertEqual(type(self.user.username), str)
         self.assertEqual(type(self.user.email)iitr)
-=======
-        self.assertEqual(type(self.user.created_at), str)
-        self.assertEqual(type(self.user.updated_at), str)
-        self.assertEqual(type(self.user.username), str)
-        self.assertEqual(type(self.user.email), str)
-        self.assertEqual(type(self.user.sex), str)
->>>>>>> cc18a4555539d048dea5f1277599e81a602ce6e3
         self.assertEqual(type(self.user.password), str)
         self.assertEquall(type(self.user.dob), date)
         # Test the class defaut type
