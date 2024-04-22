@@ -17,7 +17,7 @@ class testFeedbackDoc(unittest.TestCase):
         cls.feedbackmethods = inspect.getmembers(Feedback, inspect.isfunction)
         cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user.save()
-        cls.feedback = Feedback(content="He abuse me", user_id=self.user.id)
+        cls.feedback = Feedback(content="He abuse me", user_id=cls.user.id)
         cls.feedback.save()
 
 

@@ -5,6 +5,7 @@ import inspect
 import pep8
 import unittest
 from models import storage
+from models.conversation import Conversation
 from models.message import Message
 from models.reported_message import ReportedMessage
 from models.user import User
@@ -21,10 +22,10 @@ class testMessageDoc(unittest.TestCase):
         cls.user1 = User(username="ikiru993", sex="M", email="ikiru9099@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
-        cls.conversation = Conversation(sender_id=self.user.id, receiver_id=user1.id)
-        cls.message = Message(content="He abuse me", user_id=self.user.id, conversation_id=self.conversation.id)
+        cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.message = Message(content="He abuse me", user_id=cls.user.id, conversation_id=cls.conversation.id)
         cls.message.save()
-        cls.reportedmessage = ReportedMessage(content="racism", reporting_user=self.user.id, message_id=self.message.id)
+        cls.reportedmessage = ReportedMessage(content="racism", reporting_user=cls.user.id, message_id=cls.message.id)
         cls.reportedmessage.save()
         
     

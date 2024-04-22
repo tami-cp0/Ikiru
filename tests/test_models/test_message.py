@@ -21,9 +21,9 @@ class testMessageDoc(unittest.TestCase):
         cls.user1 = User(username="ikiru9i9", sex="M", email="ikiru9009@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
-        cls.conversation = Conversation(sender_id=self.user.id, receiver_id=user1.id)
+        cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
         # Create a message with the conversation id and user id
-        cls.message = Message(content="What a lovely day with you Huclark", user_id=self.user.id, conversation_id = self.conversation.id)
+        cls.message = Message(content="What a lovely day with you Huclark", user_id=cls.user.id, conversation_id = cls.conversation.id)
         cls.message.save()
         cls.messagemethods = inspect.getmembers(Message, inspect.isfunction)
     
