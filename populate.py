@@ -49,7 +49,7 @@ users = [
         "sex": "Female",
         "password": "nS5OAw7Ec",
         "email": "rbail0@themeforest.net",
-        "dob": date.fromisoformat("2005-01-04")
+        "dob": "2005-01-04"
     },
     {
         "name": "Vikky",
@@ -57,7 +57,7 @@ users = [
         "sex": "Female",
         "password": "jP5S$BJPju",
         "email": "vwatson1@noaa.gov",
-        "dob": date.fromisoformat("2001-09-17")
+        "dob": "2001-09-17"
     },
     {
         "name": "Gwynne",
@@ -66,7 +66,7 @@ users = [
         "bio": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
         "password": "lL8BB3S6s",
         "email": "gwaddilove2@spiegel.de",
-        "dob": date.fromisoformat("2003-07-22")
+        "dob": "2003-07-22"
     },
     {
         "name": "John",
@@ -74,7 +74,7 @@ users = [
         "sex": "Male",
         "password": "oK01hCaOt!D5xHO",
         "email": "drundle3@abc.net.au",
-        "dob": date.fromisoformat("2007-05-06")
+        "dob": "2007-05-06"
     },
     {
         "name": "Sandor",
@@ -82,7 +82,7 @@ users = [
         "sex": "Male",
         "password": "eM1P<l?55MAL",
         "email": "spolhill4@fastcompany.com",
-        "dob": date.fromisoformat("1997-11-18")
+        "dob": "1997-11-18"
     },
     {
         "name": "doe",
@@ -90,7 +90,7 @@ users = [
         "sex": "Female",
         "password": "dfofddf",
         "email": "deo2332@gmail.com",
-        "dob": date.fromisoformat("2000-01-06")
+        "dob": "2000-01-06"
     },
     {
         "name": "Amaka",
@@ -98,7 +98,7 @@ users = [
         "sex": "Female",
         "password": "98asPju",
         "email": "amakareal@gmail.com",
-        "dob": date.fromisoformat("2007-03-07")
+        "dob": "2007-03-07"
     },
     {
         "name": "Esther",
@@ -107,7 +107,7 @@ users = [
         "bio": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
         "password": "eronetn4",
         "email": "pinky@gmail.com",
-        "dob": date.fromisoformat("2003-09-22")
+        "dob": "2003-09-22"
     },
     {
         "name": "Femi",
@@ -115,7 +115,7 @@ users = [
         "sex": "Male",
         "password": "tet!D5xHO",
         "email": "femi23@gmail.com",
-        "dob": date.fromisoformat("2001-03-07")
+        "dob": "2001-03-07"
     },
     {
         "name": "Bolu",
@@ -123,7 +123,7 @@ users = [
         "sex": "Male",
         "password": "bolu?55MAL",
         "email": "bolu@gmail.com",
-        "dob": date.fromisoformat("1999-01-08")
+        "dob": "1999-01-08"
     }
 ]
 
