@@ -22,6 +22,5 @@ class Conversation(BaseModel, Base):
         foreign_keys=[receiver_id],
         back_populates="received_conversation"
     )
-    messages = relationship("Message",
-                           back_populates="conversation",
-                           cascade="all, delete, delete-orphan")
+    messages = relationship("Message", back_populates="conversation",
+                            cascade="all, delete, delete-orphan")

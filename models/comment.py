@@ -24,4 +24,5 @@ class Comment(BaseModel, Base):
     user = relationship("User", back_populates="comments")
     post = relationship("Post", back_populates="comments")
     reported_comments = relationship(
-        "ReportedComment", back_populates="comment", cascade="all, delete, delete-orphan")
+            "ReportedComment", back_populates="comment",
+            cascade="all, delete, delete-orphan")
