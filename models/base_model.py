@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Base model for all main ikiru models"""
 
-from datetime import datetime
+from datetime import datetime, date
 from uuid import uuid4
 from sqlalchemy import String, DateTime, Column
 from sqlalchemy.ext.declarative import declarative_base
@@ -23,6 +23,8 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key in ["__class__", "id", "created_at", "updated_at"]:
                     continue
+                if key == "dob":
+                    value = date.fromisoformat(value)
                 setattr(self, key, value)
         # sets this attribute regardless of kwargs or not
         self.id = str(uuid4())
