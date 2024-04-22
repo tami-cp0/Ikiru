@@ -2,7 +2,16 @@
 """
 Generate mock data for database.
 
-10, 20, 40, 80
+users list contains 10 (users MUST BE in multiples of 5)
+
+OTHER LISTS MUST BE IN MULTIPLES OF 10
+posts list contains 40
+comments list contains 20
+messages list contains 80
+
+so if you want to add to these just copy and paste 
+make sure its in multiples of 10
+so like copy 10 or 1000 or whatever and paste
 """
 import json
 import os
