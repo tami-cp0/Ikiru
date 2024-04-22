@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1.0"
     >
     <meta name="description" content="Ikiru. Emote freely, Live fully.">
     <link rel="stylesheet" href="styles/sign_in.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="scripts/eye_icon.js"></script>
     <title>Ikiru - Sign in</title>
   </head>
   <body>
@@ -44,14 +46,20 @@
                   required=""
                 >
                 <label for="password" id="password-label">Password</label>
-                <input
-                  type="text"
+                <div class="password-input-container">
+                  <input
+                  type="password"
                   name="password"
                   id="password"
                   class="form-inputs"
                   placeholder="1234we#%"
                   required=""
-                >
+                  >
+                  <span class="eye-icon">
+                    <img src="images/open_eye.png" alt="Show password icon" id="togglePassword">
+                  </span>
+                </div>
+                
                 <div class="sign-in_options">
                   <label for="keep_me_logged_in" id="keep_me"
                     ><input
@@ -88,10 +96,10 @@
               </button>
             </div>
             <p class="dont-have">Don't have an account? <a href="">Sign up</a></p>
+            <div class="alx-staff"><a href="">Sign in as ALX Staff</a></div>
           </section>
         </div>
       </div>
-        
       <footer><a href="">Support this website</a></footer>
     </div>
   </body>

@@ -1,6 +1,6 @@
 @font-face {
     font-family: Inter-Regular;
-    src: url(../fonts/Inter-Regular.ttf) format('woff2');
+    src: url(../fonts/Inter-Regular.ttf);
 }
 
 @font-face {
@@ -36,17 +36,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 84%;
-    height: 85%;
+    width: 77.38%;
+    height: 90%;
     background: #F9FFFE;
     background-image: url(../images/background_image.png);
-    background-size: 55%;
-    background-position: 20% 60%;
+    background-size: 70%;
+    background-position: 30% 60%;
     background-repeat: no-repeat;
     border: 1px solid #84BDA9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    /* flex-direction: column; */
 }
 
 .body_card_content {
@@ -64,7 +63,7 @@ header nav {
     justify-content: space-between;
 }
 
-header h1 {
+.logo {
     font-family: PlayfairDisplay-Bold;
     font-size: 36px;
     color: #84BDA9;
@@ -75,7 +74,7 @@ header nav ul {
     list-style-type: none;
     justify-content: space-between;
     align-items: center;
-    width: 22%;
+    width: 15.5%;
 }
 
 header nav ul li a {
@@ -90,7 +89,7 @@ header nav ul li a:hover {
 
 .body_div1 {
     display: flex;
-    margin-top: 35px; /*remember to adjust*/
+    margin-top: 70px; /*remember to adjust*/
     justify-content: space-between;
 }
 
@@ -158,13 +157,31 @@ form label {
     border-radius: 10px;
     height: 40px;
     mix-blend-mode: normal;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    padding-left: 10px;
 }
 
 .form-inputs::placeholder {
     color: #C7C7C7;
     padding-left: 10px;
     font-size: 12px;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.password-input-container input {
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 9px;
+    top: 36%;
+    /* transform: translateY(-50%); */
+    cursor: pointer;
 }
 
 .sign-in_options {
@@ -180,6 +197,7 @@ form label {
     font-size: 12px;
     margin-top: 0px;
     color: #818181;
+    font-family: Inter-Bold;
 }
 
 #keep_me_logged_in {
@@ -266,10 +284,11 @@ form label {
     font-family: Inter-Regular;
     background: #fff;
     border-radius: 10px;
-    border: none;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
     height: 40px;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .google_button span {
@@ -279,10 +298,20 @@ form label {
 .dont-have {
     font-size: 12px;
     color: #818181;
+    margin-bottom: 20px;
 }
 
-.dont-have a {
+.dont-have a,
+.alx-staff a {
     color: #0084BD;
+}
+
+.alx-staff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #818181;
+    font-size: 12px;
 }
 
 footer {
