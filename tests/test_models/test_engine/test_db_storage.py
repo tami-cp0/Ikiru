@@ -28,7 +28,10 @@ class testDBStorageDoc(unittest.TestCase):
             db='ikiru_dev_db',
             charset='utf8')
         cls.pen = cls.conn.cursor()
- 
+        cls.pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
+        cls.pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
+
+
     @classmethod   
     def tearDownClass(cls):
         """delete class instance use for the test"""
@@ -38,7 +41,7 @@ class testDBStorageDoc(unittest.TestCase):
     def test_dbstorage_pep8_style(self):
         """test pycodestyle of dbstorage and test_dbstorage models"""
         pep8style = pep8.StyleGuide(quite=True)
-        test = pep8style.check_files(["models/db_storage.py"])
+        test = pep8style.check_files(["models/engine/db_storage.py"])
         self.assertEqual(test.total_errors, 0)
     def test_module_docstring(self):
          """Test the dbstorage model docstring"""
@@ -55,13 +58,29 @@ class testDBStorageDoc(unittest.TestCase):
             self.assertTrue(len(method[1].__doc__) >= 1)
             
             
+    def test_the_db_is_empty(self):
+        """Test to ensure the db is empty"""
+        pass        
+            
+            
     def test_new_save_and_delete_methods(self):
         """Test the new, save and delete method"""
         user= User(username="ikiru8db", sex="M", email="ikiru8db@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="ask me")
         user.save()
-        self.pen.execute("""
-                         SELECT * FROM users WHERE username = {self.user.username}
+        #query = "SELECT * FROM user WHERE username = {s}"
+        self.pen.execute(f"""
+                         SELECT * FROM users WHERE username = {user.username}
                          """)
         user_cp = self.pen.fetchone()
+        self.assertEqual(self.pen.rowcount, 1)
+        user_attr_list = [attr for attr in user_cp]
         #user1 = User(username="ikiru9i9db", sex="M", email="ikiru900db9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
-        #user1.save() 
+        #user1.save()
+        self.assertIn(user.id, user_attr_list)
+        user_dict = user.to_dict()
+        self.assertIn(user_dict["updated_at"], user_attr_list)
+        self.assertIn(user_dict["created_at"], user_attr_list)
+        self.assertIn(user_dict["email"], user_attr_list)
+        self.assertIn(user_dict["sex"], user_attr_list)
+        self.assertIn(user_dict["dob"], user_attr_list)
+        self.assertIn(user_dict["bio"], user_attr_list)
