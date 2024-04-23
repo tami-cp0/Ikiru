@@ -15,7 +15,7 @@ class testMessageDoc(unittest.TestCase):
         """Set up for doc test"""
         cls.usermethods = inspect.getmembers(User, inspect.isfunction)
         cls.user = User(
-            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru", bio="i live here")
+            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="i live here")
         cls.user.save()
   
     @classmethod   
@@ -115,7 +115,7 @@ class testMessageDoc(unittest.TestCase):
         """Test user save and delete methods"""
         user = self.user = User(
                 username ="ikirujunior", sex="M", email="ikiru67@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
+                name="Ikiru junior", dob='2000-04-10', password="ikiru")
         user.save()
         #Testt save method
         user_copy = storage.get(User, user.id)

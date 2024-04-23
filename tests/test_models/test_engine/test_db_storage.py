@@ -17,14 +17,11 @@ class testDBStorageDoc(unittest.TestCase):
         cls.dbstoragemethods = inspect.getmembers(
             DBStorage, inspect.isfunction)
         cls.dbstorage = DBStorage()
-        cls.dbstorage.save()
-  
+ 
     @classmethod   
     def tearDownClass(cls):
         """delete class instance use for the test"""
-        cls.dbstorage.delete()
-        storage.save()
-
+        del cls.dbstorage
 
     def test_dbstorage_pep8_style(self):
         """test pycodestyle of dbstorage and test_dbstorage models"""

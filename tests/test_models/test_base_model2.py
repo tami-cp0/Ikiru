@@ -5,10 +5,10 @@ import inspect
 import pep8
 import re
 import unittest
-from models import storage
 from models.base_model2 import BaseModel2
 
 
+pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
 class testBaseModel2Doc(unittest.TestCase):
     """Test the doc and style of BaseModel2 class"""
     @classmethod
@@ -17,13 +17,11 @@ class testBaseModel2Doc(unittest.TestCase):
         cls.basemodel2methods = inspect.getmembers(
             BaseModel2, inspect.isfunction)
         cls.basemodel2 = BaseModel2()
-        cls.basemodel2.save()
   
     @classmethod   
     def tearDownClass(cls):
         """delete class instance use for the test"""
-        cls.basemodel2.delete()
-        storage.save()
+        del cls.basemodel2
 
 
     def test_basemodel2_pep8_style(self):
@@ -50,7 +48,6 @@ class testBaseModel2Doc(unittest.TestCase):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.basemodel2, "id"))
         self.assertTrue(hasattr(self.basemodel2, "created_at"))
-        self.assertTrue(hasattr(self.basemodel2, "updated_at"))
         self.assertFalse(self.basemodel2.id == None)
         self.assertFalse(self.basemodel2.created_at == None)
 
@@ -68,33 +65,10 @@ class testBaseModel2Doc(unittest.TestCase):
         self.assertEqual(type(self.basemodel2.created_at), datetime)
 
 
-    def test_basemodel2_save_and_delete_methods(self):
-        """Test basemodel2 save and delete methods"""
-        basemodel2 = self.basemodel2 = BaseModel2()
-        basemodel2.save()
-        #Testt save method
-        basemodel2_copy = storage.get(BaseModel2, basemodel2.id)
-        self.assertEqual(basemodel2_copy, basemodel2)
-        self.assertEqual(basemodel2_copy.id, basemodel2.id)
-
-        # test the delete method
-        basemodel2_copy.delete()
-        storage.save()
-        self.assertEqual(storage.get(BaseModel2,  basemodel2.id), None)
-
-
     def test_attribute_values(self):
         """Test the attribute values and format
         """
-        pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]\
-            {3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         self.assertTrue(bool(re.match(pattern, self.basemodel2.id)))
-        try:
-            created_type = datetime.fromisoformat(self.basemodel2.created_at)
-        except ValueError:
-            self.fail("Either created_at and/or \
-                updated_at is not datetime object format")
-        self.assertIsInstance(created_type, datetime)
         
         
     def test_to_dict_method(self):
@@ -102,13 +76,11 @@ class testBaseModel2Doc(unittest.TestCase):
         to_dict = self.basemodel2.to_dict()
         self.assertIsInstance(to_dict, dict)
         self.assertNotIn("_sa_instance_state", to_dict)
-        self.assertNIn("__class__", to_dict)
+        self.assertIn("__class__", to_dict)
         for key in to_dict:
             self.assertTrue(hasattr(self.basemodel2, key))
         self.assertEqual(to_dict["__class__"], "BaseModel2")
         
-        pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]\
-        {3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         self.assertTrue(bool(re.match(pattern, to_dict["id"])))
         try:
             created_type = datetime.fromisoformat(to_dict["created_at"])

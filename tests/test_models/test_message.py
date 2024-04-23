@@ -16,9 +16,9 @@ class testMessageDoc(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up for doc test""" # Creating a user
-        cls.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="ask me")
         cls.user.save()
-        cls.user1 = User(username="ikiru9i9", sex="M", email="ikiru9009@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user1 = User(username="ikiru9i9", sex="M", email="ikiru9009@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)

@@ -16,7 +16,7 @@ class testPostDoc(unittest.TestCase):
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rpostmethods = inspect.getmembers(ReportedPost, inspect.isfunction)
-        cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
         cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()

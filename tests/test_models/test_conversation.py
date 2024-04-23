@@ -17,9 +17,9 @@ class testConversationDoc(unittest.TestCase):
         cls.conversmethods = inspect.getmembers(
                 Conversation, inspect.isfunction)
         # Creating a user
-        cls.user = User(username="ikiru9", sex="M", email="ikiru9@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user = User(username="ikiru9", sex="M", email="ikiru9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
-        cls.user1 = User(username="ikiru909", sex="M", email="ikiru909@ikiru.com", name="Ikiru", dob=date(2000, 4, 10), password="ikiru")
+        cls.user1 = User(username="ikiru909", sex="M", email="ikiru909@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
@@ -94,17 +94,23 @@ class testConversationDoc(unittest.TestCase):
 
     def test_conversation_save_and_delete_methods(self):
         """Test conversation save and delete methods"""
-        user = self.user = User(
+        user = User(
                 username ="ikiruj889unior", sex="M", email="ikiru76@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru")
-        conversation = Conversation(user_id=user.id)
+                name="Ikiru junior", dob='2000-04-10', password="ikiru")
+        user.save()
+        user1 = User(
+                username ="ikiruj889unior1", sex="M", email="ikiru76@i1kiru.com",
+                name="Ikiru junior", dob='2000-04-10', password="ikiru")
+        user1.save()
+        conversation = Conversation(sender_id=user.id, receiver_id=user1.id)
         conversation.save()
         #Testt save method
         conversation_copy = storage.get(Conversation, conversation.id)
         self.assertEqual(conversation_copy, conversation)
         self.assertEqual(conversation_copy.id, conversation.id)
-        self.assertEqual(conversation_copy.user_id, conversation.user_id)
         # test the delete method
         conversation_copy.delete()
+        user1.delete()
+        user.delete()
         storage.save()
         self.assertEqual(storage.get(Conversation, conversation.id), None)
