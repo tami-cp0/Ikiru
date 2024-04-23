@@ -7,3 +7,6 @@ apis = Blueprint('apis', __name__)
 
 from api.v1.views.users import *
 from api.v1.views.posts import *
+from api.v1.views.comments import *
+from api.v1.views.conversations import *
+from api.v1.views.messages import *

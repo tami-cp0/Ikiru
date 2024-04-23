@@ -3,12 +3,15 @@
 from models import storage
 from api.v1.views import apis
 from flask import Flask, make_response, jsonify
+from flasgger import Swagger
 # from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.config['DEBUG'] = True
 app.register_blueprint(apis)
+SWAGGER_URL = '/api/docs'
+swagger = Swagger(app)
 
 
 @app.teardown_appcontext

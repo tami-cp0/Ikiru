@@ -6,6 +6,7 @@ from api.v1.views import apis
 from flask import jsonify, abort, request, make_response
 
 
+# direct routes to users
 @apis.route('/users', methods=['GET'], strict_slashes=False)
 def get_users():
     """
@@ -22,7 +23,7 @@ def get_user(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
     return jsonify(user.to_dict())
 
 
@@ -47,7 +48,7 @@ def put_user(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
 
     data = request.get_json()
     if not data:
@@ -70,7 +71,7 @@ def delete_user(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
     storage.delete(user)
     storage.save()
 

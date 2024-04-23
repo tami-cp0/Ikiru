@@ -7,7 +7,7 @@ from api.v1.views import apis
 from flask import jsonify, abort, request, make_response
 
 
-# direct routes with posts
+# direct routes to posts
 @apis.route('/posts', methods=['GET'], strict_slashes=False)
 def get_posts():
     """
@@ -24,27 +24,12 @@ def get_post(post_id):
     """
     post = storage.get(Post, post_id)
     if not post:
-        abort(404, description="Post does not exist")
+        abort(404, description="Post not found")
 
     return jsonify(post.to_dict())
 
 
-@apis.route('/posts/<post_id>', methods=['DELETE'], strict_slashes=False)
-def delete_post(post_id):
-    """
-    Deletes a post
-    """
-    post = storage.get(Post, post_id)
-    if not post:
-        abort(404, description="Post does not exist")
-
-    storage.delete(post)
-    storage.save()
-
-    return make_response('', 204)
-
-
-# indirect routes with post
+# indirect routes to post
 @apis.route('/users/<user_id>/posts', methods=['GET'], strict_slashes=False)
 def get_user_posts(user_id):
     """
@@ -52,7 +37,7 @@ def get_user_posts(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
 
     posts = [post.to_dict() for post in user.posts]
     return jsonify(posts)
@@ -65,7 +50,7 @@ def create_post(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not fonud")
 
     data = request.get_json()
     if not data:
@@ -86,11 +71,12 @@ def get_user_post(user_id, post_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
+
 
     post = storage.get(Post, post_id)
-    if not post:
-        abort(404, description="Post does not exist")
+    if not (post or post in user.posts):
+        abort(404, description="Post not found")
 
     return jsonify(post.to_dict())
 
@@ -103,11 +89,11 @@ def delete_user_post(user_id, post_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(404, description="User does not exist")
+        abort(404, description="User not found")
 
     post = storage.get(Post, post_id)
-    if not post:
-        abort(404, description="Post does not exist")
+    if not (post or post in user.posts):
+        abort(404, description="Post not found")
 
     storage.delete(post)
     storage.save()
