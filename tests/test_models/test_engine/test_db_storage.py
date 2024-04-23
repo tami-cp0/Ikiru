@@ -31,6 +31,14 @@ class testDBStorageDoc(unittest.TestCase):
         cls.pen = cls.conn.cursor()
         cls.pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
         cls.pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
+        cls.conn = MySQLdb.connect(
+            host='localhost',
+            user='ikiru_user',
+            passwd='password',
+            port=3306,
+            db='ikiru_dev_db',
+            charset='utf8')
+        cls.pen = cls.conn.cursor()
         local('echo "quit" | ./console.py')
         
 
