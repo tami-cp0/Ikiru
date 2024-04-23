@@ -21,6 +21,17 @@ class testDBStorageDoc(unittest.TestCase):
         cls.dbstoragemethods = inspect.getmembers(
             DBStorage, inspect.isfunction)
         cls.dbstorage = DBStorage()
+        conn = MySQLdb.connect(
+            host='localhost',
+            user='ikiru_user',
+            passwd='password',
+            port=3306,
+            db='ikiru_dev_db',
+            charset='utf8')
+        pen = conn.cursor()
+        pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
+        pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
+        pen.close()
         cls.conn = MySQLdb.connect(
             host='localhost',
             user='ikiru_user',
@@ -28,17 +39,6 @@ class testDBStorageDoc(unittest.TestCase):
             port=3306,
             db='ikiru_dev_db',
             charset='utf8')
-        cls.pen = cls.conn.cursor()
-        cls.pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
-        cls.pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
-        cls.conn = MySQLdb.connect(
-            host='localhost',
-            user='ikiru_user',
-            passwd='password',
-            port=3306,
-            db='ikiru_dev_db',
-            charset='utf8')
-        cls.pen = cls.conn.cursor()
         local('echo "quit" | ./console.py')
         
 
@@ -79,11 +79,12 @@ class testDBStorageDoc(unittest.TestCase):
         user= User(username="ikiru8db", sex="M", email="ikiru8db@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="ask me")
         user.save()
         #query = "SELECT * FROM user WHERE username = {s}"
-        self.pen.execute(f"""
+        pen = self.conn.cursor()
+        pen.execute(f"""
                          SELECT * FROM users WHERE username = '{user.username}'
                          """)
-        user_cp = self.pen.fetchone()
-        self.assertEqual(self.pen.rowcount, 1)
+        user_cp = pen.fetchone()
+        self.assertEqual(pen.rowcount, 1)
         user_attr_list = [attr for attr in user_cp]
         #user1 = User(username="ikiru9i9db", sex="M", email="ikiru900db9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
         #user1.save()
@@ -99,14 +100,29 @@ class testDBStorageDoc(unittest.TestCase):
         # Test Delete method
         user.delete()
         storage.save()
-        self.pen.execute(f"""
-                         SELECT * FROM users WHERE username = '{user.username}'
-                         """)
-        user_cp = self.pen.fetchone()
-        self.assertEqual(self.pen.rowcount, 0)
+        pen.close()
+        pen = self.conn.cursor()
+        pen.execute(f"""
+                    SELECT * FROM users WHERE username = '{user.username}'
+                    """)
+        user_cp = pen.fetchone()
+        self.assertEqual(pen.rowcount, 0)
+        pen.close()
 
 
     def test_count_and_get_methods(self):
         """"Test the count and get method of dbstorage"""
-        # to be continue when the delete method pass
-        pass        
+        #line 116 and 117 should if truely line 101 and 102 have effect on the database
+        user= User(username="ikiru8db", sex="M", email="ikiru8db@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="ask me")
+        user.save()
+        user1 = User(username="ikiru9i9db", sex="M", email="ikiru900db9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
+        user1.save()
+        pen = self.conn.cursor()
+        pen.execute(f"""
+                    SELECT * FROM users WHERE username = '{user.username}'
+                    """)
+        user_cp = pen.fetchone()
+        self.assertEqual(pen.rowcount, 1)
+        user_attr_list = [attr for attr in user_cp]
+        
+        
