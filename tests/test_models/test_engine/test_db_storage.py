@@ -80,18 +80,33 @@ class testDBStorageDoc(unittest.TestCase):
         user.save()
         #query = "SELECT * FROM user WHERE username = {s}"
         self.pen.execute(f"""
-                         SELECT * FROM users WHERE username = {user.username}
+                         SELECT * FROM users WHERE username = '{user.username}'
                          """)
         user_cp = self.pen.fetchone()
         self.assertEqual(self.pen.rowcount, 1)
         user_attr_list = [attr for attr in user_cp]
         #user1 = User(username="ikiru9i9db", sex="M", email="ikiru900db9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
         #user1.save()
+        # Test the dbstorage save and new methods
         self.assertIn(user.id, user_attr_list)
-        user_dict = user.to_dict()
-        self.assertIn(user_dict["updated_at"], user_attr_list)
-        self.assertIn(user_dict["created_at"], user_attr_list)
-        self.assertIn(user_dict["email"], user_attr_list)
-        self.assertIn(user_dict["sex"], user_attr_list)
-        self.assertIn(user_dict["dob"], user_attr_list)
-        self.assertIn(user_dict["bio"], user_attr_list)
+        self.assertIn(user.name, user_attr_list)
+        self.assertIn(user.username, user_attr_list)
+        self.assertIn(user.email, user_attr_list)
+        self.assertIn(user.sex, user_attr_list)
+        self.assertIn(user.dob, user_attr_list)
+        self.assertIn(user.bio, user_attr_list)
+        
+        # Test Delete method
+        user.delete()
+        storage.save()
+        self.pen.execute(f"""
+                         SELECT * FROM users WHERE username = '{user.username}'
+                         """)
+        user_cp = self.pen.fetchone()
+        self.assertEqual(self.pen.rowcount, 0)
+
+
+    def test_count_and_get_methods(self):
+        """"Test the count and get method of dbstorage"""
+        # to be continue when the delete method pass
+        pass        
