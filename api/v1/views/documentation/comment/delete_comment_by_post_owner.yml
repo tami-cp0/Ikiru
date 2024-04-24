@@ -1,0 +1,30 @@
+Post owner deletes a comment
+---
+tags:
+  - Comments
+summary: Delete a specific comment by post owner
+description: This endpoint deletes a specific comment by post owner.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the post owner
+    required: true
+    schema:
+      type: string
+  - name: post_id
+    in: path
+    description: ID of the post
+    required: true
+    schema:
+      type: string
+  - name: comment_id
+    in: path
+    description: ID of the comment
+    required: true
+    schema:
+      type: string
+responses:
+  '204':
+    description: Comment deleted successfully
+  '404':
+    description: User, post or comment not found

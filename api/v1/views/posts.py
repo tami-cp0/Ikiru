@@ -5,48 +5,76 @@ from models.post import Post
 from models import storage
 from api.v1.views import apis
 from flask import jsonify, abort, request, make_response
+from flasgger.utils import swag_from
 
 
 # direct routes to posts
 @apis.route('/posts', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/post/all_posts.yml', methods=['GET'])
 def get_posts():
     """
-    Retreives all posts
+    Retrieves all posts from the database.
     """
-    posts = [post.to_dict() for post in storage.all(Post).values()]
-    return jsonify(posts)
+    posts = storage.all(Post).values()
+    posts_data = []
+    for post in posts:
+        data = post.to_dict()
+        user = storage.get(User, post.user_id)
+        data["name"] = user.name
+        data["username"] = user.username
+        data["comments"] = len(post.comments)
+        posts_data.append(data)
+
+    return jsonify(posts_data)
 
 
 @apis.route('/posts/<post_id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/post/get_post.yml', methods=['GET'])
 def get_post(post_id):
     """
-    Retreives a single post
+    Retrieves a specific post by its ID.
     """
     post = storage.get(Post, post_id)
     if not post:
         abort(404, description="Post not found")
+    data = post.to_dict()
+    user = storage.get(User, post.user_id)
+    data["username"] = user.username
+    data["name"] = user.name
+    data["comments"] = len(post.comments)
 
-    return jsonify(post.to_dict())
+    return jsonify(data)
 
 
 # indirect routes to post
 @apis.route('/users/<user_id>/posts', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/post/all_user_posts.yml', methods=['GET'])
 def get_user_posts(user_id):
     """
-    Retreives all the posts of a specific user
+    Retrieves all posts created by a specific user.
     """
     user = storage.get(User, user_id)
     if not user:
         abort(404, description="User not found")
 
-    posts = [post.to_dict() for post in user.posts]
-    return jsonify(posts)
+    posts = user.posts
+    posts_data = []
+    for post in posts:
+        data = post.to_dict()
+        user = storage.get(User, post.user_id)
+        data["username"] = user.username
+        data["name"] = user.name
+        data["comments"] = len(post.comments)
+        posts_data.append(data)
+
+    return jsonify(posts_data)
 
 
 @apis.route('/users/<user_id>/posts', methods=['POST'], strict_slashes=False)
+@swag_from('documentation/post/create_post.yml', methods=['POST'])
 def create_post(user_id):
     """
-    creating a post under a specific user.
+    Creates a new post for a specific user.
     """
     user = storage.get(User, user_id)
     if not user:
@@ -63,29 +91,33 @@ def create_post(user_id):
     return make_response(jsonify(post.to_dict()), 201)
 
 
-@apis.route('/users/<user_id>/posts/<post_id>', methods=['GET'],
-            strict_slashes=False)
+@apis.route('/users/<user_id>/posts/<post_id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/post/get_user_post.yml', methods=['GET'])
 def get_user_post(user_id, post_id):
     """
-    Retreives one post from a specific user
+    Retrieves a specific post created by a specific user.
     """
     user = storage.get(User, user_id)
     if not user:
         abort(404, description="User not found")
 
-
     post = storage.get(Post, post_id)
     if not (post or post in user.posts):
         abort(404, description="Post not found")
+    data = post.to_dict()
+    user = storage.get(User, post.user_id)
+    data["username"] = user.username
+    data["name"] = user.name
+    data["comments"] = len(post.comments)
 
-    return jsonify(post.to_dict())
+    return jsonify(data)
 
 
-@apis.route('/users/<user_id>/posts/<post_id>', methods=['DELETE'],
-            strict_slashes=False)
-def delete_user_post(user_id, post_id):
+@apis.route('/users/<user_id>/posts/<post_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/post/delete_post.yml', methods=['DELETE'])
+def delete_post(user_id, post_id):
     """
-    Deletes one post from a specific user
+    Deletes a specific post created by a specific user.
     """
     user = storage.get(User, user_id)
     if not user:

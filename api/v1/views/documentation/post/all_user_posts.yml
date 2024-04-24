@@ -1,0 +1,46 @@
+GET all user's posts
+---
+tags:
+  - Posts
+summary: Retrieves all the posts of a specific user
+parameters:
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: A list of posts from the user
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              __class__:
+                type: string
+              comments:
+                type: integer
+              content:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+              id:
+                type: string
+              is_anonymous:
+                type: boolean
+              is_reported:
+                type: boolean
+              name:
+                type: string
+              updated_at:
+                type: string
+              user_id:
+                type: string
+              username:
+                type: string
+  '404':
+    description: User not found

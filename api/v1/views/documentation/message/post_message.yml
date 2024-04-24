@@ -1,0 +1,77 @@
+Sends a message
+---
+tags:
+  - Messages
+summary: Create a message in a conversation
+description: If a conversation exists, create a message in it. Otherwise, create the conversation first, then the message.
+parameters:
+  - name: sender_id
+    in: path
+    description: ID of the sender
+    required: true
+    schema:
+      type: string
+  - name: receiver_id
+    in: path
+    description: ID of the receiver
+    required: true
+    schema:
+      type: string
+  - name: conversation_id
+    in: path
+    description: ID of the conversation (optional)
+    required: false
+    schema:
+      type: string
+requestBody:
+  description: Message data
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          content:
+            type: string
+        required:
+          - content
+responses:
+  '201':
+    description: Message created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            content:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            is_anonymous:
+              type: boolean
+            is_reported:
+              type: boolean
+            name:
+              type: string
+            post_id:
+              type: string
+            post_owner_name:
+              type: string
+            post_owner_username:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            user_id:
+              type: string
+            username:
+              type: string
+  '400':
+    description: Invalid JSON
+  '404':
+    description: Sender or receiver not found

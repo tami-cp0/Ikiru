@@ -1,0 +1,71 @@
+Creates a comment
+---
+tags:
+  - Comments
+summary: Create a new comment for a specific post by a specific user
+description: This endpoint creates a new comment for a specific post by a specific user.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the commenter
+    required: true
+    schema:
+      type: string
+  - name: post_id
+    in: path
+    description: ID of the post owner
+    required: true
+    schema:
+      type: string
+requestBody:
+  description: Comment data
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          content:
+            type: string
+        required:
+          - content
+responses:
+  '201':
+    description: Comment created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            content:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            is_anonymous:
+              type: boolean
+            is_reported:
+              type: boolean
+            name:
+              type: string
+            post_id:
+              type: string
+            post_owner_name:
+              type: string
+            post_owner_username:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            user_id:
+              type: string
+            username:
+              type: string
+  '400':
+    description: Invalid JSON
+  '404':
+    description: User or post not found

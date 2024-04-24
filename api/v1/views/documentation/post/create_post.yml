@@ -1,0 +1,55 @@
+Create a Post
+---
+tags:
+  - Posts
+summary: Creates a post under a specific user
+parameters:
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          content:
+            type: string
+responses:
+  '201':
+    description: Post created
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            comments:
+              type: integer
+            content:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            is_anonymous:
+              type: boolean
+            is_reported:
+              type: boolean
+            name:
+              type: string
+            updated_at:
+              type: string
+            user_id:
+              type: string
+            username:
+              type: string
+  '400':
+    description: Invalid JSON
+  '404':
+    description: User not found

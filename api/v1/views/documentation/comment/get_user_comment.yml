@@ -1,0 +1,57 @@
+Retrieves a single user's comment
+---
+tags:
+  - Comments
+summary: Retrieve a specific comment from a specific user
+description: This endpoint retrieves a specific comment from a specific user.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the user
+    required: true
+    schema:
+      type: string
+  - name: comment_id
+    in: path
+    description: ID of the comment
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: A single comment
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            content:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            is_anonymous:
+              type: boolean
+            is_reported:
+              type: boolean
+            name:
+              type: string
+            post_id:
+              type: string
+            post_owner_name:
+              type: string
+            post_owner_username:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            user_id:
+              type: string
+            username:
+              type: string
+  '404':
+    description: User or comment not found

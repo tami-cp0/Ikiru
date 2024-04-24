@@ -1,0 +1,54 @@
+Get a single conversation from a user
+---
+tags:
+  - Conversations
+summary: Retrieve a specific conversation of a specific user
+description: This endpoint retrieves a specific conversation of a specific user.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the user
+    required: true
+    schema:
+      type: string
+  - name: conversation_id
+    in: path
+    description: ID of the conversation
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: A single conversation
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            messages:
+              type: integer
+            participants:
+              type: array
+              items:
+                type: object
+                properties:
+                  messages:
+                    type: integer
+                  name:
+                    type: string
+                  sender_id:
+                    type: string
+                  username:
+                    type: string
+            updated_at:
+              type: string
+              format: date-time
+  '404':
+    description: User or conversation not found
