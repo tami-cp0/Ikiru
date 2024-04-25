@@ -34,7 +34,10 @@ def all_user_comments(user_id):
     return jsonify(comments)
 
 
-@apis.route('/users/<user_id>/comments/<comment_id>', methods=['GET'], strict_slashes=False)
+@apis.route(
+    '/users/<user_id>/comments/<comment_id>',
+    methods=['GET'], strict_slashes=False
+)
 @swag_from('documentation/comment/get_user_comment.yml')
 def get_user_comment(user_id, comment_id):
     """
@@ -59,7 +62,10 @@ def get_user_comment(user_id, comment_id):
     return jsonify(comment)
 
 
-@apis.route('/users/<user_id>/comments/<comment_id>', methods=['DELETE'], strict_slashes=False)
+@apis.route(
+    '/users/<user_id>/comments/<comment_id>',
+    methods=['DELETE'], strict_slashes=False
+)
 @swag_from('documentation/comment/delete_comment.yml')
 def delete_comment(user_id, comment_id):
     """
@@ -103,7 +109,10 @@ def all_post_comments(post_id):
     return jsonify(comments)
 
 
-@apis.route('/posts/<post_id>/comments/<comment_id>', methods=['GET'], strict_slashes=False)
+@apis.route(
+    '/posts/<post_id>/comments/<comment_id>',
+    methods=['GET'], strict_slashes=False
+)
 @swag_from('documentation/comment/get_comment.yml')
 def get_comment(post_id, comment_id):
     """

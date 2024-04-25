@@ -91,7 +91,10 @@ def create_post(user_id):
     return make_response(jsonify(post.to_dict()), 201)
 
 
-@apis.route('/users/<user_id>/posts/<post_id>', methods=['GET'], strict_slashes=False)
+@apis.route(
+    '/users/<user_id>/posts/<post_id>',
+    methods=['GET'], strict_slashes=False
+)
 @swag_from('documentation/post/get_user_post.yml', methods=['GET'])
 def get_user_post(user_id, post_id):
     """
@@ -113,7 +116,10 @@ def get_user_post(user_id, post_id):
     return jsonify(data)
 
 
-@apis.route('/users/<user_id>/posts/<post_id>', methods=['DELETE'], strict_slashes=False)
+@apis.route(
+    '/users/<user_id>/posts/<post_id>',
+    methods=['DELETE'], strict_slashes=False
+)
 @swag_from('documentation/post/delete_post.yml', methods=['DELETE'])
 def delete_post(user_id, post_id):
     """

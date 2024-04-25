@@ -4,13 +4,20 @@ from models import storage
 from api.v1.views import apis
 from flask import Flask, make_response, jsonify
 from flasgger import Swagger
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 # from flask_cors import CORS
-# from flasgger.utils import swag_from
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.config['DEBUG'] = True
 app.register_blueprint(apis)
+Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=["500 per day", "10 per minute"],
+    strategy="fixed-window"
+)
 
 
 @app.teardown_appcontext
@@ -28,6 +35,13 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
+
+@app.errorhandler(429)
+def handle_rate_limit_exceeded(e):
+    return make_response(jsonify({
+        "error": "Rate limit exceeded. Please try again later."
+    }), 429)
 
 
 app.config['SWAGGER'] = {
