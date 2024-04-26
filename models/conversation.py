@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Conversation model for Ikiru web app"""
-import models
 from sqlalchemy import Column, ForeignKey, String
 from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
@@ -9,10 +8,19 @@ from models.base_model import Base, BaseModel
 class Conversation(BaseModel, Base):
     """Conversation Class"""
     __tablename__ = "conversations"
-    user_id = Column(String(36), ForeignKey("users.id"), nullable=False)
+    sender_id = Column(String(36), ForeignKey("users.id"), nullable=False)
+    receiver_id = Column(String(36), ForeignKey("users.id"), nullable=False)
 
     # Relationships
-    user = relationship("User", back_populates="conversations")
-    messages = relationship("Message",
-                           back_populates="conversation",
-                           cascade="all, delete, delete-orphan")
+    sender = relationship(
+        "User",
+        foreign_keys=[sender_id],
+        back_populates="sent_conversations"
+    )
+    receiver = relationship(
+        "User",
+        foreign_keys=[receiver_id],
+        back_populates="received_conversations"
+    )
+    messages = relationship("Message", back_populates="conversation",
+                            cascade="all, delete, delete-orphan")

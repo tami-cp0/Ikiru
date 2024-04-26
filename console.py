@@ -82,15 +82,7 @@ class HBNBCommand(cmd.Cmd):
                 kvp = arg.split('=', 1)
                 key = kvp[0]
                 value = kvp[1]
-                if key == "dob":
-                    match = re.match(r'"date\((\d+),_(\d+),_(\d+)\)"', value)
-                    if match:
-                        year, month, day = map(int, match.groups())
-                        value = date(year, month, day)
-                        
-                    else:
-                        raise ValueError("Invalid date string format. expected: %Y %m %D")
-                elif value[0] == value[-1] == '"':
+                if value[0] == value[-1] == '"':
                     value = shlex.split(value)[0].replace('_', ' ')
                 else:
                     try:

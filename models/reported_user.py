@@ -15,6 +15,6 @@ class ReportedUser(BaseModel2, Base):
 
     # Foreign Keys
     user_id = Column(String(36), ForeignKey('users.id'), nullable=False)
-    
+
     # Relationships
     reported_user = relationship("User", back_populates="report")

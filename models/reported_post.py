@@ -9,7 +9,6 @@ from sqlalchemy.orm import relationship
 from models.base_model import Base
 
 
-
 class ReportedPost(BaseModel2, Base):
     """Representation of a reported posts """
     __tablename__ = 'reported_posts'

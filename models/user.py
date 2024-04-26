@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 """ holds class User"""
-
-from sqlalchemy import Column, String, Date, Boolean
+from sqlalchemy import Column, String, Date, Boolean, Integer, ForeignKey, Table, UniqueConstraint
 from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
 
+
+# follower_following_association = Table(
+#     'follower_following_associations',
+#     Base.metadata,
+#     Column('follower_id', String(36), ForeignKey('users.id')),
+#     Column('following_id', String(36), ForeignKey('users.id')),
+#     UniqueConstraint('follower_id', 'following_id', name='unique_relationship')
+# )
 
 class User(BaseModel, Base):
     """Representation of a user """
@@ -16,6 +23,13 @@ class User(BaseModel, Base):
     is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
     is_reported = Column(Boolean, default=False)
+    # Relationship to represent users following other users
+    # and vice versa
+    # following = relationship("User",
+    #                          secondary=follower_following_association,
+    #                          primaryjoin=id==follower_following_association.c.follower_id,
+    #                          secondaryjoin=id==follower_following_association.c.following_id,
+    #                          backref="followers")
 
     # enter base model to change
     dob = Column(Date, nullable=False)
@@ -29,8 +43,18 @@ class User(BaseModel, Base):
                          cascade="all, delete, delete-orphan")
     comments = relationship("Comment", back_populates="user",
                             cascade="all, delete, delete-orphan")
-    conversations = relationship("Conversation", back_populates="user",
-                                 cascade="all, delete, delete-orphan")
+    sent_conversations = relationship(
+        "Conversation",
+        back_populates="sender",
+        foreign_keys="[Conversation.sender_id]",
+        cascade="all, delete, delete-orphan",
+    )
+    received_conversations = relationship(
+        "Conversation",
+        back_populates="receiver",
+        foreign_keys="[Conversation.receiver_id]",
+        cascade="all, delete, delete-orphan",
+    )
     messages = relationship("Message", back_populates="user",
                             cascade="all, delete, delete-orphan")
     # no deleting of child because we may still need feedback
@@ -49,3 +73,14 @@ class User(BaseModel, Base):
         cascade="all, delete, delete-orphan"
     )
     # reporting_u = relationship("ReportedUser", back_populates="user")
+
+
+    # def follow(self, user):
+    #     if user not in self.following:
+    #         self.followers.append(user)
+    #         user.followers.append(self)
+
+    # def unfollow(self, user):
+    #     if user not in self.followers:
+    #         self.following.remove(user)
+    #         user.following.remove(self)
