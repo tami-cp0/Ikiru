@@ -41,25 +41,16 @@
           <div class="search-box">
             <svg
               class="search-icon"
-              width="24"
-              height="24"
               viewBox="0 0 24 24"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                class="search-icon-path1"
                 d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                stroke="#868686"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
               />
               <path
+                class="search-icon-path2"
                 d="M20.9999 20.9999L16.6499 16.6499"
-                stroke="#868686"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
               />
             </svg>
             <input type="text" placeholder="Search..." />
@@ -68,10 +59,25 @@
         <article class="nav-container">
           <nav>
             <div class="nav-item">
-              <img src="" alt="Home icon" /><a href="home.html">Home</a>
+              <svg
+                class="home-icon"
+                viewBox="0 0 26 29"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="home-icon-path1"
+                  d="M1 10.1875L13 1L25 10.1875V24.625C25 25.3212 24.719 25.9889 24.219 26.4812C23.7189 26.9734 23.0406 27.25 22.3333 27.25H3.66667C2.95942 27.25 2.28115 26.9734 1.78105 26.4812C1.28095 25.9889 1 25.3212 1 24.625V10.1875Z"
+                />
+                <path
+                  class="home-icon-path2"
+                  d="M9 27.25V14.125H17V27.25"
+                />
+              </svg>
+              <a href="home.html" id="home">Home</a>
             </div>
             <div class="nav-item">
-              <img src="" alt="Profile icon" /><a href="profile.html"
+              <img src="" alt="Profile icon" />
+              <a href="profile.html"
                 >Profile</a
               >
             </div>

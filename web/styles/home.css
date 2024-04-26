@@ -22,11 +22,13 @@
 :root {
     --background-color: rgba(249, 255, 254, 0.9);
     --primary: #84BDA9;
+    --black: #000;
     --grey: #6A6A6A;
     --light-grey: #868686;
     --dark-grey: #5D5D5D;
     --pure-white: #FFFFFF;
     --grey-border: rgba(134, 134, 134, 0.4);
+    --lightgrey-border: #B9B9B9;
 }
 
 body {
@@ -97,6 +99,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 248px;
 }
 
 .profile-container {
@@ -105,7 +108,6 @@ main {
     align-items: center;
     font-size: 12px;
     width: 100%;
-    border: 1px solid blue;
 }
 
 .profile-container .user-details {
@@ -131,10 +133,61 @@ main {
     margin-top: 20px;
 }
 
+.search-icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+}
+
+.search-icon-path1,
+.search-icon-path2 {
+    stroke: var(--light-grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 
 .search-box input {
     width: 60%;
     background: transparent;
     border: none;
     outline: none;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.nav-item svg {
+    margin-right: 15px;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--lightgrey-border);
+    /* border-bottom: 1px solid var(--lightgrey-border); */
+    width: 200px;
+    margin-top: 18px;
+    padding-top: 18px;
+}
+
+.home-icon {
+    width: 22px;
+    height: 25px;
+    fill: none;
+}
+
+.home-icon-path1,
+.home-icon-path2 {
+    stroke: var(--primary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#home {
+    color: var(--primary);
 }
