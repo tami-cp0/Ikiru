@@ -18,3 +18,123 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --background-color: rgba(249, 255, 254, 0.9);
+    --primary: #84BDA9;
+    --grey: #6A6A6A;
+    --light-grey: #868686;
+    --dark-grey: #5D5D5D;
+    --pure-white: #FFFFFF;
+    --grey-border: rgba(134, 134, 134, 0.4);
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+    font-family: Inter-Bold;
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.logo {
+    display: flex;
+    font-family: PlayfairDisplay-Bold;
+    color: var(--primary);
+    font-size: 36px;
+    margin-left: 32.23px;
+    cursor: pointer;
+}
+
+header div {
+    display: flex;
+    width: 47%;
+    justify-content: space-between;
+    align-items: end;
+    margin-left: 150.87px;
+}
+
+.feed-views {
+    width: 35.16%;
+}
+
+.feed-views ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+#friends,
+#anonymous,
+#forYou {
+    cursor: pointer;
+}
+
+#friends,
+#anonymous {
+    color: var(--grey);
+}
+
+#friends:hover,
+#forYou:hover,
+#anonymous:hover {
+    color: var(--primary);
+}
+
+main {
+    display: flex;
+    padding-top: 14px;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    width: 100%;
+    border: 1px solid blue;
+}
+
+.profile-container .user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.handle {
+    color: var(--dark-grey);
+}
+
+.search-box {
+    width: 200px; /*152px*/
+    height: 38px;
+    display: flex;
+    flex-direction: row;
+    place-content: center space-evenly;
+    align-items: center;
+    border-radius: 30px;
+    background: var(--pure-white);
+    border: 1px solid var(--grey-border);
+    margin-top: 20px;
+}
+
+
+.search-box input {
+    width: 60%;
+    background: transparent;
+    border: none;
+    outline: none;
+}
