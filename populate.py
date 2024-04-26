@@ -708,6 +708,28 @@ for i in range(rand_range):
     print("==========================================================")
 
 print(GREEN + "--all conversations have been initiated--" + RESET)
+
+# for i in range(rand_range):
+#     rand_user =
+#     users[i].follow()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print(BLUE + "\n        ALL DATA HAS BEEN GENERATED" + RESET)
 print("\n There are:")
 print(f"    {storage.count(User)} users")

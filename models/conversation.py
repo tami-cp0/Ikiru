@@ -15,12 +15,12 @@ class Conversation(BaseModel, Base):
     sender = relationship(
         "User",
         foreign_keys=[sender_id],
-        back_populates="sent_conversation"
+        back_populates="sent_conversations"
     )
     receiver = relationship(
         "User",
         foreign_keys=[receiver_id],
-        back_populates="received_conversation"
+        back_populates="received_conversations"
     )
     messages = relationship("Message", back_populates="conversation",
                             cascade="all, delete, delete-orphan")

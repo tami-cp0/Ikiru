@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 
-import os
+from models.user import User
+from models import storage
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
 
-# Get the current working directory
-current_directory = os.getcwd()
 
-if not current_directory.endswith("Ikiru"):
-    print("run in ikiru directory")
-    exit(1)
-print(current_directory)
