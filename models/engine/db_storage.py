@@ -23,9 +23,10 @@ class DBStorage():
     __engine = None
     __session = None
     tables = {"User": User, "Post": Post, "Comment": Comment,
-           "ReportedPost": ReportedPost, "feedback": Feedback,
-           "Conversation": Conversation, "Message": Message, "ReportedUser": ReportedUser,
-           "ReportedComment": ReportedComment, "ReportedMessage": ReportedMessage}
+              "ReportedPost": ReportedPost, "feedback": Feedback,
+              "Conversation": Conversation, "Message": Message,
+              "ReportedUser": ReportedUser, "ReportedComment": ReportedComment,
+              "ReportedMessage": ReportedMessage}
 
     def __init__(self):
         """Initializes a DBStorage instance"""
@@ -102,7 +103,7 @@ class DBStorage():
         """Closes the current database session
         """
         self.__session.remove()
-        
+
     def get(self, cls, id):
         """
         Returns the object based on the class name and its ID, or
