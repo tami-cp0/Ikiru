@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ holds class User"""
-from sqlalchemy import Column, String, Date, Boolean, Integer, ForeignKey, Table, UniqueConstraint
+from sqlalchemy import Column, String, Date,
+from sqlalchemy import Boolean, Integer, ForeignKey, Table, UniqueConstraint
 from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
 
@@ -10,7 +11,7 @@ from models.base_model import BaseModel, Base
 #     Base.metadata,
 #     Column('follower_id', String(36), ForeignKey('users.id')),
 #     Column('following_id', String(36), ForeignKey('users.id')),
-#     UniqueConstraint('follower_id', 'following_id', name='unique_relationship')
+#  UniqueConstraint('follower_id', 'following_id', name='unique_relationship')
 # )
 
 class User(BaseModel, Base):
@@ -73,7 +74,6 @@ class User(BaseModel, Base):
         cascade="all, delete, delete-orphan"
     )
     # reporting_u = relationship("ReportedUser", back_populates="user")
-
 
     # def follow(self, user):
     #     if user not in self.following:
