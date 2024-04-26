@@ -97,6 +97,7 @@ main {
 }
 
 .left-section {
+    /* position: sticky; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,12 +170,13 @@ main {
     justify-content: center;
     align-items: center;
     border-top: 1px solid var(--lightgrey-border);
-    /* border-bottom: 1px solid var(--lightgrey-border); */
     width: 200px;
     margin-top: 18px;
     padding-top: 18px;
 }
+/* Navigation icons */
 
+/* home */
 .home-icon {
     width: 22px;
     height: 25px;
@@ -191,4 +193,95 @@ main {
 
 #home {
     color: var(--primary);
+}
+
+/* Profile */
+.profile-icon {
+    width: 20px;
+    height: 24px;
+    fill: none;
+}
+
+.profile-icon-path1,
+.profile-icon-path2 {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Settings */
+.settings-icon {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    margin-left: 15px;
+}
+
+.settings-icon-path1,
+.settings-icon-path2 {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#settings {
+    margin-left: -5px;
+}
+
+/* Notification */
+.notif-icon {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    margin-left: 40px;
+}
+
+.notif-icon-path1,
+.notif-icon-path2 {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#notif {
+    margin-left: -5px;
+}
+
+/* Saved */
+.saved-icon {
+    width: 25px;
+    height: 25px;
+    fill: none;
+}
+
+.saved-icon-path {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#saved {
+    margin-left: -5px;
+}
+
+.saved-container {
+    border-bottom: 1px solid var(--lightgrey-border);
+    padding-bottom: 18px;
+
+}
+
+/* Express button */
+.express-button {
+    margin-top: 34px;
+    cursor: pointer;
+}
+
+/* Darkmode icon */
+.darkmode-icon {
+    margin-top: 70px;
+    cursor: pointer;
 }
