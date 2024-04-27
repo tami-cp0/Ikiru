@@ -1,0 +1,101 @@
+tags:
+  - Users
+summary: Creates a user
+description: This endpoint creates a new user with the provided information.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - dob
+          - email
+          - name
+          - username
+          - password
+          - sex
+        properties:
+          username:
+            type: string
+            description: The username of the user.
+          name:
+            type: string
+            description: The name of the user.
+          email:
+            type: string
+            description: The email of the user.
+          password:
+            type: string
+            description: The password of the user.
+          sex:
+            type: string
+            description: The sex of the user.
+          dob:
+            type: string
+            format: date
+            description: The date of birth of the user.
+          bio:
+            type: string
+            description: The bio of the user.
+responses:
+  '201':
+    description: User created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier of the user.
+            username:
+              type: string
+              description: The username of the user.
+            name:
+              type: string
+              description: The name of the user.
+            email:
+              type: string
+              description: The email of the user.
+            password:
+              type: string
+              description: The password of the user.
+            sex:
+              type: string
+              description: The sex of the user.
+            dob:
+              type: string
+              format: date
+              description: The date of birth of the user.
+            is_active:
+              type: boolean
+              description: The active status of the user.
+            is_admin:
+              type: boolean
+              description: The admin status of the user.
+            is_reported:
+              type: boolean
+              description: The reported status of the user.
+            bio:
+              type: string
+              description: The bio of the user.
+            posts:
+              type: integer
+              description: The number of posts by the user.
+            comments:
+              type: integer
+              description: The number of comments by the user.
+            conversations:
+              type: integer
+              description: The number of conversations by the user.
+            created_at:
+              type: string
+              format: date-time
+              description: The creation time of the user.
+            updated_at:
+              type: string
+              format: date-time
+              description: The last update time of the user.
+  '400':
+    description: Invalid JSON

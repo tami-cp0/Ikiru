@@ -1,0 +1,21 @@
+Delete a Post
+---
+tags:
+  - Posts
+summary: Deletes one post from a specific user
+parameters:
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+  - name: post_id
+    in: path
+    required: true
+    schema:
+      type: string
+responses:
+  '204':
+    description: Post deleted
+  '404':
+    description: User or Post not found

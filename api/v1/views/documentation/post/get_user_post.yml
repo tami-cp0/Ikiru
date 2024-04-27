@@ -1,0 +1,49 @@
+Get one post from a user
+---
+tags:
+  - Posts
+summary: Retrieves one post from a specific user
+parameters:
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+  - name: post_id
+    in: path
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: A post from the user
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+            comments:
+              type: integer
+            content:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            id:
+              type: string
+            is_anonymous:
+              type: boolean
+            is_reported:
+              type: boolean
+            name:
+              type: string
+            updated_at:
+              type: string
+            user_id:
+              type: string
+            username:
+              type: string
+  '404':
+    description: User or Post not found

@@ -1,0 +1,16 @@
+tags:
+  - Users
+summary: Deletes a user
+description: This endpoint deletes a specific user.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the user to delete
+    required: true
+    schema:
+      type: string
+responses:
+  '204':
+    description: User deleted successfully
+  '404':
+    description: User not found

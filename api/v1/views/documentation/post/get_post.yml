@@ -1,0 +1,58 @@
+Get a single post
+---
+tags:
+  - Posts
+summary: Retrieves a single post
+description: This endpoint retrieves a single post and its related information.
+parameters:
+  - name: post_id
+    in: path
+    description: ID of the post to retrieve
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            __class__:
+              type: string
+              description: The class of the post.
+            comments:
+              type: integer
+              description: The number of comments on the post.
+            content:
+              type: string
+              description: The content of the post.
+            created_at:
+              type: string
+              format: date-time
+              description: The creation time of the post.
+            id:
+              type: string
+              description: The unique identifier of the post.
+            is_anonymous:
+              type: boolean
+              description: The anonymous status of the post.
+            is_reported:
+              type: boolean
+              description: The reported status of the post.
+            name:
+              type: string
+              description: The name of the user who posted.
+            updated_at:
+              type: string
+              format: date-time
+              description: The last update time of the post.
+            user_id:
+              type: string
+              description: The unique identifier of the user who posted.
+            username:
+              type: string
+              description: The username of the user who posted.
+  '404':
+    description: Post not found

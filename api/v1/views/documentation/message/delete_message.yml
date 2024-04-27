@@ -1,0 +1,30 @@
+Deletes a message
+---
+tags:
+  - Messages
+summary: Delete a specific message in a specific conversation of a specific user
+description: This endpoint deletes a specific message in a specific conversation of a specific user.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the user
+    required: true
+    schema:
+      type: string
+  - name: conversation_id
+    in: path
+    description: ID of the conversation
+    required: true
+    schema:
+      type: string
+  - name: message_id
+    in: path
+    description: ID of the message
+    required: true
+    schema:
+      type: string
+responses:
+  '204':
+    description: Message deleted successfully
+  '404':
+    description: User, conversation or message not found

@@ -1,0 +1,53 @@
+Retrieves all comments on a post
+---
+tags:
+  - Comments
+summary: Retrieve all comments from a specific post
+description: This endpoint retrieves all comments from a specific post.
+parameters:
+  - name: post_id
+    in: path
+    description: ID of the post
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: A list of comments
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              __class__:
+                type: string
+              content:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+              id:
+                type: string
+              is_anonymous:
+                type: boolean
+              is_reported:
+                type: boolean
+              name:
+                type: string
+              post_id:
+                type: string
+              post_owner_name:
+                type: string
+              post_owner_username:
+                type: string
+              updated_at:
+                type: string
+                format: date-time
+              user_id:
+                type: string
+              username:
+                type: string
+  '404':
+    description: Post not found
