@@ -21,6 +21,7 @@
 
 :root {
     --background-color: rgba(249, 255, 254, 0.9);
+    --opaque-background: rgba(249, 255, 254, 1);
     --primary: #84BDA9;
     --black: #000;
     --grey: #6A6A6A;
@@ -28,11 +29,13 @@
     --dark-grey: #5D5D5D;
     --pure-white: #FFFFFF;
     --grey-border: rgba(134, 134, 134, 0.4);
+    --thread: rgba(134, 134, 134, 0.2);
     --lightgrey-border: #B9B9B9;
+    --post-background: rgba(132, 189, 169, 0.2)
 }
 
 body {
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     background: var(--background-color);
@@ -40,10 +43,18 @@ body {
     font-size: 16px;
 }
 
+img {
+    cursor: pointer;
+}
+
 header {
     display: flex;
+    position: fixed;
+    width: 100%;
     border-bottom: 1px solid var(--lightgrey-border);
     padding-bottom: 10px;
+    z-index: 1000;
+    background-color: var(--opaque-background);
 }
 
 .logo {
@@ -60,7 +71,7 @@ header div {
     width: 47%;
     justify-content: space-between;
     align-items: end;
-    margin-left: 150.87px;
+    margin-left: 120px;
 }
 
 .feed-views {
@@ -92,12 +103,13 @@ header div {
 }
 
 main {
+    margin-top: 5%;
     display: flex;
     padding-top: 14px;
 }
 
 .left-section {
-    /* position: sticky; */
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -284,4 +296,134 @@ main {
 .darkmode-icon {
     margin-top: 70px;
     cursor: pointer;
+}
+
+/* Feed section */
+.feed-section {
+    width: 67%;
+    padding-left: 15%;
+}
+
+.post {
+    display: flex;
+    width: 95%;
+    border-radius: 20px;
+    background: var(--post-background);
+    margin-bottom: 14px;
+    padding: 2%;
+    cursor: pointer;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-side div {
+    height: 80%;
+    width: 0px;
+    border: 1px solid var(--thread);
+}
+
+.content {
+    padding-left: 2%;
+    width: 95%;
+    /* border: 1px green solid; */
+}
+
+.username {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.post-text {
+    font-family: Inter-Regular;
+    font-size: 19px;
+}
+
+.post-pic-container {
+    display: flex;
+    margin-top: 3.5px;
+}
+
+.post-interaction {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    font-size: 14px;
+    font-family: Inter-Regular;
+    margin-top: 10px;
+    /* border: 1px yellow solid; */
+}
+
+.post-interaction div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.post-interaction div span {
+    padding-left: 3.5px;
+}
+
+.comment-count {
+    font-family: Inter-Bold;
+}
+
+.post-interaction div:hover {
+    color: var(--primary);
+}
+
+.like-button {
+    width: 24px;
+    height: 24px;
+    fill: none;
+}
+
+.like-button-path {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.comment-button {
+    width: 23px;
+    height: 20px;
+    fill: none;
+}
+
+.comment-button-path {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.save-button {
+    width: 19px;
+    height: 21px;
+    fill: none;
+}
+
+.save-button-path {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.share-button {
+    width: 24px;
+    height: 21px;
+    fill: none;
+}
+
+.share-button-path {
+    stroke: var(--grey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
