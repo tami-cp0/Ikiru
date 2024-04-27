@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ holds class User"""
-from sqlalchemy import Column, String, Date,
+from sqlalchemy import Column, String, Date
 from sqlalchemy import Boolean, Integer, ForeignKey, Table, UniqueConstraint
 from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
