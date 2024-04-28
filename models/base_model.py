@@ -46,7 +46,7 @@ class BaseModel():
         new_dict = self.__dict__.copy()
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
-        if "dob" in new_dict:
+        if "dob" in new_dict and new_dict["dob"] is not None:
             new_dict['dob'] = new_dict['dob'].strftime("%Y-%m-%d")
         new_dict["__class__"] = self.__class__.__name__
         new_dict["created_at"] = self.created_at.isoformat()

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    >
+    <meta name="description" content="Ikiru. Emote freely, Live fully.">
+    <link rel="stylesheet" href="../static/styles/sign_in.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../static/scripts/eye_icon.js"></script>
+    <title>Sign in - Ikiru</title>
+  </head>
+  <body>
+    <div class="body_card">
+      <div class="body_card_content">
+        <header>
+          <nav>
+            <h1 class="logo">Ikiru</h1>
+              <ul>
+                <li><a href="">About</a></li>
+                <li><a href="">FAQs</a></li>
+                <li><a href="">Help</a></li>
+              </ul>
+          </nav>
+        </header>
+        <div class="body_div1">
+          <section class="slogan">
+            <h2>Emote Freely,</h2>
+            <h2>Live Fully.</h2>
+
+            <p>Connect with friends from anywhere in the world</p>
+          </section>
+          <section class="signin_section">
+            <h1>Sign in to Ikiru</h1>
+            <div class="form_div">
+              <form method="post">
+                {{ form.hidden_tag() }}
+                {{ form.email.label(for="email", id="email-label") }}
+                {{ form.email }}
+                {{ form.password.label(for="password", id="password-label") }}
+                <div class="password-input-container">
+                  {{ form.password }}
+                  <span class="eye-icon">
+                    <img src="../static/images/open_eye.png" alt="Show password icon" id="togglePassword">
+                  </span>
+                </div>
+                
+                <div class="sign-in_options">
+                  <label for="keep_me_logged_in" id="keep_me"
+                    ><input
+                      type="checkbox"
+                      name="keep_me"
+                      value="keep_me"
+                      class="input_checkbox"
+                      id="keep_me_logged_in"
+                    >Keep me logged in</label
+                  >
+                  <a href="">Forgot password?</a>
+                </div>
+                
+                <div class="signin-button-box">
+                  {{ form.submit }}
+                </div>
+              </form>
+            </div>
+            <div class="or">
+              <div class="left_line-container">
+                <div class="left_line"></div>
+              </div>
+              <div class="or-text"><span>OR</span></div>
+              <div class="right_line-container">
+                <div class="right_line"></div>
+              </div>
+            </div>
+            <div class="google-button-box">
+              <button type="button" class="google_button">
+                <img src="../static/images/google_icon.png" alt="Google icon"><span>Sign in with Google</span>
+              </button>
+            </div>
+            <p class="dont-have">Don't have an account? <a href="{{ url_for('app_views.sign_up') }}">Sign up</a></p>
+            <div class="alx-staff"><a href="{{ url_for('app_views.home') }}">Sign in as ALX Staff</a></div>
+          </section>
+        </div>
+      </div>
+      <footer><a href="">Support this website</a></footer>
+    </div>
+  </body>
+</html>
