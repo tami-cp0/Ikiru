@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, render_template, url_for
 from temp.views import app_views
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_required, login_user, logout_user
+from temp.ikiruIO.realtime import socket
 from models.user import User
 from models import storage
 
@@ -21,7 +22,7 @@ def load_user(id):
     return storage.get(User, id=id)
 
 login_manager.init_app(app)
-
+socket.init_app(app)
 
 @app.route('/')
 @login_required
@@ -45,7 +46,12 @@ def log_out():
     logout_user()
     return redirect(url_for('app_views.sign_in'))
 
+
+@app.route("/msg", strict_slashes=False)
+def msg():
+    return render_template("socket.html")
+
    
 if __name__ == "__main__":
     app.register_blueprint(app_views)
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    socket.run(app, host="0.0.0.0", port=5001, debug=True)
