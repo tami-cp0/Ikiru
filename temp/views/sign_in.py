@@ -1,13 +1,16 @@
 #!/usr/bin/python3
-from flask import Flask, jsonify, render_template, url_for, redirect, flash
-from flask_login import login_user, current_user, login_required
+from email import message
+from flask import render_template, url_for, redirect, flash, request
+from flask_login import login_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from models.user import User
 from models import storage
-from temp.app import bcrypt, login_manager
+from temp.app import bcrypt
 from temp.views import app_views
+from datetime import timedelta
+
 
 
 
@@ -36,6 +39,26 @@ class SignInForm(FlaskForm):
         label='Password'
     )
 
+#  <div class="sign-in_options">
+#                   <label for="keep_me_logged_in" id="keep_me"
+#                     ><input
+#                       type="checkbox"
+#                       name="keep_me"
+#                       value="keep_me"
+#                       class="input_checkbox"
+#                       id="keep_me_logged_in"
+#                     >Keep me logged in</label
+#                   >
+#                   <a href="">Forgot password?</a>
+#                 </div>
+    keep_me = BooleanField(
+        label="Keep me logged in",
+        render_kw={
+                    'class': 'input_checkbox', 'value': 'keep_me',
+                    'id': 'keep_me_logged_in', 
+                   }
+    )
+    
     submit = SubmitField(
         label="Sign in",
         render_kw={'class': 'signin_button', 'id': 'submit'}
@@ -46,16 +69,18 @@ class SignInForm(FlaskForm):
 def sign_in():
     form = SignInForm()
     
-    user = storage.get(User, email=form.email.data, username=form.email.data)
-    print(user)
-    if user:
-        if bcrypt.check_password_hash(user.password, form.password.data):    
-            login_user(user)
-            print(current_user)
-            return redirect(url_for('app_views.home'))
-        else:
-            flash("Wrong Email or Password")
-    else:
-        flash("Wrong Email or Password")
+    if request.method == "POST":
+        user = storage.get(User, email=form.email.data, username=form.email.data)
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):  
+                if form.keep_me.data == True:
+                    login_user(user, remember=True, duration=timedelta(minutes=2))
+                else:
+                    login_user(user)
+                return redirect(url_for('app_views.home'))
 
+        flash("Wrong email, username or password")
     return render_template('sign_in.html', form=form)
+
+
+

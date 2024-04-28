@@ -37,10 +37,34 @@
                 {{ form.hidden_tag() }}
                 {{ form.name.label(for="name", id="name-label") }}
                 {{ form.name }}
-                {{ form.username.label(for="username", id="username-label") }}
-                {{ form.username }}
-                {{ form.email.label(for="email", id="email-label") }}
-                {{ form.email }}
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      {% if message[0][:8] == "Username" %}
+                        {{ form.username.label(for="username", id="label-error") }}
+                        {{ form.username(class="form-error") }}
+                        <div class="flash">
+                          {{ message[0] }}
+                        </div>
+                        {{ form.email.label(for="email", id="email-label") }}
+                        {{ form.email }}
+                      {% else %}
+                        {{ form.username.label(for="username", id="username-label") }}
+                        {{ form.username }}
+                        {{ form.email.label(for="email", id="label-error") }}
+                        {{ form.email(class="form-error") }}
+                        <div class="flash">
+                          {{ message[0] }}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    {{ form.username.label(for="username", id="username-label") }}
+                    {{ form.username }}
+                    {{ form.email.label(for="email", id="email-label") }}
+                    {{ form.email }}
+                  {% endif %}
+                {% endwith %}
                 {{ form.password.label(for="password", id="password-label") }}
                 <div class="password-input-container">
                   {{ form.password }}

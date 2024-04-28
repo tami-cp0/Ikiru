@@ -22,7 +22,6 @@ class User(BaseModel, Base, UserMixin):
     email = Column(String(32), unique=True, nullable=False)
     sex = Column(String(16), nullable=True)
     password = Column(String(128), nullable=False)
-    is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
     is_reported = Column(Boolean, default=False)
     # Relationship to represent users following other users

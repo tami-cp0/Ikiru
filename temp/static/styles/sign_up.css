@@ -157,6 +157,10 @@ form #name-label {
     margin-top: 12px;
 }
 
+#label-error {
+    color: red;
+}
+
 .form-inputs {
     border-radius: 10px;
     height: 40px;
@@ -164,6 +168,24 @@ form #name-label {
     border: 0.5px solid rgba(0, 0, 0, 0.2);
     margin-top: 2px;
     padding-left: 10px;
+}
+
+.form-error {
+    border-radius: 10px;
+    height: 40px;
+    mix-blend-mode: normal;
+    border: 0.5px solid red;
+    margin-top: 2px;
+    padding-left: 10px;
+}
+
+.flash {
+    color:  red;
+    font-size: 12px;
+    font-family: Inter-Regular;
+    font-weight: normal;
+    padding: 0px;
+    margin-top: 1px;
 }
 
 

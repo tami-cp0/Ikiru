@@ -48,15 +48,9 @@
                 </div>
                 
                 <div class="sign-in_options">
-                  <label for="keep_me_logged_in" id="keep_me"
-                    ><input
-                      type="checkbox"
-                      name="keep_me"
-                      value="keep_me"
-                      class="input_checkbox"
-                      id="keep_me_logged_in"
-                    >Keep me logged in</label
-                  >
+                  
+                  {{ form.keep_me }}
+                  {{ form.keep_me.label(for="keep_me_logged_in", id="keep_me") }}
                   <a href="">Forgot password?</a>
                 </div>
                 
@@ -65,6 +59,15 @@
                 </div>
               </form>
             </div>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash">
+                  {{ message }}
+                </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
             <div class="or">
               <div class="left_line-container">
                 <div class="left_line"></div>
@@ -80,7 +83,7 @@
               </button>
             </div>
             <p class="dont-have">Don't have an account? <a href="{{ url_for('app_views.sign_up') }}">Sign up</a></p>
-            <div class="alx-staff"><a href="{{ url_for('app_views.home') }}">Sign in as ALX Staff</a></div>
+            <div class="alx-staff"><a href="{{ url_for('alx_sign_in') }}">Sign in as ALX Staff</a></div>
           </section>
         </div>
       </div>
