@@ -41,7 +41,7 @@ body {
     height: 90%;
     background: #F9FFFE;
     background-image: url(../images/background_image.png);
-    background-size: 60%;
+    background-size: 70%;
     background-position: 20% 60%;
     background-repeat: no-repeat;
     border: 1px solid #84BDA9;
@@ -98,7 +98,7 @@ header nav ul li a:hover {
 }
 
 .slogan h2 {
-    font-size: 24px;
+    font-size: 20px;
     background: linear-gradient(90deg, #84BDA9 0%, #000000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -121,7 +121,6 @@ header nav ul li a:hover {
     text-align: center;
     font-family: PlayfairDisplay-Bold;
     font-size: 30px;
-    /* line-height: 48px; */
     background: linear-gradient(90deg, #000000 0%, #84BDA9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
