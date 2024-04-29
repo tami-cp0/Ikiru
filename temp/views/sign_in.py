@@ -72,11 +72,11 @@ def sign_in():
     if request.method == "POST":
         user = storage.get(User, email=form.email.data, username=form.email.data)
         if user:
-            if bcrypt.check_password_hash(user.password, form.password.data):  
+            if bcrypt.check_password_hash(user.password, form.password.data):
                 if form.keep_me.data == True:
                     login_user(user, remember=True, duration=timedelta(minutes=2))
                 else:
-                    login_user(user)
+                    login_user(user, remember=False)
                 return redirect(url_for('app_views.home'))
 
         flash("Wrong email, username or password")

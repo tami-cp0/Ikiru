@@ -9,9 +9,15 @@ from datetime import datetime, date
 
 # mydict = {"name": "Josh", "username": "ragoyam", "sex": "Male", "password": "as8asPju", "email": "joshal@gmail.com", "dob": "2010-04-17"}
 
+import secrets
+
+# Generate a secret key
+secret_key = secrets.token_hex(32)
+print(secret_key)
+
 # user = storage.get(User, id="ba94b6e1-9c66-4802-9376-5e423c5a3806")
-user = User.query.filter_by(username="tami_cp0").first
-print(user)
+# user = User.query.filter_by(username="tami_cp0").first
+# print(user)
 # print(user.sent_conversations)
 # conversation = storage.get(Conversation, 'f7707a8b-5bc9-436e-8b2e-50871f597853')
 # data = {"content": "lolll", "user_id": user.id, "conversation_id": conversation.id}

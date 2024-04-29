@@ -1,15 +1,24 @@
 #!/usr/bin/python3
-from flask import Flask, redirect, render_template, url_for
+import secrets
+from flask import Flask, redirect, render_template, url_for, session
 from temp.views import app_views
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_required, login_user, logout_user
 from temp.ikiruIO.realtime import socket
 from models.user import User
 from models import storage
+from flask_socketio import SocketIO
+from datetime import timedelta
 
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "skajkn283728732"
+app.config["SECRET_KEY"] = "1b80974004ebbd9de8c0d22bb4906475b1b09b9a90b42104c3ffbc603d74f14a"
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["REMEMBER_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_PERMANENT"] = False
+app.config['REMEMBER_COOKIE_DURATION'] = timedelta(seconds=0)
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 
 
 bcrypt = Bcrypt(app)
