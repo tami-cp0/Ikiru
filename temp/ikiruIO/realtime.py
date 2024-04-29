@@ -10,5 +10,8 @@ def handle_connect():
 @socket.on("sent_message")
 def handle_sent_message(json_message):
     """direct the sent message to the reveciver"""
-    namespace = "/msg"+ json_message["receiver"] + "/" + request.sid
+   # namespace = "/msg"+ json_message["receiver"] + "/" + request.sid
+    print("\n\n___________________________________________\n\n")
+    print(json_message)
+    print("\n\n________________________________________\n\n")
     emit("received_msg", json_message, namespace="/msg")
