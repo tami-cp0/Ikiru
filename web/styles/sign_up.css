@@ -28,6 +28,7 @@ body {
     height: 100vh;
     background: rgba(249, 255, 254, 0.9);
     font-family: Inter-Bold;
+    font-size: 14px;
 }
 
 /* main */
@@ -41,7 +42,7 @@ body {
     background: #F9FFFE;
     background-image: url(../images/background_image.png);
     background-size: 70%;
-    background-position: 30% 60%;
+    background-position: 20% 60%;
     background-repeat: no-repeat;
     border: 1px solid #84BDA9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -51,7 +52,7 @@ body {
 .body_card_content {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 70px;
     margin-right: 70px;;
     height: 70%; /*might remove*/
@@ -65,7 +66,7 @@ header nav {
 
 .logo {
     font-family: PlayfairDisplay-Bold;
-    font-size: 36px;
+    font-size: 30px;
     color: #84BDA9;
 }
 
@@ -80,7 +81,6 @@ header nav ul {
 header nav ul li a {
     text-decoration: none;
     color: #5C5C5C;
-    font-size: 14;
 }
 
 header nav ul li a:hover {
@@ -89,7 +89,7 @@ header nav ul li a:hover {
 
 .body_div1 {
     display: flex;
-    margin-top: 70px; /*remember to adjust*/
+    margin-top: 45px; /*remember to adjust*/
     justify-content: space-between;
 }
 
@@ -98,7 +98,7 @@ header nav ul li a:hover {
 }
 
 .slogan h2 {
-    font-size: 24px;
+    font-size: 20px;
     background: linear-gradient(90deg, #84BDA9 0%, #000000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -113,17 +113,14 @@ header nav ul li a:hover {
 .signin_section {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    /* border: red 1px solid; */
-    width: 370px;
+    width: 280px;
 }
 
 .signin_section h1 {
     text-align: center;
     font-family: PlayfairDisplay-Bold;
-    font-size: 36px;
-    /* line-height: 48px; */
+    font-size: 30px;
     background: linear-gradient(90deg, #000000 0%, #84BDA9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -148,18 +145,18 @@ form {
 }
 
 form label {
-    font-family: Inter-Regular;
-    font-size: 16px;
+    font-family: Inter-Bold;
+    font-size: 11px;
     margin-top: 5px;
 }
 
 form #name-label {
-    margin-top: 12px;
+    margin-top: 8px;
 }
 
 .form-inputs {
     border-radius: 10px;
-    height: 40px;
+    height: 32px;
     mix-blend-mode: normal;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
     margin-top: 2px;
@@ -170,7 +167,7 @@ form #name-label {
 .form-inputs::placeholder {
     color: #C7C7C7;
     /* padding-left: 2px; */
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .password-input-container {
@@ -187,22 +184,22 @@ form #name-label {
 }
 
 .signup_button {
-    width: 46%;
-    font-size: 20px;
+    width: 35%;
+    font-size: 14px;
     font-family: Inter-Bold;
     background: #84BDA9;
     border-radius: 10px;
-    height: 40px;
+    height: 34px;
     border: 0px;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     cursor: pointer;
 }
 
 .or {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .left_line-container {
@@ -244,15 +241,15 @@ form #name-label {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 82%;
-    font-size: 20px;
+    width: 65%;
+    font-size: 14px;
     font-family: Inter-Regular;
     background: #fff;
     border-radius: 10px;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
-    height: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 
@@ -261,7 +258,7 @@ form #name-label {
 }
 
 .already-have {
-    font-size: 12px;
+    font-size: 10px;
     color: #818181;
     margin-bottom: 20px;
 }
@@ -278,7 +275,7 @@ footer {
     align-items: center;
     background: #131313;
     font-family: Inter-Regular;
-    font-size: 16px;
+    font-size: 12px;
     /* border: 1px solid red; */
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
