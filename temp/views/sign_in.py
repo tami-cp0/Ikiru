@@ -12,8 +12,6 @@ from temp.views import app_views
 from datetime import timedelta
 
 
-
-
 class SignInForm(FlaskForm):
     """
     Class to sign in users
@@ -39,26 +37,15 @@ class SignInForm(FlaskForm):
         label='Password'
     )
 
-#  <div class="sign-in_options">
-#                   <label for="keep_me_logged_in" id="keep_me"
-#                     ><input
-#                       type="checkbox"
-#                       name="keep_me"
-#                       value="keep_me"
-#                       class="input_checkbox"
-#                       id="keep_me_logged_in"
-#                     >Keep me logged in</label
-#                   >
-#                   <a href="">Forgot password?</a>
-#                 </div>
     keep_me = BooleanField(
         label="Keep me logged in",
         render_kw={
-                    'class': 'input_checkbox', 'value': 'keep_me',
-                    'id': 'keep_me_logged_in', 
+                    'class': 'input_checkbox',
+                    'value': 'keep_me',
+                    'id': 'keep_me_logged_in',
                    }
     )
-    
+
     submit = SubmitField(
         label="Sign in",
         render_kw={'class': 'signin_button', 'id': 'submit'}
@@ -68,19 +55,18 @@ class SignInForm(FlaskForm):
 @app_views.route("/sign_in", methods=["GET", "POST"], strict_slashes=False)
 def sign_in():
     form = SignInForm()
-    
+
     if request.method == "POST":
-        user = storage.get(User, email=form.email.data, username=form.email.data)
+        user = storage.get(User, email=form.email.data,
+                           username=form.email.data)
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
-                if form.keep_me.data == True:
-                    login_user(user, remember=True, duration=timedelta(minutes=2))
+                if form.keep_me.data is True:
+                    login_user(user, remember=True,
+                               duration=timedelta(days=14))
                 else:
                     login_user(user, remember=False)
                 return redirect(url_for('app_views.home'))
 
         flash("Wrong email, username or password")
     return render_template('sign_in.html', form=form)
-
-
-

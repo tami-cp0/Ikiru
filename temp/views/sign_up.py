@@ -5,7 +5,8 @@ Sign Up view
 from flask import Flask, request, url_for, render_template, redirect, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError, Regexp, Email
+from wtforms.validators import InputRequired, Length, \
+    ValidationError, Regexp, Email
 from models.user import User
 from temp.app import bcrypt
 from models import storage
@@ -68,26 +69,24 @@ class SignUpForm(FlaskForm):
         label="Sign up",
         render_kw={'class': 'signup_button', 'id': 'submit'}
     )
-    
-    
+
     def validate_email(self, email):
         """checks if the same email is already used"""
         existing_user = storage.get(User, email=email.data)
-        
+
         if existing_user:
             print("email")
             raise ValidationError("Email has already been taken")
-        
-    
+
     def validate_username(self, username):
         """checks if the same username is already used"""
         existing_user = storage.get(User, username=username.data)
-        
+
         if existing_user:
             print("username")
             raise ValidationError("Username has already been taken")
-     
-        
+
+
 @app_views.route("/sign_up", methods=["GET", "POST"], strict_slashes=False)
 def sign_up():
     form = SignUpForm()
