@@ -10,4 +10,4 @@ from flask_login import current_user, login_required
 @app_views.route("/home", strict_slashes=False)
 @login_required
 def home():
-    return render_template("home.html", user=current_user.to_dict())
+    return render_template("base.html", user=current_user.to_dict())

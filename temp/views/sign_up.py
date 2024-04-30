@@ -11,6 +11,7 @@ from models.user import User
 from temp.app import bcrypt
 from models import storage
 from temp.views import app_views
+from flask_login import login_user
 
 
 class SignUpForm(FlaskForm):

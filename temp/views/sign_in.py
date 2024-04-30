@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from email import message
-from flask import render_template, url_for, redirect, flash, request
+from flask import render_template, url_for, redirect, flash, request, session
 from flask_login import login_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
@@ -66,6 +66,7 @@ def sign_in():
                                duration=timedelta(days=14))
                 else:
                     login_user(user, remember=False)
+                print(session)
                 return redirect(url_for('app_views.home'))
 
         flash("Wrong email, username or password")

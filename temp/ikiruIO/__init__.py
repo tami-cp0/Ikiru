@@ -1,2 +1,2 @@
-from flask_socketio import SocketIO
-socket = SocketIO()
+# from flask_socketio import SocketIO
+# socket = SocketIO()

@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 
+import bcrypt
 from models import storage
 from models.conversation import Conversation
 from models.user import User
 from models.message import Message
 from models.post import Post
 from datetime import datetime, date
+from flask_bcrypt import Bcrypt
+
 
 # mydict = {"name": "Josh", "username": "ragoyam", "sex": "Male", "password": "as8asPju", "email": "joshal@gmail.com", "dob": "2010-04-17"}
 
-import secrets
+# import secrets
 
-# Generate a secret key
-secret_key = secrets.token_hex(32)
-print(secret_key)
+# # Generate a secret key
+# secret_key = secrets.token_hex(32)
+# print(secret_key)
+
 
 # user = storage.get(User, id="ba94b6e1-9c66-4802-9376-5e423c5a3806")
 # user = User.query.filter_by(username="tami_cp0").first

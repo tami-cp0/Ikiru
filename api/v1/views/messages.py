@@ -42,6 +42,7 @@ def all_messages(user_id, conversation_id):
             message["name"] = user2.name
             message["username"] = user2.username
 
+    messages.sort(key=lambda x: x["created_at"])
     return jsonify(messages)
 
 

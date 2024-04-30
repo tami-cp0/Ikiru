@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 import secrets
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, session
 from temp.views import app_views
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, login_required, login_user, logout_user
-from temp.ikiruIO.realtime import socket
+from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 from models.user import User
 from models import storage
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, send
 
 
 app = Flask(__name__)
@@ -29,6 +28,7 @@ def load_user(id):
 
 login_manager.init_app(app)
 bcrypt = Bcrypt(app)
+socket = SocketIO(app, cors_allowed_origins="*")
 socket.init_app(app)
 
 
@@ -57,12 +57,21 @@ def log_out():
     return redirect(url_for('app_views.sign_in'))
 
 
-@app.route("/msg", strict_slashes=False)
-def msg():
-    return render_template("socket.html")
+@app.route("/msg/<username>", strict_slashes=False)
+@login_required
+def msg(username):
+    return render_template("msg.html", user=current_user.to_dict(), username=username)
+
+
+@socket.on('message')
+def handle_message(message):
+    print("Recieved message: " + message)
+    if message != "User connected!":
+        send(message, broadcast=True)
 
 
 if __name__ == "__main__":
     app.register_blueprint(app_views)
     socket.run(app, host="0.0.0.0", port=5001,
-               debug=True, use_reloader=False, log_output=False)
+               debug=True, use_reloader=True, log_output=True)
+    # app.run(host="0.0.0.0", port=5001, debug=True)

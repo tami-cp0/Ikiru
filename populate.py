@@ -26,6 +26,7 @@ from models.conversation import Conversation
 from fabric.api import local
 
 
+
 dir = os.getcwd()
 
 # ANSI escape code for blue text
@@ -35,7 +36,7 @@ RESET = "\033[0m"
 # ANSI escape code for green text
 GREEN = "\033[32m"
 print(GREEN + "     --RESETTING DATABASE--" + RESET)
-
+#  "eM1P<l?55MAL"
 if not dir.endswith("Ikiru"):
     print(BLUE + "This script can only be run in the Ikiru directory" + RESET)
     exit(1)

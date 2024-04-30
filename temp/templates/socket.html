@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/socket.io.min.js') }}"> </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery-3.7.1.js') }}"> </script>
     <title>Chat App</title>
 </head>
 <body>
@@ -11,8 +13,6 @@
         <input id="input" autocomplete="off">
         <button>Send</button>
     </form>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/socket.io.min.js') }}"> </script>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery-3.7.1.js') }}"> </script>
     <script>
         const socket = io();
         const form = document.getElementById('form');
@@ -31,6 +31,7 @@
             const item = document.createElement('li');
             item.textContent = message;
             messages.appendChild(item);
+            console.log(message);
         });
     </script>
 

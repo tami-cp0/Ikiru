@@ -11,7 +11,8 @@
     <h2>Welcome to home page</h2>
     <a href="{{ url_for('app_views.sign_up') }}">sign up page</a>
     <a href="{{ url_for('log_out') }}">log out</a>
-    <h4>hello {{ user.name }}, @{{ user.username }}</h4>
+    <h4>hello {{ user.name }}, @{{ user.username }}, id: {{ user.id }}</h4>
+    <a href="{{ url_for('msg', username=user.username) }}">inbox</a>
     { % block body %}{ % endblock %}
   </body>
 </html>

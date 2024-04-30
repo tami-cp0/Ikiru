@@ -25,6 +25,7 @@ def get_posts():
         data["comments"] = len(post.comments)
         posts_data.append(data)
 
+    posts_data.sort(key=lambda x: x["created_at"])
     return jsonify(posts_data)
 
 
@@ -67,6 +68,7 @@ def get_user_posts(user_id):
         data["comments"] = len(post.comments)
         posts_data.append(data)
 
+    posts_data.sort(key=lambda x: x["created_at"])
     return jsonify(posts_data)
 
 

@@ -51,6 +51,7 @@ def all_conversations(user_id):
         del data["receiver_id"]
         conversations_data.append(data)
 
+    conversations_data.sort(key=lambda x: x["created_at"])
     return jsonify(conversations_data)
 
 
