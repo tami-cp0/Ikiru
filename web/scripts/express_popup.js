@@ -111,7 +111,7 @@ $(document).ready(function () {
                         </defs>
                         </svg>
                     </div>
-                    <figure class="express-button">
+                    <figure class="express-button2">
                         <img src="images/express_button.png" alt="Express button icon">
                     </figure>
                 </div>
@@ -159,7 +159,7 @@ $(document).ready(function () {
         expressButton.replaceWith(expressPopup);
         expressPopup.fadeIn();
 
-        expressPopup.find('.express-button').css({
+        expressPopup.find('.express-button2').css({
             'margin-top': '0px',
         });
 
@@ -167,9 +167,13 @@ $(document).ready(function () {
 
         expressPopup.find('img').css('cursor', 'auto');
 
-        expressPopup.on('click', function(event) {
-            event.stopPropagation();
-        });
+        // $('.express-popup').on('click', function(event) {
+        //     console.log('there is a POPUP click');
+        //     if ($(event.target).hasClass('express-button')) {
+        //         console.log('we stopped the popup');
+        //         event.stopPropagation();
+        //     }
+        // });
 
         $('textarea').on('input', function () {
 
