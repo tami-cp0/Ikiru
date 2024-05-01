@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta name="description" content="Ikiru. Emote freely, Live fully." />
+    <link rel="stylesheet" href="../static/styles/home.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"> </script>
+    <script src="../static/scripts/express_popup.js"></script>
+    <script src="../static/scripts/like.js"></script>
+    <script src="../static/scripts/save.js"></script>
+    <script src="../static/scripts/home/upload.js"></script>
+
+    <title>Home - Ikiru</title>
+  </head>
+  <body>
+    <header>
+      <section class="logo">
+        <h1>Ikiru</h1>
+      </section>
+      <div>
+        <section class="feeds">
+          <p>Feeds</p>
+        </section>
+        <section class="feed-views">
+          <ul>
+            <li id="forYou">For you</li>
+            <li id="friends">Friends</li>
+            <li id="anonymous">Anonymous</li>
+          </ul>
+        </section>
+      </div>
+    </header>
+    <main>
+      <section class="left-section">
+        <div class="left-section-container">
+          <article class="profile-container">
+            <figure id="profile-pic">
+              <img src="../static/images/anonRectangle160.png" alt="Profile picture" loading="lazy" />
+            </figure>
+            <div class="user-details">
+              <p class="username">{{ user.name }}</p>
+              <p class="handle">@{{ user.username }}</p>
+              <p class="user-id" id="{{ user.id }}" style="display: none;"></p>
+            </div>
+            <div class="search-box">
+              <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="search-icon-path1"
+                  d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                />
+                <path
+                  class="search-icon-path2"
+                  d="M20.9999 20.9999L16.6499 16.6499"
+                />
+              </svg>
+              <input type="text" placeholder="Search..." />
+            </div>
+          </article>
+          <article class="nav-container">
+            <nav>
+              <div class="nav-item highlighter">
+                
+                <img src="../static/images/highlighter.png" alt="Highlighter icon">
+                
+                <svg
+                  class="home-icon"
+                  viewBox="0 0 26 29"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="home-icon-path1"
+                    d="M1 10.1875L13 1L25 10.1875V24.625C25 25.3212 24.719 25.9889 24.219 26.4812C23.7189 26.9734 23.0406 27.25 22.3333 27.25H3.66667C2.95942 27.25 2.28115 26.9734 1.78105 26.4812C1.28095 25.9889 1 25.3212 1 24.625V10.1875Z"
+                  />
+                  <path class="home-icon-path2" d="M9 27.25V14.125H17V27.25" />
+                </svg>
+                <a href="home.html" id="home">Home</a>
+              </div>
+              <div class="nav-item">
+                <svg
+                  class="profile-icon"
+                  viewBox="0 0 24 28"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="profile-icon-path1"
+                    d="M23 27.0002V24.1113C23 22.5789 22.4205 21.1093 21.3891 20.0258C20.3576 18.9422 18.9587 18.3335 17.5 18.3335H6.5C5.04131 18.3335 3.64236 18.9422 2.61091 20.0258C1.57946 21.1093 1 22.5789 1 24.1113V27.0002"
+                  />
+                  <path
+                    class="profile-icon-path2"
+                    d="M12 12.5556C15.0376 12.5556 17.5 9.96876 17.5 6.77778C17.5 3.5868 15.0376 1 12 1C8.96243 1 6.5 3.5868 6.5 6.77778C6.5 9.96876 8.96243 12.5556 12 12.5556Z"
+                  />
+                </svg>
+                <a href="profile.html" id="profile">Profile</a>
+              </div>
+              <div class="nav-item">
+                <svg
+                  class="settings-icon"
+                  viewBox="0 0 26 26"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="settings-icon-path1"
+                    d="M13.2383 2.1665H12.7617C12.187 2.1665 11.6359 2.39478 11.2296 2.80111C10.8233 3.20743 10.595 3.75853 10.595 4.33317V4.52817C10.5946 4.90812 10.4943 5.28129 10.3042 5.61024C10.114 5.9392 9.84072 6.21236 9.51167 6.40234L9.04584 6.67317C8.71646 6.86334 8.34283 6.96345 7.9625 6.96345C7.58217 6.96345 7.20854 6.86334 6.87917 6.67317L6.71667 6.5865C6.21949 6.29971 5.62883 6.2219 5.07434 6.37017C4.51985 6.51844 4.04685 6.88067 3.75917 7.37734L3.52084 7.789C3.23404 8.28618 3.15623 8.87685 3.3045 9.43134C3.45277 9.98582 3.815 10.4588 4.31167 10.7465L4.47417 10.8548C4.80163 11.0439 5.07392 11.3154 5.26397 11.6422C5.45402 11.9691 5.55522 12.3401 5.5575 12.7182V13.2707C5.55902 13.6525 5.45962 14.0279 5.26938 14.3589C5.07914 14.6899 4.80481 14.9648 4.47417 15.1557L4.31167 15.2532C3.815 15.5409 3.45277 16.0139 3.3045 16.5683C3.15623 17.1228 3.23404 17.7135 3.52084 18.2107L3.75917 18.6223C4.04685 19.119 4.51985 19.4812 5.07434 19.6295C5.62883 19.7778 6.21949 19.7 6.71667 19.4132L6.87917 19.3265C7.20854 19.1363 7.58217 19.0362 7.9625 19.0362C8.34283 19.0362 8.71646 19.1363 9.04584 19.3265L9.51167 19.5973C9.84072 19.7873 10.114 20.0605 10.3042 20.3894C10.4943 20.7184 10.5946 21.0916 10.595 21.4715V21.6665C10.595 22.2411 10.8233 22.7922 11.2296 23.1986C11.6359 23.6049 12.187 23.8332 12.7617 23.8332H13.2383C13.813 23.8332 14.3641 23.6049 14.7704 23.1986C15.1767 22.7922 15.405 22.2411 15.405 21.6665V21.4715C15.4054 21.0916 15.5057 20.7184 15.6958 20.3894C15.886 20.0605 16.1593 19.7873 16.4883 19.5973L16.9542 19.3265C17.2835 19.1363 17.6572 19.0362 18.0375 19.0362C18.4178 19.0362 18.7915 19.1363 19.1208 19.3265L19.2833 19.4132C19.7805 19.7 20.3712 19.7778 20.9257 19.6295C21.4802 19.4812 21.9532 19.119 22.2408 18.6223L22.4792 18.1998C22.766 17.7027 22.8438 17.112 22.6955 16.5575C22.5472 16.003 22.185 15.53 21.6883 15.2423L21.5258 15.1557C21.1952 14.9648 20.9209 14.6899 20.7306 14.3589C20.5404 14.0279 20.441 13.6525 20.4425 13.2707V12.729C20.441 12.3472 20.5404 11.9718 20.7306 11.6408C20.9209 11.3098 21.1952 11.0349 21.5258 10.844L21.6883 10.7465C22.185 10.4588 22.5472 9.98582 22.6955 9.43134C22.8438 8.87685 22.766 8.28618 22.4792 7.789L22.2408 7.37734C21.9532 6.88067 21.4802 6.51844 20.9257 6.37017C20.3712 6.2219 19.7805 6.29971 19.2833 6.5865L19.1208 6.67317C18.7915 6.86334 18.4178 6.96345 18.0375 6.96345C17.6572 6.96345 17.2835 6.86334 16.9542 6.67317L16.4883 6.40234C16.1593 6.21236 15.886 5.9392 15.6958 5.61024C15.5057 5.28129 15.4054 4.90812 15.405 4.52817V4.33317C15.405 3.75853 15.1767 3.20743 14.7704 2.80111C14.3641 2.39478 13.813 2.1665 13.2383 2.1665Z"
+                  />
+                  <path
+                    class="settings-icon-path2"
+                    d="M13 16.25C14.7949 16.25 16.25 14.7949 16.25 13C16.25 11.2051 14.7949 9.75 13 9.75C11.2051 9.75 9.75 11.2051 9.75 13C9.75 14.7949 11.2051 16.25 13 16.25Z"
+                  />
+                </svg>
+                <a href="settings.html" id="settings">Settings</a>
+              </div>
+              <div class="nav-item">
+                <svg
+                  class="notif-icon"
+                  viewBox="0 0 29 29"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="notif-icon-path1"
+                    d="M7.25 9.6665C7.25 7.74368 8.01384 5.89962 9.37348 4.53998C10.7331 3.18034 12.5772 2.4165 14.5 2.4165C16.4228 2.4165 18.2669 3.18034 19.6265 4.53998C20.9862 5.89962 21.75 7.74368 21.75 9.6665C21.75 18.1248 25.375 20.5415 25.375 20.5415H3.625C3.625 20.5415 7.25 18.1248 7.25 9.6665Z"
+                  />
+                  <path
+                    class="notif-icon-path2"
+                    d="M12.4458 25.375C12.6481 25.7429 12.9454 26.0497 13.3067 26.2634C13.6681 26.477 14.0802 26.5898 14.5 26.5898C14.9198 26.5898 15.3319 26.477 15.6932 26.2634C16.0546 26.0497 16.3519 25.7429 16.5541 25.375"
+                  />
+                </svg>
+                <a href="notification.html" id="notif">Notification</a>
+              </div>
+              <div class="nav-item saved-container">
+                <svg
+                  class="saved-icon"
+                  viewBox="0 0 29 29"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="saved-icon-path"
+                    d="M22.9582 25.375L14.4998 20.5417L6.0415 25.375V6.04167C6.0415 5.40073 6.29612 4.78604 6.74933 4.33283C7.20254 3.87961 7.81723 3.625 8.45817 3.625H20.5415C21.1824 3.625 21.7971 3.87961 22.2503 4.33283C22.7036 4.78604 22.9582 5.40073 22.9582 6.04167V25.375Z"
+                  />
+                </svg>
+                <a href="saved.html" id="saved">Saved</a>
+              </div>
+            </nav>
+          </article>
+          <figure class="express-button">
+            <img src="../static/images/express_button.png" alt="Express button icon" />
+          </figure>
+          <figure class="darkmode-icon">
+            <img src="../static/images/mode_button.png" alt="Darkmode icon" />
+          </figure>
+        </div>
+      </section>
+      <section class="feed-section">
+        {% for post in posts %}
+          <article class="post">
+            <div class="left-side">
+              <figure id="post-profile-pic">
+                <img src="../static/images/anonRectangle160.png" alt="Profile picture" loading="lazy" />
+              </figure>
+              <div class="thread"></div>
+            </div>
+            <div class="content">
+              <p class="name">{{ post.name }}</p>
+              <p class="post-text">{{ post.content }}</p>
+              <div class="post-interaction">
+                <div class="like">
+                  <svg
+                    class="like-button post-interaction-buttons"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="like-button-path"
+                      d="M19 14C20.49 12.54 22 10.79 22 8.5C22 7.04131 21.4205 5.64236 20.3891 4.61091C19.3576 3.57946 17.9587 3 16.5 3C14.74 3 13.5 3.5 12 5C10.5 3.5 9.26 3 7.5 3C6.04131 3 4.64236 3.57946 3.61091 4.61091C2.57946 5.64236 2 7.04131 2 8.5C2 10.8 3.5 12.55 5 14L12 21L19 14Z"
+                    />
+                  </svg>
+                  <span><span>
+                </div>
+                <div class="comment">
+                  <svg
+                    class="comment-button post-interaction-buttons"
+                    viewBox="0 0 23 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="comment-button-path"
+                      d="M21.6925 9.41474C21.6965 10.7227 21.342 12.013 20.6579 13.1805C19.8468 14.5796 18.5999 15.7563 17.0568 16.579C15.5137 17.4016 13.7354 17.8376 11.9211 17.8382C10.4038 17.8416 8.90697 17.5361 7.55263 16.9463L1 18.8292L3.18421 13.1805C2.50013 12.013 2.14563 10.7227 2.14958 9.41474C2.15029 7.8507 2.65611 6.31772 3.61038 4.9875C4.56466 3.65728 5.92971 2.58236 7.55263 1.88314C8.90697 1.29343 10.4038 0.987829 11.9211 0.991239H12.4958C14.892 1.1052 17.1552 1.97705 18.8521 3.43986C20.549 4.90267 21.5603 6.85365 21.6925 8.91924V9.41474Z"
+                    />
+                  </svg>
+                  <span><span class="comment-count">{{ post.comments }}</span> comment{{ 's' if post.comments > 0 else '' }}</span>
+                </div>
+                <div class="save">
+                  <svg
+                    class="save-button"
+                    viewBox="0 0 19 21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="save-button-path"
+                      d="M17.0942 19.8199L9.04709 14.8649L1 19.8199V3.96393C1 3.43827 1.24223 2.93414 1.67341 2.56245C2.10459 2.19075 2.68939 1.98193 3.29917 1.98193H14.795C15.4048 1.98193 15.9896 2.19075 16.4208 2.56245C16.8519 2.93414 17.0942 3.43827 17.0942 3.96393V19.8199Z"
+                    />
+                  </svg>
+                  <span>Save</span>
+                </div>
+                <div class="share">
+                  <svg
+                    class="share-button"
+                    viewBox="0 0 24 21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="share-button-path"
+                      d="M1 9.919L22.8421 1L12.4958 19.829L10.1967 11.901L1 9.919Z"
+                    />
+                  </svg>
+                  <span>Share</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </section>
+      <section class="right-section">
+        <div class="right-section-container">
+          <article class="quote-oasis">
+            <div class="quotes-heading"><h1>Daily Quotes Oasis</h1></div>
+            {% for quote in quotes %}
+              <div class="quote">
+                <div class="quote-text">
+                  <p>"{{ quote.q }}"</p>
+                  <p class="author">– {{ quote.a }}</p>
+                </div>
+                <figure class="bookmark">
+                  <svg
+                    class="bookmark-icon"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="bookmark-path1"
+                      d="M19.772 21L12.0828 16L4.39355 21V5C4.39355 4.46957 4.62502 3.96086 5.03702 3.58579C5.44902 3.21071 6.00782 3 6.59048 3H17.5751C18.1578 3 18.7166 3.21071 19.1286 3.58579C19.5406 3.96086 19.772 4.46957 19.772 5V21Z"
+                    />
+                    <path
+                      class="bookmark-path2"
+                      d="M19 21L12 17L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z"
+                    />
+                    <path class="bookmark-path3" d="M12 7V13" />
+                    <path class="bookmark-path4" d="M15 10H9" />
+                  </svg>
+                </figure>
+              </div>
+            {% endfor %}
+          </article>
+          <article class="inbox-area">
+            <div class="inbox-content-container">
+              <div class="inbox-header-container">
+                <div class="inbox-header">
+                  <div class="inbox">
+                    <h1>Inbox</h1>
+                    <svg
+                      class="inbox-icon"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="inbox-path1"
+                        d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z"
+                      />
+                      <path
+                        class="inbox-path2"
+                        d="M22 7L13.03 12.7C12.7213 12.8934 12.3643 12.996 12 12.996C11.6357 12.996 11.2787 12.8934 10.97 12.7L2 7"
+                      />
+                    </svg>
+                  </div>
+                  <div class="inbox-options">
+                    <div class="tag-container">
+                      <div class="tag tag-highlight">
+                        <p>Unread</p>
+                        <svg
+                          class="small-red-dot"
+                          viewBox="0 0 7 7"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect width="7" height="7" rx="3.5" fill="#E13E3E" />
+                        </svg>
+                      </div>
+                      <div class="tag">
+                        <p>Requests</p>
+                        <svg
+                          class="small-red-dot"
+                          viewBox="0 0 7 7"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect width="7" height="7" rx="3.5" fill="#E13E3E" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div class="expand">
+                      <p>Expand</p>
+                      <svg
+                        class="down-arrow"
+                        viewBox="0 0 12 12"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path class="down-arrow-path" d="M3 4.5L6 7.5L9 4.5" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-container">
+                <div class="chat">
+                  <figure class="chat-profile-pic">
+                    <img src="../static/images/anonRectangle160.png" alt="Profile pic" />
+                  </figure>
+                  <div class="chat-details">
+                    <p>Purplepineapple</p>
+                    <p class="message">Sent a post.</p>
+                  </div>
+                  <svg
+                    class="big-red-dot"
+                    viewBox="0 0 10 10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="10" height="10" rx="5" fill="#E13E3E" />
+                  </svg>
+                </div>
+              </div>
+              
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

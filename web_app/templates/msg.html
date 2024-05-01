@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/msg.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"> </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
+    <script src="../static/scripts/message.js"></script>
+    <title>Chat App</title>
+</head>
+<body>
+    <div class="container" id='{{ user.id }}'>
+        <section class="header">
+            <h2>{{ user.name }}'s Inbox</h2>
+        </section>
+        <section class="body" id="chat-container">
+            <div class="messages" id="recieve">
+                <p>hello</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>how are you</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>just there.</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>aksjaksnkansanknkjasnkjndkneiinifruniefierufnerviunvinvivreiunivniiiuernieiuveive</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>hello</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>how are you</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>just there.</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>aksjaksnkansanknkjasnkjndkneiinifruniefierufnerviunvinvivreiunivniiiuernieiuveive</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>hello</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>how are you</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>just there.</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>aksjaksnkansanknkjasnkjndkneiinifruniefierufnerviunvinvivreiunivniiiuernieiuveive</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>hello</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>how are you</p>
+            </div>
+            <div class="messages" id="recieve">
+                <p>just there.</p>
+            </div>
+            <div class="messages" id="sent">
+                <p>aksjaksnkansanknkjasnkjndkneiinifruniefierufnerviunvinvivreiunivniiiuernieiuveive</p>
+            </div>
+        </section>
+        <section class="footer">
+            <input type="text" id="message" autocomplete="off" placeholder="Enter a message">
+            <button id="send">Send</button>
+        </section>
+    </div>
+</body>
+</html>
+
