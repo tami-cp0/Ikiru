@@ -13,7 +13,8 @@ $(document).ready(() => {
   console.log('other id')
   console.log(other_id)
 
-  let socket = io.connect("http://127.0.0.1:5001")
+  let home = io.connect("http://127.0.0.1:5001")
+  let socket = io.connect("http://127.0.0.1:5001/msg")
   socket.on('connect', () => {
       socket.send({"content": "User connected!"});
   });
