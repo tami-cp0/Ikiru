@@ -15,7 +15,7 @@ $(() => {
   
     //post using socket connected to http://127.0.0.1:5000/home
     // everyone that his/her socket connected using http://127.0.0.1:5000/home and listening receive the post instantly
-    $().on("click" () => {
+    $().on("click", () => {
       
       // send the post to backend eventlistener "post"
       socket.emit("post", data);
