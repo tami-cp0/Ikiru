@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 import secrets
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
 from web_app.views import app_views
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 from models.user import User
 from models import storage
-from flask_socketio import SocketIO
+from web_app.socketio.upload_socket import socket
 
 app = Flask(__name__)
 secret = "1b80974004ebbd9de8c0d22bb4906475b1"
@@ -27,7 +27,6 @@ def load_user(id):
 
 login_manager.init_app(app)
 bcrypt = Bcrypt(app)
-socket = SocketIO(cors_allowed_origins="*")
 socket.init_app(app)
 
 
@@ -57,10 +56,10 @@ def log_out():
 
 
 # <a href="{{ url_for('msg', username=user.username) }}">inbox</a>
-# @app.route("/msg/<username>", strict_slashes=False)
-# @login_required
-# def msg(username):
-#     return render_template("msg.html", user=current_user.to_dict(), username=username)
+@app.route("/msg/<username>", strict_slashes=False)
+@login_required
+def msg(username):
+     return render_template("msg.html", user=current_user.to_dict(), username=username)
 
 
 # @socket.on('message')
