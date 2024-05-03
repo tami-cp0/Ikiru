@@ -7,7 +7,5 @@ $(document).ready(function () {
         } else {
             buttonText.text('Public');
         }
-
-        // console.log('Clicked on switch button');
     });
 });
