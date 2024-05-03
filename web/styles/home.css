@@ -812,9 +812,18 @@ main {
     border: none;
 }
 
+.quote-oasis::-webkit-scrollbar {
+    width: 5px;
+    border: none;
+}
+
 textarea::-webkit-scrollbar {
     width: 5px;
     border: none;
+}
+
+.quote-oasis::-webkit-scrollbar-thumb {
+    background: var(--light-grey);
 }
 
 /* Define scrollbar handle */
@@ -832,6 +841,10 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 textarea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.quote-oasis::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
