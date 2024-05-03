@@ -1016,3 +1016,9 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
 }
+
+@media screen and (min-width: 1528px) {
+    header {
+        padding-left: 180px;
+    }
+}
