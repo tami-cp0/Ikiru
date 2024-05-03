@@ -433,7 +433,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: ce;
     height: 100px;
     font-size: 12px;
     color: #8F8F8F;
