@@ -1024,4 +1024,17 @@ textarea::-webkit-scrollbar-thumb:hover {
     .inbox-area {
         margin-top: 60px;
     }
+
+    .highlighter {
+        padding-top: 13px !important;
+    }
+
+    #profile-container {
+        margin-top: 13px;
+    }
+
+    .nav-item {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
 }
