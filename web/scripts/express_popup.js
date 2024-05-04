@@ -182,10 +182,10 @@ $(document).ready(function () {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
 
-            const inputArea = document.getElementsByClassName('express-input-area')[0];
-            if ($(inputArea).hasClass('express-input-area')) {
-                darkMode.classList.remove('darkmode-icon2');
-            } 
+            // const inputArea = document.getElementsByClassName('express-input-area')[0];
+            // if ($(inputArea).hasClass('express-input-area')) {
+            //     darkMode.classList.remove('darkmode-icon2');
+            // } 
             $(this).closest('.express-input-area').css('height', textareaHeight + 'px');
 
             // Enable scrollbar when textarea height exceeds 100px

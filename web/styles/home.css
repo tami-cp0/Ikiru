@@ -433,7 +433,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: ce;
     height: 100px;
     font-size: 12px;
     color: #8F8F8F;
@@ -849,13 +848,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 /* Media queries for 1920x1080 */
-@media screen and (min-width: 1919px) and (min-height: 768px) {
+@media screen and (min-width: 1528px) {
     body {
         font-size: 16px;
     }
 
     header {
-        padding-left: 320px;
+        padding-left: 125px;
     }
 
     .logo {
@@ -1000,6 +999,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
     .chat {
         padding-left: 15px;
+        height: 90px;
     }
 
     .big-red-dot {
@@ -1017,12 +1017,8 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 }
 
-@media screen and (min-width: 1528px) {
+@media screen and (min-width: 1919px) {
     header {
-        padding-left: 180px;
-    }
-
-    .inbox-area {
-        margin-top: 60px;
+        padding-left: 320px;
     }
 }
