@@ -37,9 +37,9 @@ RESET = "\033[0m"
 GREEN = "\033[32m"
 print(GREEN + "     --RESETTING DATABASE--" + RESET)
 #  "eM1P<l?55MAL"
-if not dir.endswith("Ikiru"):
-    print(BLUE + "This script can only be run in the Ikiru directory" + RESET)
-    exit(1)
+# if not dir.endswith("Ikiru"):
+#     print(BLUE + "This script can only be run in the Ikiru directory" + RESET)
+#     exit(1)
 local('cat setups/reset_db.sql | mysql -u ikiru_user --password="password"')
 local('echo "quit" | ./console.py')
 print(GREEN + "--DB reset complete--" + RESET)

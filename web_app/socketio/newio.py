@@ -16,22 +16,16 @@ class InboxMessage(Namespace):
             del online[current_user.username]
             print(f"{current_user.username} disconnneted with id {request.sid}")
     
-    
-    def on_post(self, data):
-        #save the post to db before emit
-    
-        #send instant post to all user on home page
-        emit("post", data, namespace="/home")
-    
-    
+  
   
     def on_message(self, data):
         #save the post to db before emit
         #if data["receiver_username"] in online:
         print(data)
             #room = online[data["receiver_username"]]
-            #namespace = f"/msg/{data['receiver_username']}"
+        namespace = "/{}".format(data.get("room"))
+        print(namespace)
             #emit("receiver_message", data, namespace="/msg")
             #send instant post to all user on home page
             #namespace = f"/{data['receiver_username']}"
-            #emit("receive_message", data, namespace=namespace, room=room)
+        emit("receive_message", data["content"], namespace="/private", broadcast=True)

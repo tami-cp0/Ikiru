@@ -2,10 +2,10 @@ $(document).ready(() => {
   const id = $('.container').attr('id');
   let other_id;
 
-  if (id === "233bfba0-9195-4509-bea9-e0b716fbeaf4") {
-    other_id = "7f772738-33a7-4ba6-aa8a-b74437551806"
+  if (id === "54bd8295-0cd0-4414-8294-0ec4b3f6b5ee") {
+    other_id = "fdddd062-9446-4ab9-95ae-6c28a0241f2a"
   } else {
-    other_id = "233bfba0-9195-4509-bea9-e0b716fbeaf4" // tunde
+    other_id = "54bd8295-0cd0-4414-8294-0ec4b3f6b5ee" // tunde
   }
 
   console.log('id')
@@ -13,7 +13,7 @@ $(document).ready(() => {
   console.log('other id')
   console.log(other_id)
 
-  let home = io.connect(`http://127.0.0.1:5001/${id}`)
+  let home = io.connect(`127.0.0.1:5001/msg`)
   let socket = io.connect("127.0.0.1:5001/private")
   socket.on('connect', () => {
       socket.send({"content": "User connected!"});
@@ -52,7 +52,7 @@ $(document).ready(() => {
     })
     .done(function(response) {
         json_data = {};
-        json_data['room'] = response.conversation_id;
+        json_data['room'] = other_id;
         json_data['content'] = response.content;
         const convo_id = response.conversation_id;
         // Now you can work with json_data or do other operations
@@ -66,25 +66,28 @@ $(document).ready(() => {
     // convo_id = await response;
     return json_data;
   }
+home.on('connect', () => {
+      home.send({"content": "Home connected!"});
+  });
 
-//   socket.on('message', function(data) {
-//     if (data.trim() !== '') {
-//       $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + data + '</p>'));
-//       // Set scroll bar position
-//       var container = document.getElementById("chat-container");
-//       container.scrollTop = container.scrollHeight;
+socket.on('receive_message', function(data) {
+    if (data.trim() !== '') {
+      $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + data + '</p>'));
+      // Set scroll bar position
+      var container = document.getElementById("chat-container");
+      container.scrollTop = container.scrollHeight;
 
-//   //     $.post({
-//   //       url:`http://127.0.0.1:5000/api/v1/${id}/${other_id}/conversations/16e33d8b-b902-44eb-afb5-e66d25cdd3ab`,
-//   //       contentType: 'application/json',
-//   //       data: JSON.stringify({'content': data}),
-//   //       error: function (xhr, status, error) {
-//   //         // Handle error
-//   //         console.error('Error:', error);
-//   //       }
-//   //     });
-//   //   }
-//   }
+  //     $.post({
+  //       url:`http://127.0.0.1:5000/api/v1/${id}/${other_id}/conversations/16e33d8b-b902-44eb-afb5-e66d25cdd3ab`,
+  //       contentType: 'application/json',
+  //       data: JSON.stringify({'content': data}),
+  //       error: function (xhr, status, error) {
+  //         // Handle error
+  //         console.error('Error:', error);
+  //       }
+  //     });
+  //   }
+  }
 //   // 5a4ab977-a207-4a1f-b024-1c508f277aa0
 //   // const get = $.get('http://web-01.tamilore.tech/api/v1/users/id/conversations/id/messages')
 
@@ -96,7 +99,7 @@ $(document).ready(() => {
 //   // document.addEventListener('DOMContentLoaded', async function(event) {
 //   //   console.log("===============DOMContentLoaded=============================")
     
-//   });
+  });
 
 
 
@@ -126,5 +129,5 @@ $(document).ready(() => {
 //   //     }
 //   //     display_msg();
 //   //   }
-//   // }
+// }
  });
