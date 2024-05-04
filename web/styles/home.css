@@ -446,11 +446,12 @@ main {
 /* Darkmode icon */
 .darkmode-icon {
     margin-top: 30px;
+    margin-left: 35px;
     cursor: pointer;
 }
 
 .darkmode-icon img {
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 
@@ -939,6 +940,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
     .darkmode-icon {
         margin-top: 91px !important;
+        margin-left: 20px;
     }
 
     .darkmode-icon2 {
@@ -947,7 +949,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 
     .darkmode-icon img {
-        width: 100%;
+        width: 65%;
     }
 
     .right-section,
