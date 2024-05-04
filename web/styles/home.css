@@ -999,7 +999,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
     .chat {
         padding-left: 15px;
-        height: 90px;
+        height: 70px;
     }
 
     .big-red-dot {
@@ -1007,7 +1007,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .inbox-area {
-        margin-top: 60px;
+        margin-top: 40px;
     }
 
     .inbox,
@@ -1020,5 +1020,9 @@ textarea::-webkit-scrollbar-thumb:hover {
 @media screen and (min-width: 1919px) {
     header {
         padding-left: 320px;
+    }
+
+    .inbox-area {
+        margin-top: 60px;
     }
 }
