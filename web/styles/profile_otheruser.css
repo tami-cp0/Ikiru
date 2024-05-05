@@ -177,9 +177,6 @@ main {
     margin-top: 7px;
 }
 
-.highlighter {
-    padding-top: 7px !important;
-}
 
 .nav-item {
     display: flex;
@@ -197,14 +194,6 @@ main {
 }
 
 /* Navigation icons */
-
-/* home */
-.highlighter img {
-    width: 20px;
-    height: 36px;
-    margin-left: -60px;
-    margin-right: 40px;
-}
 
 .home-icon {
     width: 22px;
@@ -229,13 +218,12 @@ main {
 }
 
 #profile {
-    color: var(--primary);
     padding-left: 2px;
 }
 
 .profile-icon-path1,
 .profile-icon-path2 {
-    stroke: var(--primary);
+    stroke: var(--grey);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -243,7 +231,7 @@ main {
 
 /* Settings */
 .settings-container {
-    margin-top: 7px;
+    margin-top: 13px;
 }
 
 .settings-icon {
@@ -476,14 +464,38 @@ main {
     margin-bottom: 25px;
 }
 
-.edit-profile-button {
+.profile-buttons-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-profile-button,
+.add-friend {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--primary);
+    width: 141px;
     height: 26px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.message-profile-button p,
+.add-friend p {
+    margin-right: 10px;
+}
+
+.message-profile-button img,
+.add-friend img {
+    width: 15%;
+    height: auto;
+}
+
+#mute_notif {
+    width: 20px;
+    height: 20px;
 }
 
 .user-profile-info {
@@ -492,10 +504,7 @@ main {
     align-items: center;
     justify-content: center;
 }
-.user-profile-img img {
-    width: 100px;
-    height: 100px;
-}
+
 
 .username_handle {
     display: flex;
