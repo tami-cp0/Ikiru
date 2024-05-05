@@ -192,7 +192,9 @@ main {
     padding-left: 60px;
 }
 
-
+.home-container {
+    padding-bottom: 7px;
+}
 
 /* Navigation icons */
 
@@ -212,15 +214,10 @@ main {
 
 .home-icon-path1,
 .home-icon-path2 {
-    stroke: var(--primary);
+    stroke: var(--grey);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-}
-
-#home {
-    color: var(--primary);
-    /* padding-bottom: 5; */
 }
 
 /* Profile */
@@ -232,18 +229,23 @@ main {
 }
 
 #profile {
+    color: var(--primary);
     padding-left: 2px;
 }
 
 .profile-icon-path1,
 .profile-icon-path2 {
-    stroke: var(--grey);
+    stroke: var(--primary);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 /* Settings */
+.settings-container {
+    margin-top: 7px;
+}
+
 .settings-icon {
     width: 22px;
     height: 22px;
@@ -490,6 +492,7 @@ main {
     align-items: center;
     justify-content: center;
 }
+
 
 .username_handle {
     display: flex;
