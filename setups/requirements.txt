@@ -6,7 +6,6 @@ flask_limiter==3.6.0
 flask_login==0.6.3
 flask_socketio==5.3.6
 flask_wtf==1.2.1
-MySQL-python==1.2.5
 pep8==1.7.1
 SQLAlchemy==2.0.27
 WTForms==3.1.2
