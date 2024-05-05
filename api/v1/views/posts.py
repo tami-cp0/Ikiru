@@ -98,7 +98,7 @@ def get_post(post_id):
 @swag_from('documentation/post/all_user_posts.yml', methods=['GET'])
 def get_user_posts(user_id):
     """
-    Retrieves all posts created by a specific user.
+    Retrieves all posts created by a specific user. IN ORDER OF CREATION
     """
     user = storage.get(User, user_id)
     if not user:
@@ -114,7 +114,7 @@ def get_user_posts(user_id):
         data["comments"] = len(post.comments)
         posts_data.append(data)
 
-    posts_data.sort(key=lambda x: x["created_at"])
+    posts_data.sort(key=lambda x: x["created_at"], reverse=True)
     return jsonify(posts_data)
 
 
@@ -135,8 +135,13 @@ def create_post(user_id):
     data["user_id"] = user_id
     post = Post(**data)
     post.save()
+    
+    data = post.to_dict()
+    data["username"] = user.username
+    data["name"] = user.name
+    data["comments"] = len(post.comments)
 
-    return make_response(jsonify(post.to_dict()), 201)
+    return make_response(jsonify(data), 201)
 
 
 @apis.route(

@@ -33,8 +33,7 @@ socket.init_app(app)
 @app.route('/')
 @login_required
 def root():
-    return redirect(url_for("app_views.home",
-                            username=current_user.to_dict().username))
+    return redirect(url_for("app_views.home"))
 
 
 @app.route('/about')
@@ -51,8 +50,7 @@ def alx_sign_in():
         admin.save()
 
     login_user(admin)
-    return redirect(url_for('app_views.home',
-                            username=current_user.to_dict().username))
+    return redirect(url_for('app_views.home'))
 
 
 @app.route('/log_out', strict_slashes=False)

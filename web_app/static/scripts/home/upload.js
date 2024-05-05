@@ -1,14 +1,15 @@
 function populate_post (data) {
+  console.log(data);
     const name = $('.user-details .username').text();
     const post_html = `<article class="post">
           <div class="left-side">
             <figure id="post-profile-pic">
-              <img src="../static/images/anonRectangle160.png" alt="Profile picture" />
+              <a href="/${data.username}"><img src="../static/images/anonRectangle160.png" alt="Profile picture" /></a>
             </figure>
             <div class="thread"></div>
           </div>
           <div class="content">
-            <p class="name">${name}</p>
+            <p class="name"><a href="/${data.username}">${name}</a></p>
             <p class="post-text">${data.content}</p>
             <p class="id" id="{{ post.id }}" style="display: none;"></p>
             <div class="post-interaction">
@@ -90,13 +91,16 @@ $(document).ready( () => {
         data: JSON.stringify({'content': content}),
         success: function (response) {
           json_response = populate_post(response);
+          setTimeout(function() {
+            $('.feed-section').prepend(json_response);
+            $('.post-section').prepend(json_response);
+          }, 1000);
         },
         error: function (xhr, status, error) {
           console.error('Error:', error);
         }
       });
-
-      $('.feed-section').prepend(json_response);
+    
       $('.express-input-area textarea').val('');
     }
   });

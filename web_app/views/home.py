@@ -16,9 +16,9 @@ from datetime import timedelta, datetime
 last_request = None
 quotes = None
 
-@app_views.route("/home/<username>", strict_slashes=False)
+@app_views.route("/home", strict_slashes=False)
 @login_required
-def home(username):
+def home():
     global last_request
     global quotes
 

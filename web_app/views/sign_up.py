@@ -101,7 +101,7 @@ def sign_up():
             )
             user.save()
             login_user(user)
-            return redirect(url_for('app_views.home', username=user.username))
+            return redirect(url_for('app_views.home'))
 
     if form.errors != {}:
         for message in form.errors.values():

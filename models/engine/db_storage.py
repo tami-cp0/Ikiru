@@ -33,7 +33,7 @@ class DBStorage():
         username = "ikiru_user"
         password = "password"
         hostname = "localhost"
-        database = "ikiru_dev_db"
+        database = "ikiru_db"
         running_environment = "dev"
         self.__engine = create_engine(
             f"mysql+mysqldb://{username}:{password}@{hostname}/{database}",

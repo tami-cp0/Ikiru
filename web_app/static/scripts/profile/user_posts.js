@@ -1,25 +1,11 @@
-const id = $('.user-details .user-id').attr('id');
-let refreshed = null;
-
-if (window.performance.getEntriesByType) {
-  const navigationEntry = window.performance.getEntriesByType("navigation")[0];
-  if (["reload", "navigate"].includes(navigationEntry.type)) {
-    refreshed = "refreshed";
-  }
-}
-
-const rootElement = $('.feed-section');
-const loader = document.getElementById("loading");
-let data = ['activate'];
+const id = $('.username_handle .user-id').attr('id');
 
 function fetchPosts () {
   $.get({
-    url: `http://127.0.0.1:5000/api/v1/posts/9/${refreshed}/${id}`,
+    url: `http://127.0.0.1:5000/api/v1/users/${id}/posts`,
     contentType: 'application/json',
   })
   .done(function (responses) {
-    refreshed = null;
-    data = responses;
     for (response of responses) {
       const post_html = `<article class="post">
                 <div class="left-side">
@@ -88,36 +74,14 @@ function fetchPosts () {
                   </div>
                 </div>
               </article>`;
-      $('.feed-section').append(post_html);
-    }
-    if (!data.length) {
-      $('#loading').text('No more posts');
+      $('.post-section').append(post_html);
     }
   })
   .fail(function (xhr, status, error) {
       console.error('Error:', error);
-      $('#loading').text('No more posts');
   });    
 }
 
-if (data) {
-  document.addEventListener("DOMContentLoaded", () => {
-    let options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.25
-    };
-
-    function handleIntersect (entries, observer) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          fetchPosts();
-        }
-      });
-    }
-
-    let observer = new IntersectionObserver(handleIntersect, options);
-
-    observer.observe(loader);
-  });
-}
+$(document).ready(() => {
+  fetchPosts();
+});
