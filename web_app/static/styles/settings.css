@@ -426,16 +426,14 @@ main .feed-section {
     margin-bottom: 15px;
     padding-bottom: 35px;
     padding-bottom: 35px;
-}
+}b
 
 
 
 .settings img {
     width: 20px;
     height: 36px;
-    margin-left: -140px;
-    margin-right: -150px;
-    margin-bottom: -300px;
+    /* margin-bottom: -300px; */
 }
 
 .settings {
@@ -447,13 +445,14 @@ main .feed-section {
      padding-bottom: 35px;
 }
 
-/* div #active {
+div #active {
     display: flex;
-    justify-content: center;
-} */
+    justify-content: space-between;
+     color: var(--primary);
+}
 
 #active p {
-    color: var(--primary);
+   
 }
 
 .post {
