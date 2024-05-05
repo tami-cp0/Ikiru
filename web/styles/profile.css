@@ -683,10 +683,6 @@ main {
         font-size: 36px;
     }
 
-    .feeds {
-        font-size: 24px;
-    }
-
     .nav-container {
         font-size: 16px;
     }
@@ -773,70 +769,13 @@ main {
         width: 65%;
     }
 
-    .right-section,
-    .right-section-container {
-        width: 387px;
+    .right-section {
+        width: 1028px;
     }
 
-    .quote-oasis {
-        height: 311px;
-    }
-
-    .quote {
-        font-size: 16px;
-    }
-
-    .inbox-area {
-        width: 371px;
-        height: 441px;
-    }
-
-    .chat-container {
-        height: 325px;
-    }
-
-    .chat img {
-        width: 100%;
-    }
-
-    .chat-details {
-        margin-left: 10px;
-    }
-
-    .inbox-header {
-        font-size: 18px;
-    }
-
-    .tag-container {
-        font-size: 12px;
-    }
-
-    .expand {
-        font-size: 12px;
-        margin-right: 10px;
-    }
-
-    .chat-details {
-        font-size: 16px;
-    }
-
-    .chat {
-        padding-left: 15px;
-        height: 70px;
-    }
-
-    .big-red-dot {
-        margin-left: 20px;
-    }
-
-    .inbox-area {
-        margin-top: 40px;
-    }
-
-    .inbox,
-    .inbox-options {
-        margin-left: 15px;
-    }
+   .post-section {
+    height: 640px;
+   }
 
 }
 
@@ -845,7 +784,7 @@ main {
         padding-left: 320px;
     }
 
-    .inbox-area {
-        margin-top: 60px;
+    .post-section {
+        height: 740px;
     }
 }
