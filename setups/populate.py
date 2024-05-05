@@ -73,7 +73,7 @@ users = [
         "name": "John",
         "username": "john12",
         "sex": "Male",
-        "password": "oK01hCaOt!D5xHO",
+        "password": "12345678",
         "email": "drundle3@abc.net.au",
         "dob": "2007-05-06"
     },

@@ -108,3 +108,46 @@ body {
     border-radius: 2px;
     font-family: Inter-Regular;
 }
+
+
+
+
+
+/* also changed chat-profile pic to 100% width upward*/
+.chat .chat-details p {
+    height: 20px;
+    width: 170px;
+    margin-left: 5px;
+    border: 1px solid;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* .chat .chat-details div {
+    margin-left: 5px;
+    display: flex;
+    
+} */
+
+/* .chat .chat-details div p {
+    margin: 0px;
+}
+.chat .chat-details div p:first-child {
+    border: 1px solid yellow;
+    flex: 2;
+}
+.chat .chat-details div p:nth-child(2) {
+    border: 1px solid blue;
+    flex: 0.8;
+
+}
+.chat img {
+    width: 100%;
+} */
+
+
+.chat-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; /* firefox */
+}

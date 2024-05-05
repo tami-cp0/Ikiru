@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-# import bcrypt
-# from models import storage
-# from models import conversation
-# from models.conversation import Conversation
-# from models.user import User
-# from models.message import Message
-# from models.post import Post
-# from datetime import datetime, date
-# from flask_bcrypt import Bcrypt
+import bcrypt
+from models import storage
+from models import conversation
+from models.conversation import Conversation
+from models.user import User
+from models.message import Message
+from models.post import Post
+from datetime import datetime, date
+from flask_bcrypt import Bcrypt
 
 
 
@@ -17,36 +17,64 @@
 
 # conversations = user.received_conversations
 # print([conversation.to_dict() for conversation in conversations])
+user = storage.get(User, id="2950d190-52ee-492c-bc4f-e062ec2b05a6")
+total_posts = [post.to_dict() for post in user.posts]
+total_posts.sort(key=lambda x: x["created_at"], reverse=True)
+print(total_posts[0])
 
 
 
 
 
-import random
-from urllib import response
-import requests
-from datetime import timedelta, datetime
+# import random
+# from urllib import response
+# import requests
+# from datetime import timedelta, datetime
 
-last_request = None
-quotes = None
 
-def home():
-    global last_request
-    global quotes
+
+
+
+# response = requests.get("http://127.0.0.1:5000/api/v1/posts/9").json()
+# print(response) 
+
+# last_request = None
+# quotes = None
+
+# def home():
+#     global last_request
+#     global quotes
     
-    if last_request is None or datetime.now() - last_request > timedelta(hours=6):
-        url = "https://zenquotes.io/api/quotes"
-        response = requests.get(url, allow_redirects=False).json()
-        quotes = response[:3]
-        last_request = datetime.now()
-    else:
-        quotes = quotes
+#     if last_request is None or datetime.now() - last_request > timedelta(hours=6):
+#         url = "https://zenquotes.io/api/quotes"
+#         response = requests.get(url, allow_redirects=False).json()
+#         quotes = response[:3]
+#         last_request = datetime.now()
+#     else:
+#         quotes = quotes
 
-    print(quotes)
+#     print(quotes)
 
 
-home()
+# home()
 
+
+
+    # user = current_user.to_dict()
+
+    # posts = storage.all(Post).values()
+    # posts_data = []
+    # for post in posts:
+    #     if post.user_id == current_user.id:
+    #         continue
+    #     data = post.to_dict()
+    #     user = storage.get(User, id=post.user_id)
+    #     data["name"] = user.name
+    #     data["username"] = user.username
+    #     data["comments"] = len(post.comments)
+    #     posts_data.append(data)
+
+    # posts = random.choice(posts_data)
 # mydict = {"name": "Josh", "username": "ragoyam", "sex": "Male", "password": "as8asPju", "email": "joshal@gmail.com", "dob": "2010-04-17"}
 
 # import secrets

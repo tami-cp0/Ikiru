@@ -163,17 +163,16 @@ $(document).ready(function () {
             'margin-top': '0px',
         });
 
-        $('.darkmode-icon').attr('style','margin-top:17.5px');
+        $('.darkmode-icon').attr('style','margin-top:14px');
+
+        const darkMode = document.getElementsByClassName('darkmode-icon')[0];
+        if (window.innerHeight > 768) {
+            darkMode.classList.add('darkmode-icon2');
+        } else {
+            darkMode.classList.remove('darkmode-icon2');
+        }
 
         expressPopup.find('img').css('cursor', 'auto');
-
-        // $('.express-popup').on('click', function(event) {
-        //     console.log('there is a POPUP click');
-        //     if ($(event.target).hasClass('express-button')) {
-        //         console.log('we stopped the popup');
-        //         event.stopPropagation();
-        //     }
-        // });
 
         $('textarea').on('input', function () {
 
@@ -182,6 +181,11 @@ $(document).ready(function () {
         
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
+
+            // const inputArea = document.getElementsByClassName('express-input-area')[0];
+            // if ($(inputArea).hasClass('express-input-area')) {
+            //     darkMode.classList.remove('darkmode-icon2');
+            // } 
             $(this).closest('.express-input-area').css('height', textareaHeight + 'px');
 
             // Enable scrollbar when textarea height exceeds 100px
@@ -191,9 +195,13 @@ $(document).ready(function () {
                 $(this).css('overflow-y', 'hidden');
             }
 
-            // Check if textarea is empty
+
             if ($(this).val().length === 0) {
-                $(this).closest('.express-input-area').css('height', '38px'); // Set back to original height
+                if (window.innerWidth >= 1919) {
+                    $(this).closest('.express-input-area').css('height', '48px');
+                } else {
+                    $(this).closest('.express-input-area').css('height', '38px');
+                }
             }
 
             $('.counter').text(counterLength + '/256');
@@ -210,10 +218,12 @@ $(document).ready(function () {
                     expressButton.insertAfter(expressPopup);
                     $(document).off('mouseup', handleMouseup);
                     $('.darkmode-icon').attr('style','margin-top:30px');
+                    if ($(darkMode).hasClass('darkmode-icon2')) {
+                        darkMode.classList.remove('darkmode-icon2');
+                    }
                 });
             }
         }
-
         $(document).on('mouseup', handleMouseup);
     }); 
     

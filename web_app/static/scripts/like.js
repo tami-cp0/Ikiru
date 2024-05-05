@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.like-button').click(function (e) { 
+    $(document).on('click', '.like-button', function (e) {
         const likeButton = $(this);
 
         if (likeButton.css('fill') === 'none') {
@@ -11,3 +11,5 @@ $(document).ready(function () {
         }
     });
 });
+
+

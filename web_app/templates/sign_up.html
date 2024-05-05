@@ -17,7 +17,7 @@
           <nav>
             <h1 class="logo">Ikiru</h1>
               <ul>
-                <li><a href="">About</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="">FAQs</a></li>
                 <li><a href="">Help</a></li>
               </ul>
@@ -39,8 +39,9 @@
                 {{ form.name }}
                 {% with messages = get_flashed_messages(with_categories=True) %}
                   {% if messages %}
+                    {% set ns = namespace(found=false) %}
                     {% for category, message in messages %}
-                      {% if message[0][:8] == "Username" %}
+                      {% if message[0][:8] == "Username" and ns.found == false %}
                         {{ form.username.label(for="username", id="label-error") }}
                         {{ form.username(class="form-error") }}
                         <div class="flash">
@@ -48,7 +49,8 @@
                         </div>
                         {{ form.email.label(for="email", id="email-label") }}
                         {{ form.email }}
-                      {% else %}
+                        {% set ns.found = true %}
+                      {% elif ns.found == false %}
                         {{ form.username.label(for="username", id="username-label") }}
                         {{ form.username }}
                         {{ form.email.label(for="email", id="label-error") }}
@@ -56,8 +58,9 @@
                         <div class="flash">
                           {{ message[0] }}
                         </div>
+                        {% set ns.found = true %}
                       {% endif %}
-                    {% endfor %}
+                    {% endfor %}                  
                   {% else %}
                     {{ form.username.label(for="username", id="username-label") }}
                     {{ form.username }}

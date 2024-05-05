@@ -1,16 +1,16 @@
-{/* <article class="post">
+function populate_post (data) {
+    const name = $('.user-details .username').text();
+    const post_html = `<article class="post">
           <div class="left-side">
             <figure id="post-profile-pic">
-              <img src="../static/images/shanks_avi.png" alt="Profile picture" />
+              <img src="../static/images/anonRectangle160.png" alt="Profile picture" />
             </figure>
             <div class="thread"></div>
           </div>
           <div class="content">
-            <p class="username">shanks</p>
-            <p class="post-text">
-              Been struggling with burn-outs lately. What do you do when you
-              find yourself in<br />this situation?<br /><br />#gymbro
-            </p>
+            <p class="name">${name}</p>
+            <p class="post-text">${data.content}</p>
+            <p class="id" id="{{ post.id }}" style="display: none;"></p>
             <div class="post-interaction">
               <div class="like">
                 <svg
@@ -23,7 +23,7 @@
                     d="M19 14C20.49 12.54 22 10.79 22 8.5C22 7.04131 21.4205 5.64236 20.3891 4.61091C19.3576 3.57946 17.9587 3 16.5 3C14.74 3 13.5 3.5 12 5C10.5 3.5 9.26 3 7.5 3C6.04131 3 4.64236 3.57946 3.61091 4.61091C2.57946 5.64236 2 7.04131 2 8.5C2 10.8 3.5 12.55 5 14L12 21L19 14Z"
                   />
                 </svg>
-                <span>Liked by Joda...</span>
+                <span></span>
               </div>
               <div class="comment">
                 <svg
@@ -36,7 +36,8 @@
                     d="M21.6925 9.41474C21.6965 10.7227 21.342 12.013 20.6579 13.1805C19.8468 14.5796 18.5999 15.7563 17.0568 16.579C15.5137 17.4016 13.7354 17.8376 11.9211 17.8382C10.4038 17.8416 8.90697 17.5361 7.55263 16.9463L1 18.8292L3.18421 13.1805C2.50013 12.013 2.14563 10.7227 2.14958 9.41474C2.15029 7.8507 2.65611 6.31772 3.61038 4.9875C4.56466 3.65728 5.92971 2.58236 7.55263 1.88314C8.90697 1.29343 10.4038 0.987829 11.9211 0.991239H12.4958C14.892 1.1052 17.1552 1.97705 18.8521 3.43986C20.549 4.90267 21.5603 6.85365 21.6925 8.91924V9.41474Z"
                   />
                 </svg>
-                <span><span class="comment-count">2</span> comments</span>
+                <span><span class="comment-count">0<span> comments</span>
+                </span>
               </div>
               <div class="save">
                 <svg
@@ -66,65 +67,39 @@
               </div>
             </div>
           </div>
-        </article>
+        </article>`
 
+  return post_html;
+}
 
-<div class="express-input-area">
-                    <textarea placeholder="express..." maxlength="256"></textarea>
-                </div>
-                <div class="counter-post">
-                    <svg
-                    id="submitButton"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    >
-                    <path
-                        d="M19 13V17C19 17.5304 18.7893 18.0391 18.4142 18.4142C18.0391 18.7893 17.5304 19 17 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V13"
-                        stroke="black"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                    <path
-                        d="M15 6L10 1L5 6"
-                        stroke="black"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                    <path
-                        d="M10 1V13"
-                        stroke="black"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                    </svg>
-                    <div class="counter">0/256</div>
-                </div> */}
-
-$(document).ready(() => {
-  const id = $('.user-details .user-id').attr('id');
-
-  $(document).on('click', '.express-input-area textarea', () => {
-    console.log('hello');
-  });
-
-
-  $(document).on('click', '.counter-post', function() {
+$(document).ready( () => {
+  $(document).on('click', '.counter-post', async function() {
+    console.log('osds');
     content = $('.express-input-area textarea').val();
-    $.post({
-      url:`http://127.0.0.1:5000/api/v1/users/${id}/posts`,
-      contentType: 'application/json',
-      data: JSON.stringify({'content': content}),
-      error: function (xhr, status, error) {
-        // Handle error
-        console.error('Error:', error);
-      }
-    });
-  });
+    let json_response;
+    // var container = document.getElementById("qwerty");
+    // console.log(document.scrollTop);
+    // container.scrollTop = container.scrollHeight;
 
+    // console.log($('textarea').scrollHeight);
+
+    if (content != '') {
+      await $.post({
+        url:`http://127.0.0.1:5000/api/v1/users/${id}/posts`,
+        contentType: 'application/json',
+        data: JSON.stringify({'content': content}),
+        success: function (response) {
+          json_response = populate_post(response);
+        },
+        error: function (xhr, status, error) {
+          console.error('Error:', error);
+        }
+      });
+
+      $('.feed-section').prepend(json_response);
+      $('.express-input-area textarea').val('');
+    }
+  });
 });
+
+

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.save-button').click(function (e) { 
+    $(document).on('click', '.save-button', function (e) {
         const saveButton = $(this);
 
         if (saveButton.css('fill') === 'none') {

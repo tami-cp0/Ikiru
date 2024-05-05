@@ -5,10 +5,10 @@ $(document).ready(function() {
 
         if (fieldType === "password") {
             passwordField.attr("type", "text");
-            $("#togglePassword").attr("src", "images/close_eye.png")
+            $("#togglePassword").attr("src", "../static/images/close_eye.png")
         } else {
             passwordField.attr("type", "password");
-            $("#togglePassword").attr("src", "images/open_eye.png")
+            $("#togglePassword").attr("src", "../static/images/open_eye.png")
         }
     });
 });

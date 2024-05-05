@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="../static/styles/home.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"> </script>
-    <script src="../static/scripts/express_popup.js"></script>
-    <script src="../static/scripts/like.js"></script>
-    <script src="../static/scripts/save.js"></script>
-    <script src="../static/scripts/home/upload.js"></script>
-
+    <script src="../static/scripts/express_popup.js" ></script>
+    <script src="../static/scripts/like.js" defer></script>
+    <script src="../static/scripts/save.js" defer></script>
+    <script src="../static/scripts/public_anon.js" defer></script>
+    <script src="../static/scripts/home/upload.js" defer></script>
+    <script src="../static/scripts/home/posts.js" defer></script>
+    <script src="../static/scripts/home/inbox.js" defer></script>
     <title>Home - Ikiru</title>
   </head>
   <body>
@@ -84,7 +86,7 @@
                 </svg>
                 <a href="home.html" id="home">Home</a>
               </div>
-              <div class="nav-item">
+              <div class="nav-item" id="profile-container">
                 <svg
                   class="profile-icon"
                   viewBox="0 0 24 28"
@@ -158,106 +160,43 @@
           </figure>
         </div>
       </section>
-      <section class="feed-section">
-        {% for post in posts %}
-          <article class="post">
-            <div class="left-side">
-              <figure id="post-profile-pic">
-                <img src="../static/images/anonRectangle160.png" alt="Profile picture" loading="lazy" />
-              </figure>
-              <div class="thread"></div>
-            </div>
-            <div class="content">
-              <p class="name">{{ post.name }}</p>
-              <p class="post-text">{{ post.content }}</p>
-              <div class="post-interaction">
-                <div class="like">
-                  <svg
-                    class="like-button post-interaction-buttons"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      class="like-button-path"
-                      d="M19 14C20.49 12.54 22 10.79 22 8.5C22 7.04131 21.4205 5.64236 20.3891 4.61091C19.3576 3.57946 17.9587 3 16.5 3C14.74 3 13.5 3.5 12 5C10.5 3.5 9.26 3 7.5 3C6.04131 3 4.64236 3.57946 3.61091 4.61091C2.57946 5.64236 2 7.04131 2 8.5C2 10.8 3.5 12.55 5 14L12 21L19 14Z"
-                    />
-                  </svg>
-                  <span><span>
-                </div>
-                <div class="comment">
-                  <svg
-                    class="comment-button post-interaction-buttons"
-                    viewBox="0 0 23 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      class="comment-button-path"
-                      d="M21.6925 9.41474C21.6965 10.7227 21.342 12.013 20.6579 13.1805C19.8468 14.5796 18.5999 15.7563 17.0568 16.579C15.5137 17.4016 13.7354 17.8376 11.9211 17.8382C10.4038 17.8416 8.90697 17.5361 7.55263 16.9463L1 18.8292L3.18421 13.1805C2.50013 12.013 2.14563 10.7227 2.14958 9.41474C2.15029 7.8507 2.65611 6.31772 3.61038 4.9875C4.56466 3.65728 5.92971 2.58236 7.55263 1.88314C8.90697 1.29343 10.4038 0.987829 11.9211 0.991239H12.4958C14.892 1.1052 17.1552 1.97705 18.8521 3.43986C20.549 4.90267 21.5603 6.85365 21.6925 8.91924V9.41474Z"
-                    />
-                  </svg>
-                  <span><span class="comment-count">{{ post.comments }}</span> comment{{ 's' if post.comments > 0 else '' }}</span>
-                </div>
-                <div class="save">
-                  <svg
-                    class="save-button"
-                    viewBox="0 0 19 21"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      class="save-button-path"
-                      d="M17.0942 19.8199L9.04709 14.8649L1 19.8199V3.96393C1 3.43827 1.24223 2.93414 1.67341 2.56245C2.10459 2.19075 2.68939 1.98193 3.29917 1.98193H14.795C15.4048 1.98193 15.9896 2.19075 16.4208 2.56245C16.8519 2.93414 17.0942 3.43827 17.0942 3.96393V19.8199Z"
-                    />
-                  </svg>
-                  <span>Save</span>
-                </div>
-                <div class="share">
-                  <svg
-                    class="share-button"
-                    viewBox="0 0 24 21"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      class="share-button-path"
-                      d="M1 9.919L22.8421 1L12.4958 19.829L10.1967 11.901L1 9.919Z"
-                    />
-                  </svg>
-                  <span>Share</span>
-                </div>
-              </div>
-            </div>
-          </article>
-        {% endfor %}
-      </section>
+      <div class="feed">
+        <section class="feed-section">
+        </section>
+        <div class="load-container"><div id="loading">loading</div></div>
+      </div>
       <section class="right-section">
         <div class="right-section-container">
           <article class="quote-oasis">
             <div class="quotes-heading"><h1>Daily Quotes Oasis</h1></div>
-            {% for quote in quotes %}
-              <div class="quote">
-                <div class="quote-text">
-                  <p>"{{ quote.q }}"</p>
-                  <p class="author">– {{ quote.a }}</p>
+            <div class="quote-container">
+              {% for quote in quotes %}
+                <div class="quote">
+                  <div class="quote-text">
+                    <p>"{{ quote.q }}"</p>
+                    <p class="author">– {{ quote.a }}</p>
+                  </div>
+                  <figure class="bookmark">
+                    <svg
+                      class="bookmark-icon"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="bookmark-path1"
+                        d="M19.772 21L12.0828 16L4.39355 21V5C4.39355 4.46957 4.62502 3.96086 5.03702 3.58579C5.44902 3.21071 6.00782 3 6.59048 3H17.5751C18.1578 3 18.7166 3.21071 19.1286 3.58579C19.5406 3.96086 19.772 4.46957 19.772 5V21Z"
+                      />
+                      <path
+                        class="bookmark-path2"
+                        d="M19 21L12 17L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z"
+                      />
+                      <path class="bookmark-path3" d="M12 7V13" />
+                      <path class="bookmark-path4" d="M15 10H9" />
+                    </svg>
+                  </figure>
                 </div>
-                <figure class="bookmark">
-                  <svg
-                    class="bookmark-icon"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      class="bookmark-path1"
-                      d="M19.772 21L12.0828 16L4.39355 21V5C4.39355 4.46957 4.62502 3.96086 5.03702 3.58579C5.44902 3.21071 6.00782 3 6.59048 3H17.5751C18.1578 3 18.7166 3.21071 19.1286 3.58579C19.5406 3.96086 19.772 4.46957 19.772 5V21Z"
-                    />
-                    <path
-                      class="bookmark-path2"
-                      d="M19 21L12 17L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z"
-                    />
-                    <path class="bookmark-path3" d="M12 7V13" />
-                    <path class="bookmark-path4" d="M15 10H9" />
-                  </svg>
-                </figure>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           </article>
           <article class="inbox-area">
             <div class="inbox-content-container">
@@ -283,17 +222,10 @@
                   <div class="inbox-options">
                     <div class="tag-container">
                       <div class="tag tag-highlight">
-                        <p>Unread</p>
-                        <svg
-                          class="small-red-dot"
-                          viewBox="0 0 7 7"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect width="7" height="7" rx="3.5" fill="#E13E3E" />
-                        </svg>
+                        <p id="friends-tag">Friends</p>
                       </div>
-                      <div class="tag">
-                        <p>Requests</p>
+                      <div class="tag tag-highlight">
+                        <p id="requests-tag">Requests</p>
                         <svg
                           class="small-red-dot"
                           viewBox="0 0 7 7"
@@ -318,24 +250,8 @@
                 </div>
               </div>
               <div class="chat-container">
-                <div class="chat">
-                  <figure class="chat-profile-pic">
-                    <img src="../static/images/anonRectangle160.png" alt="Profile pic" />
-                  </figure>
-                  <div class="chat-details">
-                    <p>Purplepineapple</p>
-                    <p class="message">Sent a post.</p>
-                  </div>
-                  <svg
-                    class="big-red-dot"
-                    viewBox="0 0 10 10"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="10" height="10" rx="5" fill="#E13E3E" />
-                  </svg>
-                </div>
+                <!---->
               </div>
-              
             </div>
           </article>
         </div>

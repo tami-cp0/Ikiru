@@ -67,7 +67,7 @@ def sign_in():
                 else:
                     login_user(user, remember=False)
                 print(session)
-                return redirect(url_for('app_views.home'))
+                return redirect(url_for('app_views.home', username=user.username))
 
         flash("Wrong email, username or password")
     return render_template('sign_in.html', form=form)
