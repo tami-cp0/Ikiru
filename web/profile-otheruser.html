@@ -7,12 +7,14 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <meta name="description" content="Ikiru. Emote freely, Live fully." />
-    <link rel="stylesheet" href="styles/profile.css" />
+    <link rel="stylesheet" href="styles/profile_otheruser.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="scripts/express_popup.js"></script>
     <script src="scripts/like.js"></script>
     <script src="scripts/save.js"></script>
     <script src="scripts/public_anon.js"></script>
+    <script src="scripts/friend.js"></script>
+    <script src="scripts/mute_unmute.js"></script>
     <title>Profile</title>
   </head>
   <body>
@@ -69,8 +71,7 @@
                 </svg>
                 <a href="home.html" id="home">Home</a>
               </div>
-              <div class="nav-item highlighter" id="profile-container">
-                <img src="images/highlighter.png" alt="Highlighter icon">
+              <div class="nav-item" id="profile-container">
                 <svg
                   class="profile-icon"
                   viewBox="0 0 24 28"
@@ -153,7 +154,17 @@
                         <img src="images/options_icon.svg" alt="options-icon">
                     </div>
                     <p class="about">I love this app</p>
-                    <div class="edit-profile-button">Edit Profile</div>
+                    <div class="profile-buttons-div">
+                        <div class="message-profile-button">
+                            <p>Message</p>
+                            <img src="images/inbox_icon.svg" alt="">
+                        </div>
+                        <div class="add-friend">
+                            <p>Add Friend</p>
+                            <img src="images/friend_icon.svg" alt="">
+                        </div>
+                        <img src="images/mute_notif.png" alt="" id="mute_notif">
+                    </div>
                 </div>
                 <div class="user-profile-info">
                     <figure class="user-profile-img">
