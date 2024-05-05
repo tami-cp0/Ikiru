@@ -2,10 +2,10 @@ $(document).ready(() => {
   const id = $('.container').attr('id');
   let other_id;
 
-  if (id === " ac70c507-1695-4843-a3c0-77ca17c977a5") {
-    other_id = "638ba564-4ed2-488a-b9bb-82cfd50d3f9c"
+  if (id === "54bd8295-0cd0-4414-8294-0ec4b3f6b5ee") {
+    other_id = "fdddd062-9446-4ab9-95ae-6c28a0241f2a"
   } else {
-    other_id = "ac70c507-1695-4843-a3c0-77ca17c977a5" // tunde
+    other_id = "54bd8295-0cd0-4414-8294-0ec4b3f6b5ee" // tunde
   }
 
   console.log('id')
@@ -13,7 +13,8 @@ $(document).ready(() => {
   console.log('other id')
   console.log(other_id)
 
-  let socket = io.connect("http://127.0.0.1:5001")
+  let home = io.connect(`127.0.0.1:5001/msg`)
+  let socket = io.connect("127.0.0.1:5001/private")
   socket.on('connect', () => {
       socket.send({"content": "User connected!"});
   });
@@ -51,7 +52,7 @@ $(document).ready(() => {
     })
     .done(function(response) {
         json_data = {};
-        json_data['room'] = response.conversation_id;
+        json_data['room'] = other_id;
         json_data['content'] = response.content;
         const convo_id = response.conversation_id;
         // Now you can work with json_data or do other operations
@@ -65,13 +66,16 @@ $(document).ready(() => {
     // convo_id = await response;
     return json_data;
   }
+home.on('connect', () => {
+      home.send({"content": "Home connected!"});
+  });
 
-  // socket.on('message', function(data) {
-  //   if (data.trim() !== '') {
-  //     $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + data + '</p>'));
-  //     // Set scroll bar position
-  //     var container = document.getElementById("chat-container");
-  //     container.scrollTop = container.scrollHeight;
+socket.on('receive_message', function(data) {
+    if (data.trim() !== '') {
+      $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + data + '</p>'));
+      // Set scroll bar position
+      var container = document.getElementById("chat-container");
+      container.scrollTop = container.scrollHeight;
 
   //     $.post({
   //       url:`http://127.0.0.1:5000/api/v1/${id}/${other_id}/conversations/16e33d8b-b902-44eb-afb5-e66d25cdd3ab`,
@@ -83,47 +87,47 @@ $(document).ready(() => {
   //       }
   //     });
   //   }
-  // });
-  // 5a4ab977-a207-4a1f-b024-1c508f277aa0
-  // const get = $.get('http://web-01.tamilore.tech/api/v1/users/id/conversations/id/messages')
+  }
+//   // 5a4ab977-a207-4a1f-b024-1c508f277aa0
+//   // const get = $.get('http://web-01.tamilore.tech/api/v1/users/id/conversations/id/messages')
 
-  // async function get() {
+//   // async function get() {
 
-  // }
+//   // }
 
 
-  // document.addEventListener('DOMContentLoaded', async function(event) {
-  //   console.log("===============DOMContentLoaded=============================")
+//   // document.addEventListener('DOMContentLoaded', async function(event) {
+//   //   console.log("===============DOMContentLoaded=============================")
     
-  // });
+  });
 
 
 
-  // if (window.performance.getEntriesByType) {
-  //   const navigationEntry = window.performance.getEntriesByType("navigation")[0];
-  //   if (["reload", "navigate", "back_forward"].includes(navigationEntry.type)) {
-  //     console.log("Page was reloaded or loaded via navigation");
-  //     async function get_msg() {
-  //       const messages = await $.get(`http://127.0.0.1:5000/api/v1/users/${id}/conversations/${convo_id}/messages`)
-  //       return messages;
-  //     }
+//   // if (window.performance.getEntriesByType) {
+//   //   const navigationEntry = window.performance.getEntriesByType("navigation")[0];
+//   //   if (["reload", "navigate", "back_forward"].includes(navigationEntry.type)) {
+//   //     console.log("Page was reloaded or loaded via navigation");
+//   //     async function get_msg() {
+//   //       const messages = await $.get(`http://127.0.0.1:5000/api/v1/users/${id}/conversations/${convo_id}/messages`)
+//   //       return messages;
+//   //     }
 
-  //     async function display_msg() {
-  //       const messages = await get_msg();
-  //       $('.container .body').empty();
+//   //     async function display_msg() {
+//   //       const messages = await get_msg();
+//   //       $('.container .body').empty();
 
-  //       for (const message of messages) {
-  //           if (message.user_id === id) {
-  //               $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + message.content + '</p>'));
-  //           } else {
-  //               $('.container .body').append($('<div class="messages" id="recieve">').html('<p>' + message.content + '</p>'));
-  //           }
-  //       }
-  //       // Set scroll bar position
-  //       var container = document.getElementById("chat-container");
-  //       container.scrollTop = container.scrollHeight;
-  //     }
-  //     display_msg();
-  //   }
-  // }
-});
+//   //       for (const message of messages) {
+//   //           if (message.user_id === id) {
+//   //               $('.container .body').append($('<div class="messages" id="sent">').html('<p>' + message.content + '</p>'));
+//   //           } else {
+//   //               $('.container .body').append($('<div class="messages" id="recieve">').html('<p>' + message.content + '</p>'));
+//   //           }
+//   //       }
+//   //       // Set scroll bar position
+//   //       var container = document.getElementById("chat-container");
+//   //       container.scrollTop = container.scrollHeight;
+//   //     }
+//   //     display_msg();
+//   //   }
+// }
+ });
