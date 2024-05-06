@@ -559,6 +559,12 @@ main {
     cursor: pointer;
 }
 
+@media screen and (min-height: 768px) {
+    .logout-button {
+        padding-top: 238px;
+    }
+}
+
 /* Media queries for 1920x1080 */
 @media screen and (min-width: 1528px) {
     body {
@@ -674,7 +680,7 @@ main {
         padding-left: 320px;
     }
 
-    .post-section {
-        height: 740px;
+    main {
+        margin-top: 4.2%;
     }
 }
