@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Blueprint for API """
+""" Blueprint for APP """
 from flask import Blueprint
 
 app_views = Blueprint('app_views', __name__)

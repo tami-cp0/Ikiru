@@ -9,11 +9,13 @@ from models import storage
 from web_app.socketio.upload_socket import socket
 
 app = Flask(__name__)
+app.register_blueprint(app_views)
 secret = "1b80974004ebbd9de8c0d22bb4906475b1"
 app.config["SECRET_KEY"] = secret
 app.config["SESSION_COOKIE_SECURE"] = True
 app.config["REMEMBER_COOKIE_SECURE"] = True
 app.config["SESSION_COOKIE_HTTPONLY"] = True
+
 
 login_manager = LoginManager()
 login_manager.login_view = "app_views.sign_in"
@@ -60,8 +62,9 @@ def log_out():
     return redirect(url_for('app_views.sign_in'))
 
 
+
+
 if __name__ == "__main__":
-    app.register_blueprint(app_views)
     socket.run(app, host="0.0.0.0", port=5001,
                debug=True, use_reloader=True, log_output=True)
     # app.run(host="0.0.0.0", port=5001, debug=True)

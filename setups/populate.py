@@ -23,7 +23,7 @@ from models.post import Post
 from models.comment import Comment
 from models.message import Message
 from models.conversation import Conversation
-from fabric.api import local
+from fabric import local
 
 
 

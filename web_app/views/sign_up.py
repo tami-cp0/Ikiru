@@ -8,7 +8,6 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, \
     ValidationError, Regexp, Email
 from models.user import User
-from web_app.app import bcrypt
 from models import storage
 from web_app.views import app_views
 from flask_login import login_user
@@ -21,7 +20,7 @@ class SignUpForm(FlaskForm):
     USERNAME_REGEX = r'^[a-z0-9_]+$'
 
     name = StringField(
-        validators=[InputRequired(), Length(min=6)],
+        validators=[InputRequired(), Length(min=6, max=16)],
         render_kw={
                     'placeholder': 'John Doe', 'id': 'name',
                     'class': 'form-inputs'
@@ -30,7 +29,7 @@ class SignUpForm(FlaskForm):
     )
 
     username = StringField(
-        validators=[InputRequired(), Length(min=6),
+        validators=[InputRequired(), Length(min=6, max=32),
                     Regexp(
                             USERNAME_REGEX,
                             message="Username can only \
@@ -94,6 +93,7 @@ def sign_up():
 
     if request.method == "POST":
         if form.validate_on_submit():
+            from web_app.app import bcrypt
             password_hash = bcrypt.generate_password_hash(form.password.data)
             user = User(
                 name=form.name.data, email=form.email.data,
