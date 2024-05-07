@@ -8,3 +8,4 @@ from web_app.views.sign_up import *
 from web_app.views.sign_in import *
 from web_app.views.home import *
 from web_app.views.profile import *
+from web_app.views.settings import *

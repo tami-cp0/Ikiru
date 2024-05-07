@@ -107,7 +107,7 @@
                     d="M13 16.25C14.7949 16.25 16.25 14.7949 16.25 13C16.25 11.2051 14.7949 9.75 13 9.75C11.2051 9.75 9.75 11.2051 9.75 13C9.75 14.7949 11.2051 16.25 13 16.25Z"
                   />
                 </svg>
-                <a href="settings.html" id="settings">Settings</a>
+                <a href="{{ url_for('app_views.settings', username=user.username) }}" id="settings">Settings</a>
               </div>
               <div class="nav-item">
                 <svg

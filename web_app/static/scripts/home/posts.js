@@ -96,7 +96,7 @@ function fetchPosts () {
   })
   .fail(function (xhr, status, error) {
       console.error('Error:', error);
-      $('#loading').text('No more posts');
+      $('#loading').text('Failed to fetch posts');
   });    
 }
 
