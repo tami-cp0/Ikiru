@@ -554,6 +554,10 @@ main {
     color: var(--block-color);
 }
 
+.blocked-item p {
+    width: 150px;
+}
+
 .blocked-item span,
 .blocked-item p {
     cursor: pointer;
@@ -599,6 +603,10 @@ main {
 
     #profile-pic img {
         width: 100%;
+    }
+
+    .notifications-container {
+        margin-top: 13px;
     }
 
     .saved-container {
@@ -670,10 +678,23 @@ main {
         width: 1028px;
     }
 
-   .post-section {
-    height: 590px;
-   }
+    .blocked-item {
+        width: 405px;
+    }
 
+    .blocked-item,
+    .option {
+        height: 83px;
+    }
+
+    .logout-button {
+        padding-bottom: 219.5px;
+    }
+
+    .logout-button p {
+        width: 100px;
+        height: 35px;
+    }
 }
 
 @media screen and (min-width: 1919px) {
