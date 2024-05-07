@@ -7,8 +7,55 @@ from api.v1.views import apis
 from flask import jsonify, abort, request, make_response
 from flasgger.utils import swag_from
 
+current_posts = []
+total_posts = []
 
 # direct routes to posts
+@apis.route('/posts/<int:num>/<refreshed>/<id>', methods=['GET'], strict_slashes=False)
+def get_num_posts(num, refreshed, id):
+    """
+    Retrieves a number of posts from the database.
+    """
+    global current_posts
+    global total_posts
+
+    if refreshed == "refreshed":
+        total_posts = []
+        current_posts = []
+        
+    post_num = len(total_posts)
+
+    posts = storage.all(Post).values()    
+    
+    # Fetch new posts
+    if len(posts) > post_num:
+        total_posts = []
+        for post in posts:
+            if post.user_id == id:
+                continue
+            data = post.to_dict()
+            user = storage.get(User, post.user_id)
+            data["name"] = user.name
+            data["username"] = user.username
+            data["comments"] = len(post.comments)
+            total_posts.append(data)
+        
+        total_posts.sort(key=lambda x: x["created_at"], reverse=True)
+        new_posts = total_posts[post_num:]
+        
+        
+        current_posts += new_posts
+    if num > len(current_posts):
+        posts_data = current_posts
+        current_posts = []
+    else:
+        posts_data = current_posts[:num]
+        del current_posts[:num]
+    
+    return jsonify(posts_data)
+
+
+
 @apis.route('/posts', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/post/all_posts.yml', methods=['GET'])
 def get_posts():
@@ -51,7 +98,7 @@ def get_post(post_id):
 @swag_from('documentation/post/all_user_posts.yml', methods=['GET'])
 def get_user_posts(user_id):
     """
-    Retrieves all posts created by a specific user.
+    Retrieves all posts created by a specific user. IN ORDER OF CREATION
     """
     user = storage.get(User, user_id)
     if not user:
@@ -67,6 +114,7 @@ def get_user_posts(user_id):
         data["comments"] = len(post.comments)
         posts_data.append(data)
 
+    posts_data.sort(key=lambda x: x["created_at"], reverse=True)
     return jsonify(posts_data)
 
 
@@ -87,8 +135,13 @@ def create_post(user_id):
     data["user_id"] = user_id
     post = Post(**data)
     post.save()
+    
+    data = post.to_dict()
+    data["username"] = user.username
+    data["name"] = user.name
+    data["comments"] = len(post.comments)
 
-    return make_response(jsonify(post.to_dict()), 201)
+    return make_response(jsonify(data), 201)
 
 
 @apis.route(

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/socket.io.min.js') }}"> </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery-3.7.1.js') }}"> </script>
+    <title>Chat App</title>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off">
+        <button>Send</button>
+    </form>
+    <script>
+        const socket = io();
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const messages = document.getElementById('messages');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (input.value) {
+                socket.emit('sent_message', input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('received_msg', (message) => {
+            const item = document.createElement('li');
+            item.textContent = message;
+            messages.appendChild(item);
+            console.log(message);
+        });
+    </script>
+
+    
+</body>
+</html>
+

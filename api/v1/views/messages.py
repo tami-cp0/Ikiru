@@ -42,6 +42,7 @@ def all_messages(user_id, conversation_id):
             message["name"] = user2.name
             message["username"] = user2.username
 
+    messages.sort(key=lambda x: x["created_at"])
     return jsonify(messages)
 
 
@@ -74,7 +75,9 @@ def post_message(sender_id, receiver_id, conversation_id=None):
         conversations = storage.all(Conversation).values()
         for convo in conversations:
             if (convo.sender_id == sender_id and
-               convo.receiver_id == receiver_id):
+               convo.receiver_id == receiver_id) or \
+                (convo.sender_id == receiver_id and
+                 convo.receiver_id == sender_id):
                 conversation = convo
                 exists = True
                 break

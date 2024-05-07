@@ -4,6 +4,7 @@ from sqlalchemy import Column, String, Date
 from sqlalchemy import Boolean, Integer, ForeignKey, Table, UniqueConstraint
 from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
+from flask_login import UserMixin
 
 
 # follower_following_association = Table(
@@ -14,14 +15,13 @@ from models.base_model import BaseModel, Base
 #  UniqueConstraint('follower_id', 'following_id', name='unique_relationship')
 # )
 
-class User(BaseModel, Base):
+class User(BaseModel, Base, UserMixin):
     """Representation of a user """
     __tablename__ = 'users'
     username = Column(String(32), unique=True, nullable=False)
     email = Column(String(32), unique=True, nullable=False)
-    sex = Column(String(16), nullable=False)
+    sex = Column(String(16), nullable=True)
     password = Column(String(128), nullable=False)
-    is_active = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
     is_reported = Column(Boolean, default=False)
     # Relationship to represent users following other users
@@ -33,7 +33,7 @@ class User(BaseModel, Base):
     #                          backref="followers")
 
     # enter base model to change
-    dob = Column(Date, nullable=False)
+    dob = Column(Date, nullable=True)
 
     # things not added to data model
     name = Column(String(16), nullable=False)
@@ -84,3 +84,6 @@ class User(BaseModel, Base):
     #     if user not in self.followers:
     #         self.following.remove(user)
     #         user.following.remove(self)
+    
+    def get_id(self):
+        return str(self.id)

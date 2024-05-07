@@ -33,7 +33,7 @@ class DBStorage():
         username = "ikiru_user"
         password = "password"
         hostname = "localhost"
-        database = "ikiru_dev_db"
+        database = "ikiru_db"
         running_environment = "dev"
         self.__engine = create_engine(
             f"mysql+mysqldb://{username}:{password}@{hostname}/{database}",
@@ -104,7 +104,7 @@ class DBStorage():
         """
         self.__session.remove()
 
-    def get(self, cls, id):
+    def get(self, cls, id=None, username=None, email=None):
         """
         Returns the object based on the class name and its ID, or
         None if not found
@@ -114,8 +114,15 @@ class DBStorage():
 
         all_cls = models.storage.all(cls)
         for value in all_cls.values():
-            if (value.id == id):
-                return value
+            if id:
+                if (value.id == id):
+                    return value
+            if username:
+                if (value.username == username):
+                    return value
+            if email:
+                if (value.email == email):
+                    return value
 
         return None
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Ikiru. Emote freely, Live fully.">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"> </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <h2>Welcome to home page</h2>
+    <a href="{{ url_for('app_views.sign_up') }}">sign up page</a>
+    <a href="{{ url_for('log_out') }}">log out</a>
+    <h4>hello {{ user.name }}, @{{ user.username }}, id: {{ user.id }}</h4>
+    { % block body %}{ % endblock %}
+    <div class="requests">
+    </div>
+
+    <script>
+      const id = "{{ user.id }}"
+      async function get_convo() {
+        const convos = await $.get(`http://127.0.0.1:5000/api/v1/users/${id}/conversations/requests`);
+        return convos;
+      }
+
+      async function display_req() {
+        const convos = await get_convo();
+
+        for (convo of convos) {
+          $('.requests').append($(`<button type="submit" id=${convo['convo_id']} sender-id=${convo['sender_id']}>`).text(`accept ${convo["sender"]}'s message request`));
+        }
+      }
+      display_req();
+
+    
+      let socket = io.connect("127.0.0.1:5001/private")
+      $('.requests').on('click', 'button', function() {
+        console.log('helloooo');
+      });
+
+
+
+      $('.requests').on('click', 'button', async function() {
+        console.log('clicked');
+
+        const room = $(this).attr('id');
+        const data = {'room': room}
+        socket.emit('join_room', room);
+        other_user = $(this).attr('sender-id')
+
+        async function post() {
+          const content = '{{ user.username }} has accepted your request';
+          const response = await $.post({
+            url:`http://127.0.0.1:5000/api/v1/${id}/${other_user}/conversations/${room}`,
+            contentType: 'application/json',
+            data: JSON.stringify({'content': content}),
+            error: function (xhr, status, error) {
+              // Handle error
+              console.error('Error:', error);
+            }
+          });
+
+          return true;
+        }
+
+
+        const done = await post();
+        console.log(done);
+      });
+    </script>
+  </body>
+</html>

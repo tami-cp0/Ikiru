@@ -31,6 +31,7 @@ def all_user_comments(user_id):
         comment["post_owner_username"] = post_user.username
         comment["post_owner_name"] = post_user.name
 
+    comments.sort(key=lambda x: x["created_at"])
     return jsonify(comments)
 
 
@@ -106,6 +107,7 @@ def all_post_comments(post_id):
         comment["post_owner_username"] = post_user.username
         comment["post_owner_name"] = post_user.name
 
+    comments.sort(key=lambda x: x["created_at"])
     return jsonify(comments)
 
 
@@ -192,6 +194,7 @@ def all_user_post_comments(user_id, post_id):
         comment["post_owner_username"] = user.username
         comment["post_owner_name"] = user.name
 
+    comments.sort(key=lambda x: x["created_at"])
     return jsonify(comments)
 
 

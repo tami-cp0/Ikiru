@@ -6,12 +6,12 @@
 -- then add "SET GLOBAL validate_password.policy=LOW;" to line 12
 -- then add "SET GLOBAL validate_password.policy=<YOUR_POLICY>;" TO line 14
 
-DROP DATABASE IF EXISTS ikiru_dev_db;
-CREATE DATABASE IF NOT EXISTS ikiru_dev_db;
-
+DROP DATABASE IF EXISTS ikiru_db;
+CREATE DATABASE IF NOT EXISTS ikiru_db;
+SET GLOBAL validate_password.policy=LOW;
 CREATE USER IF NOT EXISTS 'ikiru_user'@'localhost' IDENTIFIED BY 'password';
+SET GLOBAL validate_password.policy=MEDIUM;
 
-
-GRANT ALL ON `ikiru_dev_db`.* TO 'ikiru_user'@'localhost';
+GRANT ALL ON `ikiru_db`.* TO 'ikiru_user'@'localhost';
 GRANT SELECT ON `performance_schema`.* TO 'ikiru_user'@'localhost';
 FLUSH PRIVILEGES;

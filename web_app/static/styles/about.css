@@ -1,0 +1,489 @@
+@font-face {
+    font-family: Inter-Regular;
+    src: url(../fonts/Inter-Regular.ttf);
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(../fonts/Inter-Bold.ttf);
+}
+
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src: url(../fonts/PlayfairDisplay-Bold.ttf);
+}
+
+:root {
+    --primary: #84BDA9;
+    --black: #000;
+    --pure-white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(132, 189, 169, 0.2);
+    font-size: 14px;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 10vh;
+    background-color: #444342;
+    z-index: 1000;
+    align-items: center;
+}
+
+header h1 {
+    display: flex;
+    font-family: PlayfairDisplay-Bold;
+    color: var(--primary);
+    font-size: 3em;
+    margin-left: 100px;
+    width: auto;
+    cursor: pointer;
+}
+
+header .navigation {
+    color: var(--pure-white);
+    font-weight: normal;
+    width: 25%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navigation h4 {
+    border: 2px solid #444342;
+    align-self: center;
+    padding: 2%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    color: var(--pure-white);
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navigation h4:last-child {
+    border: 2px solid var(--pure-white);
+    
+}
+
+.navigation h4:last-child:hover {
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.navigation h4:hover {
+    border: 2px solid var(--pure-white);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main section {
+    height: 70em;
+    width: 85%;
+}
+
+main section:first-child {
+    height: 60em;
+}
+main section:nth-child(2) {
+    height: auto;
+}
+main section:nth-child(3) {
+    height: auto;
+}
+
+.intro {
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.intro-picture {
+    display: flex;
+    width: 70%;
+    position: relative;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+.intro-picture img {
+    max-width: 100%;
+    max-height: 100%;
+    /* image-rendering: auto; */
+    object-fit: contain;
+}
+
+/* .intro-picture svg {
+    width: 70%;
+    right: 470px;
+    bottom: 50px;
+    z-index: 1000;
+    position: absolute;
+} */
+
+.intro-picture svg {
+    width: 100%;
+    top: 90px;
+    position: absolute;
+}
+
+.intro-text {
+    width: 30%;
+    height: 70%;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.intro-text h2 {
+    width: 80%;
+    height: auto;
+    text-align: start;
+    font-size: 64px;
+    background: linear-gradient(90deg, #84BDA9 10%, #000000 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.intro-text p {
+    width: 80%;
+    height: auto;
+    text-align: start;
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.intro-text div {
+    width: 80%;
+}
+
+.intro-text p:last-child {
+    width: 10em;
+    height: auto;
+    text-align: center;
+    border: 3px solid var(--pure-white);
+    padding: 2%;
+    margin-top: 10%;
+    border-radius: 10px;
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.intro-text p:last-child:hover {
+    border: 3px solid #2C2D2D;
+}
+
+
+/* feature section */
+.feature {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.feature article {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* first feature */
+.feature #first {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.feature #first .left {
+    align-self: center;
+    width: 40%;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.name {
+    font-size: 40px;
+    font-family: PlayfairDisplay-Bold;
+}
+
+.description {
+    font-size: 18px;
+    font-family: 'Lato';
+}
+
+.feature #first .left  .name {
+    text-align: start;
+}
+
+.feature #first .left  .description {
+    text-align: start;
+    width: 100%;
+}
+
+video {
+    width: 550px;
+    height: auto;
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+}
+
+/* second feature */
+.feature #second {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+.feature #second img {
+    width: 100%;
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+}
+
+.feature #second .left {
+    width: 50%;
+    height: 200px;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* object-fit: contain; */
+    position: absolute;
+}
+
+.feature #second .right {
+    width: 50%;
+    height: 700px;
+    text-align: start;
+}
+
+.feature #second .right .name {
+    padding-top: 12%;
+    margin-top: 100px;
+    width: 100%;
+
+}
+.feature #second .right .description {
+    margin-top: 200px;
+}
+
+/* second feature */
+
+.feature #third {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.feature #third img {
+    width: 100%;
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+}
+
+.feature #third .right {
+    width: 50%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*about section */
+
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about article:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.about .name {
+    width: auto;
+}
+
+.about .description {
+    white-space: pre-wrap;
+    font-family: 'Lato';
+    font-size: 22px;
+    font-weight: normal;
+    position: relative;
+} 
+
+.about p:last-child {
+    font-size: 16px;
+    color: #5F6266;
+    margin-bottom: 40px;
+}
+
+
+footer {
+    background-color: #444342;
+    border-top: 3px solid var(--primary);
+    position: relative;
+    display: flex;
+    height: 500px;
+    align-items: center;
+}
+
+footer .contact {
+    margin-left: 142px;
+    height: 80%;
+    width: 50%;
+}
+
+.contact h2 {
+    color: var(--pure-white);
+    font-size: 50px;
+    font-family: 'Lato';
+}
+
+.contact .details {
+    height: 70%;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact .details div {
+    height: 75%;
+    width: 30%;
+    background-color: var(--pure-white);
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact .details div:hover {
+    box-shadow: 0px 5px 15px var(--primary);
+}
+
+.contact .details div p:first-child {
+    height: 40%;
+    color: black;
+    padding: 10%;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: center;
+    margin: 0;
+    border-bottom: 3px solid #5F6266;
+    width: 100%;
+    align-content: center;
+}
+
+.contact .details div p {
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-family: 'Lato';
+    color: black;
+    font-weight: bold;
+}
+
+.contact .details div p:hover {
+    color: var(--primary);
+}
+
+/* .contact .details div:hover {
+    
+} */
+
+
+.contact .github {
+    border: 3px solid var(--pure-white);
+    width: 20%;
+    padding: 1%;
+    text-align: center;
+    height: 10%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    font-family: 'Lato';
+    font-weight: bold;
+
+}
+
+.contact .github:hover {
+    border: 3px solid black;
+    
+}
+
+
+@media screen and (max-width: 1370px) and (max-height: 769px) {
+    
+    .intro-picture svg {
+        top: 180px;
+    }
+    
+    .intro-text h2 {
+        font-size: 42px;
+    }
+
+    .contact .details {
+        width: 80%;
+    }
+
+    .contact .github {
+        width: 25%;
+    }
+
+}
+
+@media screen and (min-width: 1919px) {
+    .intro-picture svg {
+        top: -200px;
+    }
+}
+
+

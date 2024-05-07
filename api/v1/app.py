@@ -6,18 +6,20 @@ from flask import Flask, make_response, jsonify
 from flasgger import Swagger
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-# from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.config['DEBUG'] = True
 app.register_blueprint(apis)
-Limiter(
-    key_func=get_remote_address,
-    app=app,
-    default_limits=["500 per day", "10 per minute"],
-    strategy="fixed-window"
-)
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+
+# Limiter(
+#     key_func=get_remote_address,
+#     app=app,
+#     default_limits=["500 per day", "10 per minute"],
+#     strategy="fixed-window"
+# )
 
 
 @app.teardown_appcontext

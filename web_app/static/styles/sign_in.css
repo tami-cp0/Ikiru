@@ -1,0 +1,622 @@
+@font-face {
+    font-family: Inter-Regular;
+    src: url(../fonts/Inter-Regular.ttf);
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(../fonts/Inter-Bold.ttf);
+}
+
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src: url(../fonts/PlayfairDisplay-Bold.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body */
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgba(249, 255, 254, 0.9);
+    font-family: Inter-Bold;
+    font-size: 14px;
+}
+
+/* main */
+.body_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 77.38%;
+    height: 90%;
+    background: #F9FFFE;
+    background-image: url(../images/background_image.png);
+    background-size: 70%;
+    background-position: 20% 60%;
+    background-repeat: no-repeat;
+    border: 1px solid #84BDA9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+.body_card_content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 70px;;
+    height: 70%; /*might remove*/
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: PlayfairDisplay-Bold;
+    font-size: 30px;
+    color: #84BDA9;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 15.5%;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #5C5C5C;
+}
+
+header nav ul li a:hover {
+    color: #84BDA9;
+}
+
+.body_div1 {
+    display: flex;
+    margin-top: 45px; /*remember to adjust*/
+    justify-content: space-between;
+}
+
+.slogan {
+    margin-top: 20px;
+}
+
+.slogan h2 {
+    font-size: 20px;
+    background: linear-gradient(90deg, #84BDA9 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+}
+
+.slogan p {
+    margin-top: 10px;
+}
+
+.signin_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.signin_section h1 {
+    text-align: center;
+    font-family: PlayfairDisplay-Bold;
+    font-size: 30px;
+    background: linear-gradient(90deg, #000000 0%, #84BDA9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; use to be supported by modern browsers */
+}
+
+.form_div {
+    display: flex;
+    justify-content: center;
+    border: 2px #84BDA9 solid;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 82%;
+    /* margin-top: 12px; */
+}
+
+form label {
+    font-family: Inter-Bold;
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.form-inputs {
+    border-radius: 10px;
+    height: 32px;
+    mix-blend-mode: normal;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    margin-top: 2px;
+    padding-left: 10px;
+}
+
+
+.form-inputs::placeholder {
+    color: #C7C7C7;
+    /* padding-left: 10px; */
+    font-size: 10px;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.password-input-container input {
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 9px;
+    top: 30%;
+    /* transform: translateY(-50%); */
+    cursor: pointer;
+}
+
+.sign-in_options {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+#keep_me {
+    /* position: relative; */
+    display: flex;
+    font-size: 10px;
+    margin-top: 0px;
+    color: #818181;
+    font-family: Inter-Bold;
+}
+
+#keep_me_logged_in {
+    margin-right: 5px;
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.sign-in_options a {
+    font-size: 10px;
+    text-decoration: none;
+    color: #0084BD;
+}
+
+.sign-in_options a:hover {
+    color: #1976D2;
+}
+
+.signin-button-box {
+    display: flex;
+    justify-content: center;
+}
+
+.signin_button {
+    width: 35%;
+    font-size: 14px;
+    font-family: Inter-Bold;
+    background: #84BDA9;
+    border-radius: 10px;
+    height: 34px;
+    border: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.or {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.left_line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left_line {
+    border: 1px #5C5C5C solid;
+    width: 105px;
+}
+
+.right_line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right_line {
+    border: 1px #5C5C5C solid;
+    width: 105px;
+}
+
+.or-text {
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #5C5C5C;
+}
+
+.google-button-box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.google_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    font-size: 14px;
+    font-family: Inter-Regular;
+    background: #fff;
+    border-radius: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.google_button span {
+    margin-left: 10px;
+}
+
+.dont-have {
+    font-size: 10px;
+    color: #818181;
+    margin-bottom: 20px;
+}
+
+.dont-have a,
+.alx-staff a {
+    color: #0084BD;
+}
+
+.alx-staff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #818181;
+    font-size: 10px;
+}
+
+footer {
+    width: 100%;
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #131313;
+    font-family: Inter-Regular;
+    font-size: 12px;
+    /* border: 1px solid red; */
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+
+footer a {
+    color: #84BDA9;
+}
+
+@media screen and (min-width: 1528px) {
+    .logo {
+        font-family: PlayfairDisplay-Bold;
+        font-size: 36px;
+        color: #84BDA9;
+    }
+    
+    header nav ul {
+        display: flex;
+        list-style-type: none;
+        justify-content: space-between;
+        align-items: center;
+        width: 15.5%;
+    }
+    
+    header nav ul li a {
+        text-decoration: none;
+        color: #5C5C5C;
+        font-size: 14;
+    }
+    
+    header nav ul li a:hover {
+        color: #84BDA9;
+    }
+    
+    .body_div1 {
+        margin-top: 100px;
+    }
+    
+    .slogan {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    
+    .slogan h2 {
+        font-size: 24px;
+        background: linear-gradient(90deg, #84BDA9 0%, #000000 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* text-fill-color: transparent; */
+    }
+    
+    .slogan p {
+        margin-top: 10px;
+    }
+    
+    .signin_section {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        /* border: red 1px solid; */
+        width: 370px;
+    }
+    
+    .signin_section h1 {
+        text-align: center;
+        font-family: PlayfairDisplay-Bold;
+        font-size: 36px;
+        /* line-height: 48px; */
+        background: linear-gradient(90deg, #000000 0%, #84BDA9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* text-fill-color: transparent; use to be supported by modern browsers */
+    }
+    
+    .form_div {
+        display: flex;
+        justify-content: center;
+        border: 2px #84BDA9 solid;
+        border-radius: 10px;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 82%;
+        /* margin-top: 12px; */
+    }
+    
+    form label {
+        font-family: Inter-Regular;
+        font-size: 16px;
+        margin-top: 12px;
+    }
+    
+    .form-inputs {
+        border-radius: 10px;
+        height: 40px;
+        mix-blend-mode: normal;
+        border: 0.5px solid rgba(0, 0, 0, 0.2);
+        margin-top: 5px;
+        padding-left: 10px;
+    }
+    
+    
+    .form-inputs::placeholder {
+        color: #C7C7C7;
+        /* padding-left: 10px; */
+        font-size: 12px;
+    }
+    
+    .password-input-container {
+        position: relative;
+    }
+    
+    .password-input-container input {
+        width: 100%;
+    }
+    
+    .eye-icon {
+        position: absolute;
+        right: 9px;
+        top: 36%;
+        /* transform: translateY(-50%); */
+        cursor: pointer;
+    }
+    
+    .sign-in_options {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+    
+    /* changed */
+    #keep_me {
+        /* position: relative; */
+        display: flex;
+        font-size: 12px;
+        margin-top: 0px;
+        color: #818181;
+        font-family: Inter-Bold;
+    }
+    
+    #keep_me_logged_in {
+        margin-right: -65px;
+        transform: scale(1.15);
+        cursor: pointer;
+    }
+
+    .flash {
+        color:  red;
+        font-size: 12px;
+        font-family: Inter-Regular;
+        font-weight: normal;
+        padding: 0px;
+        margin-top: 20px;
+    }
+    /**/
+
+    .sign-in_options a {
+        font-size: 12px;
+        text-decoration: none;
+        color: #0084BD;
+    }
+    
+    .sign-in_options a:hover {
+        color: #1976D2;
+    }
+    
+    .signin-button-box {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .signin_button {
+        width: 46%;
+        font-size: 20px;
+        font-family: Inter-Bold;
+        background: #84BDA9;
+        border-radius: 10px;
+        height: 40px;
+        border: 0px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+    
+    .or {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+    }
+    
+    .left_line-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .left_line {
+        border: 1px #5C5C5C solid;
+        width: 105px;
+    }
+    
+    .right_line-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .right_line {
+        border: 1px #5C5C5C solid;
+        width: 105px;
+    }
+    
+    .or-text {
+        margin-left: 12px;
+        margin-right: 12px;
+        font-size: 12px;
+        color: #5C5C5C;
+    }
+    
+    .google-button-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .google_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 82%;
+        font-size: 20px;
+        font-family: Inter-Regular;
+        background: #fff;
+        border-radius: 10px;
+        border: 0.5px solid rgba(0, 0, 0, 0.2);
+        height: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    
+    .google_button span {
+        margin-left: 10px;
+    }
+    
+    .dont-have {
+        font-size: 12px;
+        color: #818181;
+        margin-bottom: 20px;
+    }
+    
+    .dont-have a,
+    .alx-staff a {
+        color: #0084BD;
+    }
+    
+    .alx-staff {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #818181;
+        font-size: 12px;
+    }
+    
+    footer {
+        width: 100%;
+        height: 7%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #131313;
+        font-family: Inter-Regular;
+        font-size: 16px;
+        /* border: 1px solid red; */
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+    }
+    
+    
+    footer a {
+        color: #84BDA9;
+    }
+    
+}
+
+@media screen and (min-width: 1919px) {
+    .slogan {
+        font-size: 20px;
+    }
+}

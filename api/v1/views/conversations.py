@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Endpoints that handle all default RestFul API actions for Conversations """
+from email import message
 from models.user import User
 from models.conversation import Conversation
 from models import storage
@@ -51,6 +52,8 @@ def all_conversations(user_id):
         del data["receiver_id"]
         conversations_data.append(data)
 
+    if conversations_data:
+        conversations_data.sort(key=lambda x: x["created_at"])
     return jsonify(conversations_data)
 
 
@@ -123,3 +126,33 @@ def delete_conversation(user_id, conversation_id):
     storage.save()
 
     return make_response('', 204)
+
+
+# missing documentation
+@apis.route(
+    '/users/<user_id>/conversations/requests',
+    methods=['GET'], strict_slashes=False
+)
+def requests(user_id):
+    """
+    Retrieve all conversations that a user hasnt sent a single message there
+    """
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404, description="User not found")
+
+
+    conversations_data = []
+
+    conversations = user.received_conversations
+    for conversation in conversations:
+        sender = storage.get(User, id=conversation.sender.id)
+        
+        if len([message for message in conversation.messages if message.user_id == user_id]) == 0:
+            data = {'convo_id': conversation.id, 'created_at': conversation.created_at,
+                    'sender': sender.username, 'sender_id': sender.id}
+            conversations_data.append(data)
+
+    conversations_data.sort(key=lambda x: x["created_at"])
+
+    return jsonify(conversations_data)
