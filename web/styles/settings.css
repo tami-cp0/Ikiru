@@ -567,6 +567,7 @@ main {
 
 /* Media queries for 1920x1080 */
 @media screen and (min-width: 1528px) {
+
     body {
         font-size: 16px;
     }
