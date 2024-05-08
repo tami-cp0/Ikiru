@@ -2,7 +2,7 @@ async function get_html (data) {
   let chat_html;
 
   await $.get({
-    url: `http://127.0.0.1:5000/api/v1/users/${id}/conversations/${data.id}/messages`,
+    url: `http://web-02.tamilore.tech/api/v1/users/${id}/conversations/${data.id}/messages`,
     contentType: 'application/json',
   })
   .done(function (responses) {
@@ -54,9 +54,10 @@ async function get_html (data) {
   return chat_html;
 }
 
+
 async function get_convos (tag) {
   await $.get({
-    url: `http://127.0.0.1:5000/api/v1/users/${id}/conversations`,
+    url: `http://web-02.tamilore.tech/api/v1/users/${id}/conversations`,
     contentType: 'application/json',
   })
   .done(async function (responses) {

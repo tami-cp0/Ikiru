@@ -14,7 +14,7 @@ let data = ['activate'];
 
 function fetchPosts () {
   $.get({
-    url: `http://127.0.0.1:5000/api/v1/posts/9/${refreshed}/${id}`,
+    url: `http://web-02.tamilore.tech/api/v1/posts/9/${refreshed}/${id}`,
     contentType: 'application/json',
   })
   .done(function (responses) {

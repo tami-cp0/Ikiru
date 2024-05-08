@@ -86,7 +86,7 @@ $(document).ready( () => {
 
     if (content != '') {
       await $.post({
-        url:`http://127.0.0.1:5000/api/v1/users/${id}/posts`,
+        url:`http://web-02.tamilore.tech/api/v1/users/${id}/posts`,
         contentType: 'application/json',
         data: JSON.stringify({'content': content}),
         success: function (response) {
