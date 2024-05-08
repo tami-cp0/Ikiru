@@ -7,14 +7,18 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from models.user import User
 from models import storage
 from web_app.socketio.upload_socket import socket
+from flask_wtf.csrf import CSRFProtect
+
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 secret = "1b80974004ebbd9de8c0d22bb4906475b1"
 app.config["SECRET_KEY"] = secret
-app.config["SESSION_COOKIE_SECURE"] = True
+# app.config["SESSION_COOKIE_SECURE"] = True
 app.config["REMEMBER_COOKIE_SECURE"] = True
-app.config["SESSION_COOKIE_HTTPONLY"] = True
+# app.config["SESSION_COOKIE_HTTPONLY"] = True
+# app.config["WTF_CSRF_ENABLED"] = False
+csrf = CSRFProtect(app)
 
 
 login_manager = LoginManager()
