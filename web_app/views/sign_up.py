@@ -33,7 +33,7 @@ class SignUpForm(FlaskForm):
                     Regexp(
                             USERNAME_REGEX,
                             message="Username can only \
-                                     contain letters, \
+                                     contain small letters, \
                                      numbers, and underscores."
                           )
                     ],
