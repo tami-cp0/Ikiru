@@ -13,8 +13,6 @@ from models.user import User
 @login_required
 def profile(username):
     user = current_user.to_dict()
-    print(user)
-    print(username)
     if username != user['username']:
         user2 = storage.get(User, username=username).to_dict()
         return render_template("profile-otheruser.html", user=user, user2=user2)

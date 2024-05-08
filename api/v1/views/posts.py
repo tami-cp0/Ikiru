@@ -14,7 +14,8 @@ total_posts = []
 @apis.route('/posts/<int:num>/<refreshed>/<id>', methods=['GET'], strict_slashes=False)
 def get_num_posts(num, refreshed, id):
     """
-    Retrieves a number of posts from the database.
+    Retrieves a number of posts from the database
+    and notes the posts that havent been requested yet.
     """
     global current_posts
     global total_posts

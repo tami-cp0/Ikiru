@@ -32,7 +32,7 @@ class DBStorage():
         """Initializes a DBStorage instance"""
         username = "ikiru_user"
         password = "password"
-        hostname = "100.26.157.241"
+        hostname = "localhost"
         database = "ikiru_db"
         running_environment = "dev"
         self.__engine = create_engine(

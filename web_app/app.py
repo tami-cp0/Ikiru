@@ -17,7 +17,7 @@ app.config["SECRET_KEY"] = secret
 # app.config["SESSION_COOKIE_SECURE"] = True
 app.config["REMEMBER_COOKIE_SECURE"] = True
 # app.config["SESSION_COOKIE_HTTPONLY"] = True
-# app.config["WTF_CSRF_ENABLED"] = False
+app.config["WTF_CSRF_ENABLED"] = False
 csrf = CSRFProtect(app)
 
 
