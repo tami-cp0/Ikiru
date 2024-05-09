@@ -2,7 +2,7 @@ const id = $('.username_handle .user-id').attr('id');
 
 function fetchPosts () {
   $.get({
-    url: `http://web-01.tamilore.tech/api/v1/users/${id}/posts`,
+    url: `http://127.0.0.1:5000/api/v1/users/${id}/posts`,
     contentType: 'application/json',
   })
   .done(function (responses) {

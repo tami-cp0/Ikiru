@@ -82,7 +82,7 @@ $(document).ready( () => {
     // if textarea is not empty
     if (content != '') {
       await $.post({
-        url:`http://web-01.tamilore.tech/api/v1/users/${id}/posts`,
+        url:`http://127.0.0.1:5000/api/v1/users/${id}/posts`,
         contentType: 'application/json',
         data: JSON.stringify({'content': content}),
         success: function (response) {
