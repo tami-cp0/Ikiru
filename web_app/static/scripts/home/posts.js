@@ -1,9 +1,11 @@
+// user id
 const id = $('.user-details .user-id').attr('id');
 let refreshed = null;
 
 if (window.performance.getEntriesByType) {
   const navigationEntry = window.performance.getEntriesByType("navigation")[0];
   if (["reload", "navigate"].includes(navigationEntry.type)) {
+    // to notify the api whether the user refreshed
     refreshed = "refreshed";
   }
 }
@@ -13,6 +15,7 @@ const loader = document.getElementById("loading");
 let data = ['activate'];
 
 function fetchPosts () {
+  // fetch and append 9 posts
   $.get({
     url: `http://web-01.tamilore.tech/api/v1/posts/9/${refreshed}/${id}`,
     contentType: 'application/json',

@@ -1,5 +1,5 @@
 function populate_post (data) {
-  console.log(data);
+  // function that prepares and returns html for prepending  
     const name = $('.user-details .username').text();
     const post_html = `<article class="post">
           <div class="left-side">
@@ -78,12 +78,8 @@ $(document).ready( () => {
     console.log('osds');
     content = $('.express-input-area textarea').val();
     let json_response;
-    // var container = document.getElementById("qwerty");
-    // console.log(document.scrollTop);
-    // container.scrollTop = container.scrollHeight;
 
-    // console.log($('textarea').scrollHeight);
-
+    // if textarea is not empty
     if (content != '') {
       await $.post({
         url:`http://web-01.tamilore.tech/api/v1/users/${id}/posts`,
@@ -91,16 +87,28 @@ $(document).ready( () => {
         data: JSON.stringify({'content': content}),
         success: function (response) {
           json_response = populate_post(response);
+
+          $('.feed-section').prepend(json_response);
+          $('.post-section').prepend(json_response);
+          // notify user that the upload is successful
+          $('.success.status-container').css('opacity', '100%');
+
           setTimeout(function() {
-            $('.feed-section').prepend(json_response);
-            $('.post-section').prepend(json_response);
+            $('.success.status-container').fadeOut(1000);
           }, 1000);
         },
         error: function (xhr, status, error) {
           console.error('Error:', error);
+
+          // notify user that the upload failed
+          $('.fail.status-container').css('opacity', '100%');
+          setTimeout(function() {
+            $('.fail.status-container').fadeOut(1000);
+          }, 1000);
         }
       });
     
+      // reset textarea
       $('.express-input-area textarea').val('');
     }
   });
