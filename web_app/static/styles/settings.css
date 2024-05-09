@@ -722,6 +722,7 @@ main {
 
 .post-status {
     position: fixed;
+    margin-top: 15px;
 }
 
 .post-status .group {
