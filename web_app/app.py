@@ -36,6 +36,12 @@ bcrypt = Bcrypt(app)
 socket.init_app(app)
 
 
+@app.teardown_appcontext
+def close_db(error):
+    """ Close Storage """
+    storage.close()
+
+
 @app.route('/')
 @login_required
 def root():
