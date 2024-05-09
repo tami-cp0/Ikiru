@@ -26,9 +26,6 @@ from models.conversation import Conversation
 from fabric.api import local
 
 
-
-dir = os.getcwd()
-
 # ANSI escape code for blue text
 BLUE = "\033[34m"
 # ANSI escape code for resetting text color to default
@@ -36,13 +33,11 @@ RESET = "\033[0m"
 # ANSI escape code for green text
 GREEN = "\033[32m"
 print(GREEN + "     --RESETTING DATABASE--" + RESET)
-#  "eM1P<l?55MAL"
-# if not dir.endswith("Ikiru"):
-#     print(BLUE + "This script can only be run in the Ikiru directory" + RESET)
-#     exit(1)
 local('cat setups/reset_db.sql | mysql -u ikiru_user --password="password"')
 local('echo "quit" | ./console.py')
 print(GREEN + "--DB reset complete--" + RESET)
+
+# mock data as a list of dictionaries
 users = [
     {
         "name": "Roseline",
@@ -599,6 +594,8 @@ messages = [
     }
 ]
 
+
+# each user posts 4 times
 i = 0
 for data in users:
     user = User(**data)
@@ -615,13 +612,16 @@ post_instances = storage.all(Post)
 print(GREEN + "--all users have posted--" + RESET)
 print("==========================================================")
      
+# all users make a random number of comments under a random post
 j = 0
 for user in user_instances:
     print(BLUE + f"{user.name}'s comments" + RESET)
     post_ids = [post.id for post in post_instances.values() if post.user_id != user.id]
     
+    # each user comments twice
     k = 0
     for k in range(k, k + 2):
+        # choose a random post
         rand_id = random.choice(post_ids)
         i = 0
 
@@ -638,17 +638,17 @@ print(GREEN + "--all users have commented--" + RESET)
 
 
 def send_msg(conversation):
-    # conversations = storage.all(Conversation).values()
     # end is maximum of 4 messages per convo
     end = 5
     j = 0
-    # for conversation in conversations:
     count = 0
     first_restart = True # Flag to track the first restart
     sender = conversation.sender_id
     receiver = conversation.receiver.id
     message_range = range(1, end)
     rand_end = random.choice(message_range)
+    
+    # each user sends a random to maximum of 4 messages per conversation
     for j in range(j, j + rand_end):
         
         data = messages[j]
@@ -671,6 +671,8 @@ def send_msg(conversation):
         print(f"        There are {count} messages between users {user1.name} and {user2.name}")    
 
 
+
+
 user_ids = [user.id for user in user_instances]
 initiated = {}
 length = len(user_ids)
@@ -685,10 +687,12 @@ for i in range(rand_range):
     key_to_check = rand_sen_id
     value_to_check = rand_rec_id
         
-    
+    # checks if conversation between 2 users already exists
+    # if so, it stores it in a dict to ensure no convo is repeated twice
     if f"[{key_to_check}, {value_to_check}]" not in initiated:
         initiated[f"[{key_to_check}, {value_to_check}]"] = i
     else:
+        # while 2 users have a convo, it randomizes until it finds a unique pair with no messages
         while f"[{key_to_check}, {value_to_check}]" in initiated:
             rand_sen_id = random.choice(user_ids)
             rand_rec_id = random.choice(user_ids)
@@ -697,7 +701,8 @@ for i in range(rand_range):
             key_to_check = rand_sen_id
             value_to_check = rand_rec_id
         initiated[f"[{key_to_check}, {value_to_check}]"] = i
- 
+
+
     data = {"sender_id": key_to_check, "receiver_id": value_to_check}
     conversation = Conversation(**data)
     conversation.save()
@@ -709,28 +714,6 @@ for i in range(rand_range):
     print("==========================================================")
 
 print(GREEN + "--all conversations have been initiated--" + RESET)
-
-# for i in range(rand_range):
-#     rand_user =
-#     users[i].follow()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 print(BLUE + "\n        ALL DATA HAS BEEN GENERATED" + RESET)
 print("\n There are:")
 print(f"    {storage.count(User)} users")
