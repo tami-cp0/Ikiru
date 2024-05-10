@@ -65,8 +65,8 @@ class testBaseModel2Doc(unittest.TestCase):
         self.assertEqual(type(self.basemodel2.created_at), datetime)
 
 
-    def test_attribute_values(self):
-        """Test the attribute values and format
+    def test_id_attribute_uuid_format(self):
+        """Test the id attribute uuid4 format
         """
         self.assertTrue(bool(re.match(pttn, self.basemodel2.id)))
         
@@ -80,9 +80,10 @@ class testBaseModel2Doc(unittest.TestCase):
         for key in to_dict:
             self.assertTrue(hasattr(self.basemodel2, key))
         self.assertEqual(to_dict["__class__"], "BaseModel2")
-        
+        #Test the id value if its uuid4 format
         self.assertTrue(bool(re.match(pttn, to_dict["id"])))
         try:
+          #check if created_at and updated_at is datetime format
             created_type = datetime.fromisoformat(to_dict["created_at"])
         except ValueError:
             self.fail("Either created_at and/or updated_at \

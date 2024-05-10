@@ -63,12 +63,13 @@ class testCommentDoc(unittest.TestCase):
         self.assertFalse(self.comment.id == None)
         self.assertFalse(self.comment.created_at == None)
         self.assertFalse(self.comment.updated_at == None)
+        #check the default value of the attributes
         self.assertTrue(Comment.is_reported.expression.default.arg == False)
         self.assertTrue(Comment.is_anonymous.expression.default.arg == False)
 
 
     def test_comment_class_attr(self):
-        """test the super class attributes"""
+        """test the class attributes"""
         self.assertTrue(hasattr(self.comment, "content"))
         self.assertTrue(hasattr(self.comment, "user_id"))
         self.assertFalse(self.comment.user_id == None) 
@@ -76,6 +77,7 @@ class testCommentDoc(unittest.TestCase):
         
     def test_comment_methods(self):
         """test comment inherited method"""
+        #Test to_dict method of the inherited class
         m_dict = self.comment.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
