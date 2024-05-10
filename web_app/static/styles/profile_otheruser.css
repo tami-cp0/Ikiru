@@ -813,3 +813,60 @@ main {
     color: inherit;
     text-decoration: none;
 }
+
+/* upload notification */
+.status-container {
+    display: flex;
+    justify-content: center;
+}
+
+.post-status {
+    position: fixed;
+}
+
+.post-status .group {
+    display: flex;
+    padding: 2.5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: 3px solid var(--primary);
+    background-color: white;
+    width: 335px;
+    border-radius: 20px;
+}
+
+.post-status .success {
+    width: 230px;
+    padding: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.post-status p {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;    
+    white-space: nowrap;
+}
+
+.post-status svg {
+    padding: 5%;
+    width: 40px;
+    height: 40px;
+}
+
+.post-status .success svg {
+    color: #27BB47;
+}
+
+.post-status .failed svg {
+    color: #FF1E1E;
+}
+
+.success.status-container {
+    opacity: 0%;
+}
+
+.fail.status-container {
+    opacity: 0%;
+}

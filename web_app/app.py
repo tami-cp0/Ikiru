@@ -17,7 +17,7 @@ app.config["SECRET_KEY"] = secret
 # app.config["SESSION_COOKIE_SECURE"] = True
 app.config["REMEMBER_COOKIE_SECURE"] = True
 # app.config["SESSION_COOKIE_HTTPONLY"] = True
-# app.config["WTF_CSRF_ENABLED"] = False
+app.config["WTF_CSRF_ENABLED"] = False
 csrf = CSRFProtect(app)
 
 
@@ -34,6 +34,12 @@ def load_user(id):
 login_manager.init_app(app)
 bcrypt = Bcrypt(app)
 socket.init_app(app)
+
+
+@app.teardown_appcontext
+def close_db(error):
+    """ Close Storage """
+    storage.close()
 
 
 @app.route('/')

@@ -8,24 +8,11 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-# app.config['DEBUG'] = True
 app.register_blueprint(apis)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-
-# Limiter(
-#     key_func=get_remote_address,
-#     app=app,
-#     default_limits=["500 per day", "10 per minute"],
-#     strategy="fixed-window"
-# )
-
-
-@app.teardown_appcontext
-def close_db(error):
-    """ Close Storage """
-    storage.close()
 
 
 @app.errorhandler(404)

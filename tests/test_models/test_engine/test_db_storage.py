@@ -24,11 +24,11 @@ class testDBStorageDoc(unittest.TestCase):
             user='ikiru_user',
             passwd='password',
             port=3306,
-            db='ikiru_dev_db',
+            db='ikiru_db',
             charset='utf8')
         pen = conn.cursor()
-        pen.execute("DROP DATABASE IF EXISTS ikiru_dev_db")
-        pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_dev_db")
+        pen.execute("DROP DATABASE IF EXISTS ikiru_db")
+        pen.execute("CREATE DATABASE IF NOT EXISTS ikiru_db")
         pen.close()
 
         local('echo "quit" | ./console.py')
@@ -67,7 +67,7 @@ class testDBStorageDoc(unittest.TestCase):
             user='ikiru_user',
             passwd='password',
             port=3306,
-            db='ikiru_dev_db',
+            db='ikiru_db',
             charset='utf8')
         return conn
             
