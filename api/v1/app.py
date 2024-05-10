@@ -28,6 +28,9 @@ def not_found(error):
 
 @app.errorhandler(429)
 def handle_rate_limit_exceeded(e):
+    """
+    Limiter not yet implemented
+    """
     return make_response(jsonify({
         "error": "Rate limit exceeded. Please try again later."
     }), 429)
