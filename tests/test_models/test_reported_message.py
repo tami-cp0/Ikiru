@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test reported_message model"""
 from datetime import date, datetime
 import inspect
 import pep8
@@ -11,22 +11,30 @@ from models.reported_message import ReportedMessage
 from models.user import User
 
 
-class testMessageDoc(unittest.TestCase):
+class testReportedMessageDoc(unittest.TestCase):
     """Test the doc and style of reported_message class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
-        cls.rmessagemethods = inspect.getmembers(ReportedMessage, inspect.isfunction)
-        cls.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.rmessagemethods = inspect.getmembers(ReportedMessage,
+                                                 inspect.isfunction)
+        cls.user = User(username="ikiru4", sex="M", email="ikiru4@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
-        cls.user1 = User(username="ikiru993", sex="M", email="ikiru9099@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user1 = User(username="ikiru993", sex="M",
+                         email="ikiru9099@ikiru.com", name="Ikiru",
+                         dob='2000-04-10', password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
-        cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.conversation = Conversation(sender_id=cls.user.id,
+                                        receiver_id=cls.user1.id)
         cls.conversation.save()
-        cls.message = Message(content="He abuse me", user_id=cls.user.id, conversation_id=cls.conversation.id)
+        cls.message = Message(content="He abuse me", user_id=cls.user.id,
+                              conversation_id=cls.conversation.id)
         cls.message.save()
-        cls.reportedmessage = ReportedMessage(content="racism", reporting_user=cls.user.id, message_id=cls.message.id)
+        cls.reportedmessage = ReportedMessage(content="racism",
+                                              reporting_user=cls.user.id,
+                                              message_id=cls.message.id)
         cls.reportedmessage.save()
         
     
@@ -60,7 +68,7 @@ class testMessageDoc(unittest.TestCase):
             self.assertTrue(len(method[1].__doc__) >= 1)
     
     
-    def test_reported_post_super_class_attr(self):
+    def test_reported_message_super_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.reportedmessage, "id"))
         self.assertTrue(hasattr(self.reportedmessage, "created_at"))
@@ -68,7 +76,7 @@ class testMessageDoc(unittest.TestCase):
         self.assertFalse(self.reportedmessage.created_at == None)
 
 
-    def test_reported_post_class_attr(self):
+    def test_reported_message_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.reportedmessage, "content"))
         self.assertTrue(hasattr(self.reportedmessage, "reporting_user"))
@@ -76,21 +84,24 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue(hasattr(self.reportedmessage, "is_resolved"))
         self.assertFalse(self.reportedmessage.message_id == None)
         self.assertFalse(self.reportedmessage.reporting_user == None)
-        self.assertTrue(ReportedMessage.is_resolved.expression.default.arg == False)
+        self.assertTrue(
+                ReportedMessage.is_resolved.expression.default.arg == False)
         
         
-    def test_repoted_post_methods(self):
-        """test reported_post inherited method"""
+    def test_repoted_message_methods(self):
+        """test reported_message inherited method"""
         m_dict = self.reportedmessage.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
         self.assertTrue("__class__" in m_dict)
  
         # Test the attribute value types
-        self.assertEqual(self.reportedmessage.__class__.__name__, "ReportedMessage")
+        self.assertEqual(
+                self.reportedmessage.__class__.__name__, "ReportedMessage")
         self.assertEqual(type(self.reportedmessage.id), str)
         self.assertEqual(type(self.reportedmessage.created_at), datetime)
         self.assertEqual(type(self.reportedmessage.reporting_user), str)
         self.assertEqual(type(self.reportedmessage.content), str)
         self.assertEqual(type(self.reportedmessage.message_id), str)
-        self.assertEqual(ReportedMessage.is_resolved.expression.type.python_type, bool)
+        self.assertEqual(
+                ReportedMessage.is_resolved.expression.type.python_type, bool)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test reported_post model"""
 from datetime import date, datetime
 import inspect
 import pep8
@@ -10,17 +10,19 @@ from models.reported_post import ReportedPost
 from models.user import User
 
 
-class testPostDoc(unittest.TestCase):
+class testReportedPostDoc(unittest.TestCase):
     """Test the doc and style of reported_post class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rpostmethods = inspect.getmembers(ReportedPost, inspect.isfunction)
-        cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user = User(username="ikiru23", sex="M", email="ikiru3@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
         cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
-        cls.reportedpost = ReportedPost(content="racism", user_id=cls.user.id, post_id=cls.post.id)
+        cls.reportedpost = ReportedPost(content="racism", user_id=cls.user.id,
+                                        post_id=cls.post.id)
         cls.reportedpost.save()
 
 
@@ -59,7 +61,8 @@ class testPostDoc(unittest.TestCase):
         self.assertTrue(hasattr(self.reportedpost, "created_at"))
         self.assertFalse(self.reportedpost.id == None)
         self.assertFalse(self.reportedpost.created_at == None)
-        self.assertTrue(ReportedPost.is_resolved.expression.default.arg == False)
+        self.assertTrue(
+                ReportedPost.is_resolved.expression.default.arg == False)
 
 
     def test_reported_post_class_attr(self):
@@ -83,4 +86,5 @@ class testPostDoc(unittest.TestCase):
         self.assertEqual(type(self.reportedpost.created_at), datetime)
         self.assertEqual(type(self.reportedpost.post_id), str)
         self.assertEqual(type(self.reportedpost.user_id), str)
-        self.assertEqual(ReportedPost.is_resolved.expression.type.python_type, bool)
+        self.assertEqual(
+                ReportedPost.is_resolved.expression.type.python_type, bool)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test post model"""
 from datetime import date, datetime
 import inspect
 import pep8
