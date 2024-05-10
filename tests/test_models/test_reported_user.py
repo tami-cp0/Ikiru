@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test reported_user model"""
 from datetime import date, datetime
 import inspect
 import pep8
@@ -10,15 +10,17 @@ from models.user import User
 
 
 class testReportedUserDoc(unittest.TestCase):
-    """Test the doc and style of Message class"""
+    """Test the doc and style of ReportedUser class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.rusermethods = inspect.getmembers(ReportedUser, inspect.isfunction)
-        cls.user = User(username="ikiru2", sex="M", email="ikiru2@ikiru.com", name="Ikiru",
-                         dob='2000-04-10', password="ikiru", bio="god is good")
+        cls.user = User(username="ikiru2", sex="M", email="ikiru2@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru",
+                        bio="god is good")
         cls.user.save()
-        cls.reporteduser = ReportedUser(content="He abuse me", user_id=cls.user.id)
+        cls.reporteduser = ReportedUser(content="He abuse me",
+                                        user_id=cls.user.id)
         cls.reporteduser.save()
 
 
@@ -30,8 +32,8 @@ class testReportedUserDoc(unittest.TestCase):
         storage.save()
 
 
-    def test_user_pep8_style(self):
-        """test pycodestyle of user and test_user models"""
+    def test_reported_user_pep8_style(self):
+        """test pycodestyle of reported_user models"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/reported_user.py"])
         self.assertEqual(test.total_errors, 0)
@@ -43,14 +45,14 @@ class testReportedUserDoc(unittest.TestCase):
                          "reported_user.py needs a docstring")
 
 
-    def test_user_method_docstring(self):
-        """check docstring for user class methods"""
+    def test_reported_user_method_docstring(self):
+        """check docstring for reported_user class methods"""
         for method in self.rusermethods:
             self.assertIsNot(method[1].__doc__, None)
             self.assertTrue(len(method[1].__doc__) >= 1)
     
      
-    def test_message_super_class_attr(self):
+    def test_reported_super_class_attr(self):
         """test the super class attributes"""
         
         self.assertTrue(hasattr(self.reporteduser, "id"))
@@ -59,17 +61,18 @@ class testReportedUserDoc(unittest.TestCase):
         self.assertFalse(self.reporteduser.created_at == None)
 
 
-    def test_message_class_attr(self):
+    def test_reported_user_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.reporteduser, "content"))
 
         self.assertFalse(self.reporteduser.user_id == None)
         self.assertFalse(self.reporteduser.is_resolved == None)
-        self.assertEqual(ReportedUser.is_resolved.expression.default.arg, False)
+        self.assertEqual(
+                ReportedUser.is_resolved.expression.default.arg, False)
         
         
-    def test_message_methods(self):
-        """test message inherited method"""
+    def test_reported_user_methods(self):
+        """test reported_user inherited method"""
         m_dict = self.reporteduser.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)
@@ -81,14 +84,16 @@ class testReportedUserDoc(unittest.TestCase):
         self.assertEqual(type(self.reporteduser.created_at), datetime)
         self.assertEqual(type(self.reporteduser.is_resolved), bool)
         self.assertEqual(type(self.reporteduser.user_id), str)
-        self.assertEqual(ReportedUser.is_resolved.expression.type.python_type, bool)
+        self.assertEqual(
+                ReportedUser.is_resolved.expression.type.python_type, bool)
 
 
     def test_save_and_delete_methods(self):
-        """Test message save and delete methods"""
+        """Test reported_user save and delete methods"""
         user = self.user = User(
                 username ="ikirujunior1", sex="M", email="ikiru90@ikiru.com",
-                name="Ikiru junior", dob='2000-04-10', password="ikiru", bio="here am i")
+                name="Ikiru junior", dob='2000-04-10', password="ikiru",
+                bio="here am i")
         user.save()
         reporteduser= ReportedUser(content="Good", user_id=self.user.id)
 

@@ -8,7 +8,7 @@ import unittest
 from models.base_model2 import BaseModel2
 
 
-pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+pttn = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
 class testBaseModel2Doc(unittest.TestCase):
     """Test the doc and style of BaseModel2 class"""
     @classmethod
@@ -68,7 +68,7 @@ class testBaseModel2Doc(unittest.TestCase):
     def test_attribute_values(self):
         """Test the attribute values and format
         """
-        self.assertTrue(bool(re.match(pattern, self.basemodel2.id)))
+        self.assertTrue(bool(re.match(pttn, self.basemodel2.id)))
         
         
     def test_to_dict_method(self):

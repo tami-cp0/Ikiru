@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test Feedback model"""
 from datetime import date, datetime
 import inspect
 import pep8
@@ -10,12 +10,13 @@ from models.user import User
 
 
 class testFeedbackDoc(unittest.TestCase):
-    """Test the doc and style of Message class"""
+    """Test the doc and style of Feedback class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.feedbackmethods = inspect.getmembers(Feedback, inspect.isfunction)
-        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
         cls.feedback = Feedback(content="He abuse me", user_id=cls.user.id)
         cls.feedback.save()
@@ -29,8 +30,8 @@ class testFeedbackDoc(unittest.TestCase):
         storage.save()
 
 
-    def test_user_pep8_style(self):
-        """test pycodestyle of user and test_user models"""
+    def test_feedback_pep8_style(self):
+        """test pycodestyle of feedback models"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/feedback.py"])
         self.assertEqual(test.total_errors, 0)
@@ -42,14 +43,14 @@ class testFeedbackDoc(unittest.TestCase):
                          "feedback.py needs a docstring")
 
 
-    def test_user_method_docstring(self):
+    def test_feedback_method_docstring(self):
         """check docstring for user class methods"""
         for method in self.feedbackmethods:
             self.assertIsNot(method[1].__doc__, None)
             self.assertTrue(len(method[1].__doc__) >= 1)
     
     
-    def test_message_super_class_attr(self):
+    def test_feedback_super_class_attr(self):
         """test the super class attributes"""
         self.assertTrue(hasattr(self.feedback, "id"))
         self.assertTrue(hasattr(self.feedback, "created_at"))
@@ -64,7 +65,7 @@ class testFeedbackDoc(unittest.TestCase):
         self.assertFalse(self.feedback.user_id == None) 
         
         
-    def test_message_methods(self):
+    def test_feedback_methods(self):
         """test message inherited method"""
         m_dict = self.feedback.to_dict()
         self.assertEqual(type(m_dict), dict)

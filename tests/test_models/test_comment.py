@@ -11,16 +11,18 @@ from models.user import User
 
 
 class testCommentDoc(unittest.TestCase):
-    """Test the doc and style of Message class"""
+    """Test the doc and style of Comment class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.commentmethods = inspect.getmembers(Comment, inspect.isfunction)
-        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user = User(username="ikiru7", sex="M", email="ikiru7@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
         cls.post = Post(content="He abuse me", user_id=cls.user.id)
         cls.post.save()
-        cls.comment = Comment(content="He abuse me", user_id=cls.user.id, post_id=cls.post.id)
+        cls.comment = Comment(content="He abuse me", user_id=cls.user.id,
+                              post_id=cls.post.id)
         cls.comment.save()
         
         
@@ -85,5 +87,7 @@ class testCommentDoc(unittest.TestCase):
         self.assertEqual(type(self.comment.created_at), datetime)
         self.assertEqual(type(self.comment.updated_at), datetime)
         self.assertEqual(type(self.comment.user_id), str)
-        self.assertEqual(Comment.is_anonymous.expression.type.python_type, bool)
-        self.assertEqual(Comment.is_reported.expression.type.python_type, bool)
+        self.assertEqual(Comment.is_anonymous.expression.type.python_type,
+                         bool)
+        self.assertEqual(Comment.is_reported.expression.type.python_type,
+                         bool)
