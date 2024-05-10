@@ -16,15 +16,22 @@ class testMessageDoc(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up for doc test""" # Creating a user
-        cls.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="ask me")
+        cls.user = User(username="ikiru8", sex="M", email="ikiru8@ikiru.com",
+                        name="Ikiru", dob='2000-04-10', password="ikiru",
+                        bio="ask me")
         cls.user.save()
-        cls.user1 = User(username="ikiru9i9", sex="M", email="ikiru9009@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru",bio="ask me")
+        cls.user1 = User(username="ikiru9i9", sex="M",
+                         email="ikiru9009@ikiru.com", name="Ikiru",
+                         dob='2000-04-10', password="ikiru",bio="ask me")
         cls.user1.save()
         # Creating a conversation with the user id
-        cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
+        cls.conversation = Conversation(sender_id=cls.user.id,
+                                        receiver_id=cls.user1.id)
         cls.conversation.save()
         # Create a message with the conversation id and user id
-        cls.message = Message(content="What a lovely day with you Huclark", user_id=cls.user.id, conversation_id = cls.conversation.id)
+        cls.message = Message(content="What a lovely day with you Huclark",
+                              user_id=cls.user.id,
+                              conversation_id = cls.conversation.id)
         cls.message.save()
         cls.messagemethods = inspect.getmembers(Message, inspect.isfunction)
     
@@ -99,12 +106,14 @@ class testMessageDoc(unittest.TestCase):
     def message_save_and_delete_methods(self):
         """Test message save and delete methods"""
         user = self.user = User(
-                username ="ikirujunior675", sex="M", email="ikiru334@ikiru.com",
-                name="Ikiru junior", dob=date(2000, 4, 10), password="ikiru", bio="ask me")
+                username ="ikirujunior675", sex="M",
+                email="ikiru334@ikiru.com", name="Ikiru junior",
+                dob=date(2000, 4, 10), password="ikiru", bio="ask me")
         user.save()
         conversation = Conversation(user_id=user.id)
         conversation.save()
-        message = Message(content="Good", user_id=self.user.id, conversation_id = self.conversation.id)
+        message = Message(content="Good", user_id=self.user.id,
+                          conversation_id = self.conversation.id)
 
         message.save()
         #Testt save method

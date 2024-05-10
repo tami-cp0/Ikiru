@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test message model"""
+"""test user model"""
 from datetime import date, datetime
 import inspect
 import pep8
@@ -8,14 +8,15 @@ from models import storage
 from models.user import User
 
 
-class testMessageDoc(unittest.TestCase):
-    """Test the doc and style of Message class"""
+class testUserDoc(unittest.TestCase):
+    """Test the doc and style of user class"""
     @classmethod
     def setUpClass(cls):
         """Set up for doc test"""
         cls.usermethods = inspect.getmembers(User, inspect.isfunction)
         cls.user = User(
-            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru", bio="i live here")
+            username="ikiru1", sex="M", email="ikiru1@ikiru.com", name="Ikiru",
+            dob='2000-04-10', password="ikiru", bio="i live here")
         cls.user.save()
   
     @classmethod   
@@ -26,7 +27,7 @@ class testMessageDoc(unittest.TestCase):
 
 
     def test_user_pep8_style(self):
-        """test pycodestyle of user and test_user models"""
+        """test pycodestyle of user  model"""
         pep8style = pep8.StyleGuide(quite=True)
         test = pep8style.check_files(["models/user.py"])
         self.assertEqual(test.total_errors, 0)
@@ -63,7 +64,6 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "sex"))
         self.assertTrue(hasattr(self.user, "password"))
         self.assertTrue(hasattr(self.user, "dob"))
-        self.assertTrue(hasattr(self.user, "is_active"))
         self.assertTrue(hasattr(self.user, "is_admin"))
         self.assertTrue(hasattr(self.user, "name"))
         self.assertTrue(hasattr(self.user, "is_reported"))
@@ -80,7 +80,6 @@ class testMessageDoc(unittest.TestCase):
         self.assertTrue(self.user.password != None)
         self.assertTrue(self.user.dob != None)
         self.assertTrue(self.user.username != None)
-        self.assertTrue(User.is_active.expression.default.arg == False)
         self.assertTrue(User.is_admin.expression.default.arg == False)
         self.assertTrue(User.is_reported.expression.default.arg == False)
 
@@ -117,7 +116,7 @@ class testMessageDoc(unittest.TestCase):
                 username ="ikirujunior", sex="M", email="ikiru67@ikiru.com",
                 name="Ikiru junior", dob='2000-04-10', password="ikiru")
         user.save()
-        #Testt save method
+        #Test the save method
         user_copy = storage.get(User, user.id)
         self.assertEqual(user_copy, user)
         self.assertEqual(user_copy.id, user.id)

@@ -8,7 +8,7 @@ import unittest
 from models.base_model import BaseModel
 
 
-pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+pttn = "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
 class testBaseModelDoc(unittest.TestCase):
     """Test the doc and style of BaseModel class"""
     @classmethod
@@ -59,7 +59,7 @@ class testBaseModelDoc(unittest.TestCase):
         self.assertFalse("_sa_instance_state" in u_dict)
         self.assertTrue("__class__" in u_dict)
 
-        # Test the type of the attribute
+        # Test the type of the attributes
         self.assertEqual(self.basemodel.__class__.__name__, "BaseModel")
         self.assertEqual(type(self.basemodel.id), str)
         self.assertEqual(type(self.basemodel.created_at), datetime)
@@ -69,7 +69,7 @@ class testBaseModelDoc(unittest.TestCase):
     def test_attribute_values(self):
         """Test the attribute values and format
         """ 
-        self.assertTrue(bool(re.match(pattern, self.basemodel.id)))
+        self.assertTrue(bool(re.match(pattn, self.basemodel.id)))
 
         
     def test_to_dict_method(self):
