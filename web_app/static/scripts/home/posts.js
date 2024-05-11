@@ -17,7 +17,7 @@ let data = ['activate'];
 function fetchPosts () {
   // fetch and append 9 posts
   $.get({
-    url: `https://100.26.157.241/api/v1/posts/9/${refreshed}/${id}`,
+    url: `https://web-01.tamilore.tech/api/v1/posts/9/${refreshed}/${id}`,
     contentType: 'application/json',
   })
   .done(function (responses) {
