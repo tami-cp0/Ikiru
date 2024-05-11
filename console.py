@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
     # ANSI escape code for resetting text color to default
     RESET = "\033[0m"
     prompt = 'Ikiru' + BLUE + '$ ' + RESET
-    print(BLUE + "\t\ttype 'display' to see commands or display <command>" + RESET)
+    print(BLUE + "\t\ttype 'display' to see all commands or display <command>" + RESET)
 
     def do_EOF(self, arg):
         """Exits console"""
@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         """lists all commands and their syntax"""
         mydict = {
         "quit": ["quit - exit console"],
-        "create": ["create <class> - creates a class"],
+        "create": ["create <class> <key>='<value>' <key>='<value>' - creates a class object"],
         "show": ["show <class> <id> - displays the specific class"],
         "destroy": ["destroy <class> <id> - destroys the specific class"],
         "all": ["all - lists all classes", "all <class> - lists all specific classes"],
