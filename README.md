@@ -1,8 +1,9 @@
 # Ikiru
+> Japanese vocabulary: 生きる 【いきる】(ikiru) Meaning: to live.
 
 ![About.png](web_app/static/images/about_page.png)
 
-A portfolio project to develop a non-toxic social media for the goal of complete mental health up-keep.
+A portfolio project to develop a place to express and experience. A non-toxic social media with very positive community where we help each other and collectively maintain our mental health.
 Our user-friendly interface fosters seamless integration of APIs, data models, databases, authentication, and authorization. Built on a flexible, SOA/Three tier architecture.
 
 Connect with friends from all over the world.
@@ -18,6 +19,7 @@ Connect with friends from all over the world.
   - [Bugs](#bugs)
   - [Contibute](#contibute)
   - [Authors](#authors)
+  - [Timeline and Vision](#timeline-and-vision)
   - [Future Plans](#future-plans)
   - [License](#license)
 
@@ -90,6 +92,12 @@ We welcome contributions from the community to help improve the project. If you 
 - Oluwatamilore Olugbesan <findtamilore@gmail.com>
 - Huclark Vanderpuye <vhuclark@gmail.com>
 - Moses Solomon Ayofemi <solomonsyofemi@gmail.com>
+
+## Timeline and Vision
+
+This project started from ***April 12th, 2024*** and went on a temporary halt on the ***May 11th, 2024***.
+This is the **first** major project of each member of the team after 9 Months in tech.
+As newcomers, we're thrilled by our achievements within the given timeline. We embraced the challenge of learning new technologies on the fly, collaborated effectively despite being from diverse backgrounds, and thrived under the pressure of meeting deadlines set by the [ALX Software Engineering Program](https://www.alxafrica.com/). Our [vision](web-01.tamilore.tech/about/#about) for this project was to eliminate all toxicity and pressure that most social media fail to combat and ultimately have a very positive community where we help each other and collectively maintain our mental health.
 
 ## Future Plans
 
