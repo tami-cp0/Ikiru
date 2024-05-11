@@ -9,6 +9,7 @@ from flask import jsonify, abort, request, make_response
 from flasgger.utils import swag_from
 
 
+
 # direct routes to users
 @apis.route('/users', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/all_users.yml', methods=['GET'])
