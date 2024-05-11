@@ -16,19 +16,24 @@ def get_num_posts(num, refreshed, id):
     """
     Retrieves a number of posts from the database
     and notes the posts that havent been requested yet.
+    This route is used to populate the FEED of the website
     """
     global current_posts
     global total_posts
 
+    # if the refreshed was received by the api, it should reset all post tracking
     if refreshed == "refreshed":
         total_posts = []
         current_posts = []
         
     post_num = len(total_posts)
 
+    # get posts from the database
     posts = storage.all(Post).values()    
     
-    # Fetch new posts
+    # if posts is greater than the posts in the global variable
+    # then it should fetch them and add them to the total
+    # posts for tracking
     if len(posts) > post_num:
         total_posts = []
         for post in posts:
@@ -44,8 +49,14 @@ def get_num_posts(num, refreshed, id):
         total_posts.sort(key=lambda x: x["created_at"], reverse=True)
         new_posts = total_posts[post_num:]
         
-        
+        # current posts hold posts the user
+        # has not seen yet
         current_posts += new_posts
+        
+    # if the requested post is greater than the current posts
+    # it should return that and empty the list
+    # else it should return the number of posts requested 
+    # and delete them from the current_posts list
     if num > len(current_posts):
         posts_data = current_posts
         current_posts = []

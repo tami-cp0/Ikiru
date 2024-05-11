@@ -12,7 +12,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(apis)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "http://web-01.tamilore.tech"}})
 
 
 @app.errorhandler(404)
@@ -28,6 +28,9 @@ def not_found(error):
 
 @app.errorhandler(429)
 def handle_rate_limit_exceeded(e):
+    """
+    Limiter not yet implemented
+    """
     return make_response(jsonify({
         "error": "Rate limit exceeded. Please try again later."
     }), 429)
