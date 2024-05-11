@@ -12,7 +12,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(apis)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": ["https://web-01.tamilore.tech", "https://web-02.tamilore.tech"]}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": ["https://web-01.tamilore.tech", "https://web-02.tamilore.tech", "https://www.tamilore.tech"]}})
 
 
 
