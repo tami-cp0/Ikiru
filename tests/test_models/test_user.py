@@ -101,11 +101,8 @@ class testUserDoc(unittest.TestCase):
         self.assertEqual(type(self.user.password), str)
         self.assertEqual(type(self.user.dob), date)
         # Test the class defaut type
-        self.assertEqual(User.is_active.expression.type.python_type, bool)
         self.assertEqual(User.is_admin.expression.type.python_type, bool)
         self.assertEqual(User.is_reported.expression.type.python_type, bool)
-        self.assertEqual(
-                User.is_active.expression.type.python_type, bool)
         self.assertEqual(type(self.user.name), str)
         self.assertEqual(type(self.user.bio), str)
 

@@ -57,12 +57,13 @@ class testPostDoc(unittest.TestCase):
         self.assertFalse(self.post.id == None)
         self.assertFalse(self.post.created_at == None)
         self.assertFalse(self.post.updated_at == None)
+        #Test the default value of the attributess
         self.assertTrue(Post.is_reported.expression.default.arg == False)
         self.assertTrue(Post.is_anonymous.expression.default.arg == False)
 
 
     def test_message_class_attr(self):
-        """test the super class attributes"""
+        """test the class attributes"""
         self.assertTrue(hasattr(self.post, "content"))
         self.assertTrue(hasattr(self.post, "user_id"))
         self.assertFalse(self.post.user_id == None) 
@@ -70,6 +71,7 @@ class testPostDoc(unittest.TestCase):
         
     def test_message_methods(self):
         """test message inherited method"""
+        #Test to_dict method of the inherited class
         m_dict = self.post.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)

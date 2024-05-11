@@ -70,7 +70,7 @@ class testMessageDoc(unittest.TestCase):
 
 
     def test_message_super_class_attr(self):
-        """test the super class attributes"""   
+        """test the class attributes"""   
         self.assertTrue(hasattr(self.message, "id"))
         self.assertTrue(hasattr(self.message, "created_at"))
         self.assertFalse(self.message.id == None)
@@ -90,6 +90,7 @@ class testMessageDoc(unittest.TestCase):
         
     def test_message_methods(self):
         """test message inherited method"""
+        #Test to_dict metho of the inherited class
         m_dict = self.message.to_dict()
         self.assertEqual(type(m_dict), dict)
         self.assertFalse("_sa_instance_state" in m_dict)

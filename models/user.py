@@ -84,6 +84,7 @@ class User(BaseModel, Base, UserMixin):
     #     if user not in self.followers:
     #         self.following.remove(user)
     #         user.following.remove(self)
-    
+
     def get_id(self):
+        "get user session id"
         return str(self.id)

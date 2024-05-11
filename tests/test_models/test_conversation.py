@@ -19,7 +19,7 @@ class testConversationDoc(unittest.TestCase):
         # Creating a user
         cls.user = User(username="ikiru9", sex="M", email="ikiru9@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user.save()
-        cls.user1 = User(username="ikiru909", sex="M", email="ikiru909@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
+        cls.user1 = User(username="ikiru4909", sex="M", email="ikiru9309@ikiru.com", name="Ikiru", dob='2000-04-10', password="ikiru")
         cls.user1.save()
         # Creating a conversation with the user id
         cls.conversation = Conversation(sender_id=cls.user.id, receiver_id=cls.user1.id)
