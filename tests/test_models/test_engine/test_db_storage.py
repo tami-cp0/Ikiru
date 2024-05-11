@@ -70,11 +70,7 @@ class testDBStorageDoc(unittest.TestCase):
             db='ikiru_db',
             charset='utf8')
         return conn
-            
-    def test_the_db_is_empty(self):
-        """Test to ensure the db is empty"""
-        pass        
-            
+
             
     def test_new_save_and_delete_methods(self):
         """Test the new, save and delete method"""

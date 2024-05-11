@@ -69,7 +69,7 @@ class testBaseModelDoc(unittest.TestCase):
     def test_attribute_values(self):
         """Test the attribute values and format
         """ 
-        self.assertTrue(bool(re.match(pattn, self.basemodel.id)))
+        self.assertTrue(bool(re.match(pttn, self.basemodel.id)))
 
         
     def test_to_dict_method(self):
@@ -82,7 +82,7 @@ class testBaseModelDoc(unittest.TestCase):
             self.assertTrue(hasattr(self.basemodel, key))
         self.assertEqual(to_dict["__class__"], "BaseModel")
 
-        self.assertTrue(bool(re.match(pattern, to_dict["id"])))
+        self.assertTrue(bool(re.match(pttn, to_dict["id"])))
         try:
             created_type = datetime.fromisoformat(to_dict["created_at"])
             updated_type = datetime.fromisoformat(to_dict["updated_at"])

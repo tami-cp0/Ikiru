@@ -81,7 +81,7 @@ class testBaseModel2Doc(unittest.TestCase):
             self.assertTrue(hasattr(self.basemodel2, key))
         self.assertEqual(to_dict["__class__"], "BaseModel2")
         
-        self.assertTrue(bool(re.match(pattern, to_dict["id"])))
+        self.assertTrue(bool(re.match(pttn, to_dict["id"])))
         try:
             created_type = datetime.fromisoformat(to_dict["created_at"])
         except ValueError:
