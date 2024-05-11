@@ -108,7 +108,7 @@ if (data) {
     let options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.25
+      threshold: 0
     };
 
     function handleIntersect (entries, observer) {
