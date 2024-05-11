@@ -15,6 +15,20 @@ app.register_blueprint(apis)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "http://web-01.tamilore.tech"}})
 
 
+
+@app.before_request
+def before_request():
+    """Open a session before each request"""
+    storage.open_session()
+
+
+@app.after_request
+def after_request(response):
+    """Close the session after each request"""
+    storage.close()
+    return response
+
+
 @app.errorhandler(404)
 def not_found(error):
     """ 404 Error

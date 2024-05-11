@@ -28,22 +28,26 @@ class DBStorage():
               "ReportedUser": ReportedUser, "ReportedComment": ReportedComment,
               "ReportedMessage": ReportedMessage}
 
-    def __init__(self):
-        """Initializes a DBStorage instance"""
+    @classmethod
+    def init(cls):
+        """Initialize the database engine and session"""
         username = "ikiru_user"
         password = "password"
         hostname = "localhost"
         database = "ikiru_db"
-        running_environment = "dev"
-        self.__engine = create_engine(
-            f"mysql+mysqldb://{username}:{password}@{hostname}/{database}",
-            pool_pre_ping=True
-        )
 
-        if running_environment == "test":
-            Base.metadata.drop_all(self.__engine)
+        if not cls.__engine or not cls.__session:
+            cls.__engine = create_engine(
+                f"mysql+mysqldb://{username}:{password}@{hostname}/{database}",
+                pool_pre_ping=True
+            )
+            Base.metadata.create_all(cls.__engine)
+            cls.__session = scoped_session(
+                sessionmaker(bind=cls.__engine, expire_on_commit=False)
+            )
 
-    def all(self, cls=None):
+    @classmethod
+    def all(cls, class_name=None):
         """Returns a dictionary of all objects. If a table is specified,
         It will return all objects of the specified table
 
@@ -53,69 +57,69 @@ class DBStorage():
         Returns:
             dict: A dictionary of all the objects
         """
-        # refresh database
-        self.__session.expire_all()
-        
+
         all_objects = {}
-        if cls:
-            objs = self.__session.query(cls).all()
+        if class_name:
+            objs = cls.__session.query(class_name).all()
             for obj in objs:
                 key = f"{obj.__class__.__name__}.{obj.id}"
                 all_objects[key] = obj
         else:
-            for table in self.tables.values():
-                objs = self.__session.query(table).all()
+            for table in cls.tables.values():
+                objs = cls.__session.query(table).all()
                 for obj in objs:
                     key = f"{obj.__class__.__name__}.{obj.id}"
                     all_objects[key] = obj
 
         return all_objects
+    
+    @classmethod
+    def open_session(cls):
+        """Open a new session"""
+        if not cls.__session:
+            cls.init()
 
-    def new(self, obj):
+    @classmethod
+    def close(cls):
+        """Close the current session"""
+        if cls.__session:
+            cls.__session.remove()
+
+    @classmethod
+    def new(cls, obj):
         """Adds an object to the current database session
 
         Args:
             obj (instance of a class): An instance of a class
         """
-        self.__session.add(obj)
+        cls.__session.add(obj)
 
-    def save(self):
+    @classmethod
+    def save(cls):
         """Commits all changes to the current database session
         """
-        self.__session.commit()
+        cls.__session.commit()
 
-    def delete(self, obj=None):
+    @classmethod
+    def delete(cls, obj=None):
         """Deletes an object from the current database session
 
         Args:
             obj (instance, optional): Object to delete. Defaults to None.
         """
         if obj is not None:
-            self.__session.delete(obj)
+            cls.__session.delete(obj)
 
-    def reload(self):
-        """Creates all tables in the database and establishes a session from
-        the engine
-        """
-        Base.metadata.create_all(self.__engine)
-        self.__session = scoped_session(
-            sessionmaker(bind=self.__engine, expire_on_commit=False)
-        )
-
-    def close(self):
-        """Closes the current database session
-        """
-        self.__session.remove()
-
-    def get(self, cls, id=None, username=None, email=None):
+    @classmethod
+    def get(cls, class_name, id=None, username=None, email=None):
         """
         Returns the object based on the class name and its ID, or
         None if not found
         """
-        if cls not in self.tables.values():
+        if class_name not in cls.tables.values():
             return None
 
-        all_cls = models.storage.all(cls)
+        all_cls = models.storage.all(class_name)
         for value in all_cls.values():
             if id:
                 if (value.id == id):
@@ -129,17 +133,18 @@ class DBStorage():
 
         return None
 
-    def count(self, cls=None):
+    @classmethod
+    def count(cls, class_name=None):
         """
         count the number of objects in storage
         """
-        all_class = self.tables.values()
+        all_class = cls.tables.values()
 
-        if not cls:
+        if not class_name:
             count = 0
             for clas in all_class:
                 count += len(models.storage.all(clas).values())
         else:
-            count = len(models.storage.all(cls).values())
+            count = len(models.storage.all(class_name).values())
 
         return count
