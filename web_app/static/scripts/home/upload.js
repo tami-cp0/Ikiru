@@ -17,7 +17,7 @@ function populate_post (data) {
                 <svg
                   class="like-button post-interaction-buttons"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     class="like-button-path"
@@ -30,7 +30,7 @@ function populate_post (data) {
                 <svg
                   class="comment-button post-interaction-buttons"
                   viewBox="0 0 23 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     class="comment-button-path"
@@ -44,7 +44,7 @@ function populate_post (data) {
                 <svg
                   class="save-button"
                   viewBox="0 0 19 21"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     class="save-button-path"
@@ -57,7 +57,7 @@ function populate_post (data) {
                 <svg
                   class="share-button"
                   viewBox="0 0 24 21"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     class="share-button-path"
@@ -82,7 +82,7 @@ $(document).ready( () => {
     // if textarea is not empty
     if (content != '') {
       await $.post({
-        url:`http://100.26.157.241/api/v1/users/${id}/posts`,
+        url:`https://100.26.157.241/api/v1/users/${id}/posts`,
         contentType: 'application/json',
         data: JSON.stringify({'content': content}),
         success: function (response) {

@@ -2,7 +2,7 @@ async function get_html (data) {
   let chat_html;
 
   await $.get({
-    url: `http://100.26.157.241/api/v1/users/${id}/conversations/${data.id}/messages`,
+    url: `https://100.26.157.241/api/v1/users/${id}/conversations/${data.id}/messages`,
     contentType: 'application/json',
   })
   .done(function (responses) {
@@ -40,7 +40,7 @@ async function get_html (data) {
     <svg
       class="big-red-dot"
       viewBox="0 0 10 10"
-      xmlns="http://www.w3.org/2000/svg"
+      xmlns="https://www.w3.org/2000/svg"
     >
       <rect width="10" height="10" rx="5" fill="#E13E3E" />
     </svg>
@@ -57,7 +57,7 @@ async function get_html (data) {
 
 async function get_convos (tag) {
   await $.get({
-    url: `http://100.26.157.241/api/v1/users/${id}/conversations`,
+    url: `https://100.26.157.241/api/v1/users/${id}/conversations`,
     contentType: 'application/json',
   })
   .done(async function (responses) {

@@ -2,7 +2,7 @@ const id = $('.username_handle .user-id').attr('id');
 
 function fetchPosts () {
   $.get({
-    url: `http://100.26.157.241/api/v1/users/${id}/posts`,
+    url: `https://100.26.157.241/api/v1/users/${id}/posts`,
     contentType: 'application/json',
   })
   .done(function (responses) {
@@ -23,7 +23,7 @@ function fetchPosts () {
                       <svg
                         class="like-button post-interaction-buttons"
                         viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="https://www.w3.org/2000/svg"
                       >
                         <path
                           class="like-button-path"
@@ -36,7 +36,7 @@ function fetchPosts () {
                       <svg
                         class="comment-button post-interaction-buttons"
                         viewBox="0 0 23 20"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="https://www.w3.org/2000/svg"
                       >
                         <path
                           class="comment-button-path"
@@ -49,7 +49,7 @@ function fetchPosts () {
                       <svg
                         class="save-button"
                         viewBox="0 0 19 21"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="https://www.w3.org/2000/svg"
                       >
                         <path
                           class="save-button-path"
@@ -62,7 +62,7 @@ function fetchPosts () {
                       <svg
                         class="share-button"
                         viewBox="0 0 24 21"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="https://www.w3.org/2000/svg"
                       >
                         <path
                           class="share-button-path"
