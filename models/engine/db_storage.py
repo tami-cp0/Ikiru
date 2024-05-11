@@ -53,6 +53,9 @@ class DBStorage():
         Returns:
             dict: A dictionary of all the objects
         """
+        # refresh database
+        self.__session.expire_all()
+        
         all_objects = {}
         if cls:
             objs = self.__session.query(cls).all()
