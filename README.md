@@ -27,7 +27,7 @@ Connect with friends from all over the world.
 
 > **Note:** The Website is currently only ready for desktop/PC devices.
 
-To get started with Ikiru, the hosted version of the product can be used. You can get started immediately at [web-01.tamilore.tech](http://web-01.tamilore.tech) in any browser to access the site.
+**unfortunately our servers are down as of JULY 2024, so it cant be accessed online anymore**.
 
 ## Features
 
